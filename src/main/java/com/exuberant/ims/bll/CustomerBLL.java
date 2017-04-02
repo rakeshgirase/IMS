@@ -2,8 +2,9 @@ package com.exuberant.ims.bll;
 import com.exuberant.ims.dal.Customer;
 import com.exuberant.ims.getway.CustomerGetway;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
@@ -18,8 +19,9 @@ public class CustomerBLL {
     Connection con = this.dbCon.getConnection();
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void save(Customer customer) {
         if (isUniqName(customer)) {
             this.customerGetway.save(customer);
@@ -91,7 +93,3 @@ public class CustomerBLL {
         return isSame;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.bll\CustomerBLL.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

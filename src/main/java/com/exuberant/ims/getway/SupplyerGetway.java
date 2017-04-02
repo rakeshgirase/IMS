@@ -2,7 +2,8 @@ package com.exuberant.ims.getway;
 import com.exuberant.ims.dal.Supplyer;
 import com.exuberant.ims.list.ListSupplyer;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
+import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
@@ -18,8 +19,9 @@ public class SupplyerGetway {
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void save(Supplyer supplyer) {
         this.con = this.dbCon.getConnection();
         if (isUniqSupplyerName(supplyer)) {
@@ -272,7 +274,3 @@ public class SupplyerGetway {
         return isNotUse;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.getway\SupplyerGetway.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

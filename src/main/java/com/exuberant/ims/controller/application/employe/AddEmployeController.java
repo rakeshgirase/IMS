@@ -3,7 +3,8 @@ import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.getway.UsersGetway;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
+import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -43,8 +44,8 @@ public class AddEmployeController
     public Button btnClrSalary;
     @FXML
     public Button btnClrPassword;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
     Users users = new Users();
     UsersGetway usersGetway = new UsersGetway();
     @FXML
@@ -158,7 +159,3 @@ public class AddEmployeController
         }
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.controller\application\employe\AddEmployeController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

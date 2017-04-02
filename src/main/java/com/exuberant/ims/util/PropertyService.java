@@ -20,7 +20,11 @@ public class PropertyService {
 			throw new FatalException(String.format("Couldnt read properties file %s", fileName));
 		}		
 	}
-	
+
+	public int getPropertyAsInt(String key) {
+		return Integer.parseInt(properties.getProperty(key));
+	}
+
 	private static class SingletonPropertyService{
         private static final PropertyService INSTANCE = new PropertyService();
     }

@@ -2,7 +2,8 @@ package com.exuberant.ims.controller.application;
 import com.exuberant.ims.controller.application.settings.MyAccountController;
 import com.exuberant.ims.controller.application.settings.OrgSettingController;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
+import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,8 +31,8 @@ public class SettingsController
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
     UserNameMedia usrMedia;
     @FXML
     private MenuItem miMyASccount;
@@ -105,7 +106,3 @@ public class SettingsController
         }
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.controller\application\SettingsController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

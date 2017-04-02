@@ -1,5 +1,6 @@
 package com.exuberant.ims.database;
 import com.exuberant.ims.storekeeper.StoreKeeper;
+import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -56,32 +57,20 @@ public class ServerController
     private void btnResetOnAction(ActionEvent event) {
     }
     public void getDataFromFile() {
-        try {
-            this.inputStream = new FileInputStream("database.properties");
-            this.properties.load(this.inputStream);
-            System.err.println("Host : " + this.properties.getProperty("host"));
-            this.tfHost.setText(this.properties.getProperty("host"));
-            this.tfDBName.setText(this.properties.getProperty("db"));
-            this.tfUserName.setText(this.properties.getProperty("user"));
-            this.pfPassword.setText(this.properties.getProperty("password"));
-            this.thPort.setText(this.properties.getProperty("port"));
-            this.inputStream.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.tfHost.setText(PropertyService.getInstance().getProperty("host"));
+        this.tfDBName.setText(PropertyService.getInstance().getProperty("db"));
+        this.tfUserName.setText(PropertyService.getInstance().getProperty("user"));
+        this.pfPassword.setText(PropertyService.getInstance().getProperty("password"));
+        this.thPort.setText(PropertyService.getInstance().getProperty("port"));
     }
     public void mkDbProperties() {
         try {
-            this.output = new FileOutputStream("database.properties");
             this.properties.setProperty("host", this.tfHost.getText().trim());
             this.properties.setProperty("port", this.thPort.getText().trim());
             this.properties.setProperty("db", this.tfDBName.getText().trim());
             this.properties.setProperty("user", this.tfUserName.getText().trim());
             this.properties.setProperty("password", this.pfPassword.getText().trim());
             this.properties.store(this.output, null);
-            this.output.close();
             if (dbConnect()) {
                 this.con.close();
                 Alert alert = new Alert(AlertType.INFORMATION);
@@ -113,8 +102,8 @@ public class ServerController
     public void checkSQLStatus() {
         try {
             this.inputStream = new FileInputStream("database.properties");
-            String host = this.properties.getProperty("host");
-            int port = 3306;
+            String host = PropertyService.getInstance().getProperty("host");
+            int port = PropertyService.getInstance().getPropertyAsInt("port");
             Socket socket = new Socket(host, port);
             this.lablServerStatus.setText("Server is running");
         } catch (FileNotFoundException ex) {
@@ -124,20 +113,14 @@ public class ServerController
         }
     }
     public void loadPropertiesFile() {
-        try {
-            this.inputStream = new FileInputStream("database.properties");
-            this.properties.load(this.inputStream);
-            this.url = ("jdbc:mysql://" + this.properties.getProperty("host") + ":" + this.properties.getProperty("port") + "/");
+            this.url = PropertyService.getInstance().getProperty("url");
             this.user = this.properties.getProperty("user");
             this.pass = this.properties.getProperty("password");
-        } catch (IOException e) {
-            System.out.println("DDDD");
-        }
     }
     private boolean dbConnect() {
         loadPropertiesFile();
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName(PropertyService.getInstance().getProperty("driverName"));
             this.con = DriverManager.getConnection(this.url + this.unicode, this.user, this.pass);
             return true;
         } catch (ClassNotFoundException | SQLException ex) {
@@ -146,7 +129,3 @@ public class ServerController
         return false;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.database\ServerController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

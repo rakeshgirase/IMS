@@ -3,7 +3,8 @@ import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
+import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,8 +34,8 @@ public class LoginController
     Users users = new Users();
     CustomTf cTF = new CustomTf();
     CustomPf cPF = new CustomPf();
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
     @FXML
     private TextField tfUserName;
     @FXML
@@ -218,7 +219,3 @@ public class LoginController
         }
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.controller\LoginController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -3,8 +3,9 @@ import com.exuberant.ims.dal.Catagory;
 import com.exuberant.ims.dal.Supplyer;
 import com.exuberant.ims.getway.CatagoryGetway;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
@@ -21,8 +22,9 @@ public class CatagoryBLL {
     Connection con = this.dbCon.getConnection();
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void save(Catagory catagory) {
         if (isUniqName(catagory)) {
             this.catagoryGetway.save(catagory);
@@ -72,9 +74,9 @@ public class CatagoryBLL {
             if (this.rs.next()) {
                 System.out.println("in not uniq");
                 Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Sucess");
+                alert.setTitle("Success");
                 alert.setHeaderText("ERROR : used");
-                alert.setContentText("Catagory  '" + catagory.catagoryName + "' Already exist");
+                alert.setContentText("Category  '" + catagory.catagoryName + "' Already exist");
                 alert.initStyle(StageStyle.UNDECORATED);
                 alert.showAndWait();
                 return uniqSupplyer;
@@ -86,7 +88,3 @@ public class CatagoryBLL {
         return uniqSupplyer;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.bll\CatagoryBLL.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

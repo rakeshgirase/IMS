@@ -2,7 +2,9 @@ package com.exuberant.ims.bll;
 import com.exuberant.ims.dal.SellCart;
 import com.exuberant.ims.getway.SellCartGerway;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
+import com.exuberant.ims.util.PropertyService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,8 +17,9 @@ public class SellCartBLL {
     Connection con = this.dbCon.getConnection();
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void sell(SellCart sellCart) {
         updateCurrentQuentity(sellCart);
         this.sellCartGerway.save(sellCart);
@@ -40,7 +43,3 @@ public class SellCartBLL {
         System.out.println("Update Complate");
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.bll\SellCartBLL.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -6,8 +6,9 @@ import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.custom.History;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.util.PropertyService;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -62,8 +63,8 @@ public class ViewEmployeController
     UsersGetway usersGetway = new UsersGetway();
     SQL sql = new SQL();
     DBConnection dbCon = new DBConnection();
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
     Connection con = this.dbCon.getConnection();
     PreparedStatement pst;
     ResultSet rs;
@@ -312,7 +313,3 @@ public class ViewEmployeController
         this.taAddress.clear();
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.controller\application\employe\ViewEmployeController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

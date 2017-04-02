@@ -1,7 +1,9 @@
 package com.exuberant.ims.getway;
 import com.exuberant.ims.dal.MysqlConnector;
-import com.exuberant.ims.database.DBProperties;
+
 import com.exuberant.ims.database.SQLightConnection;
+import com.exuberant.ims.util.PropertyService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,8 +15,9 @@ public class MySqlConnectorGetway {
     Connection con = this.qLightConnection.sqliteConnection();
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void save(MysqlConnector connector) {
         try {
             this.pst = this.con.prepareStatement("insert into mysqlInfo values(?,?,?,?,?)");
@@ -43,7 +46,3 @@ public class MySqlConnectorGetway {
         }
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.getway\MySqlConnectorGetway.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

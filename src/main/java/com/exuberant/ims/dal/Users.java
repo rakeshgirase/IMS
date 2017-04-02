@@ -22,7 +22,3 @@ public class Users {
     public Image image;
     public ObservableList<ListEmployee> employeeLists = FXCollections.observableArrayList();
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.dal\Users.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

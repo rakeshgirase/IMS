@@ -1,6 +1,7 @@
 package com.exuberant.ims.database;
 import com.exuberant.ims.controller.application.employe.AddEmployeController;
 import com.exuberant.ims.controller.application.stock.ViewSupplyerController;
+import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Label;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,8 +16,8 @@ public class SQL {
     Connection con;
     ResultSet rs;
     PreparedStatement pst;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void registration(String id, String userName, String fullName, String emailAddress, String contactNumber, String salary, String address, String password, int status, String date, String crratorId, String imagePath) {
         this.con = this.dbCon.getConnection();
         try {
@@ -194,7 +195,3 @@ public class SQL {
         return rmaDayes;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.database\SQL.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

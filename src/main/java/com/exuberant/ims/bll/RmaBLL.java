@@ -3,8 +3,9 @@ import com.exuberant.ims.dal.RMA;
 import com.exuberant.ims.dal.Supplyer;
 import com.exuberant.ims.getway.RmaGetway;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
@@ -21,8 +22,9 @@ public class RmaBLL {
     Connection con = this.dbCon.getConnection();
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void save(RMA rma) {
         if (isUniqName(rma)) {
             this.rmaGetway.save(rma);
@@ -81,7 +83,3 @@ public class RmaBLL {
         return uniqRMA;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.bll\RmaBLL.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

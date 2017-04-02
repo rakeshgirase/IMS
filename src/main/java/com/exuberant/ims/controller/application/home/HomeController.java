@@ -1,7 +1,7 @@
 package com.exuberant.ims.controller.application.home;
 import com.exuberant.ims.getway.CurrentProductGetway;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+import com.exuberant.ims.util.PropertyService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -20,8 +20,7 @@ public class HomeController
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+    String db = PropertyService.getInstance().getProperty("db");
     @FXML
     private Label lblTotalItem;
     @FXML
@@ -101,7 +100,3 @@ public class HomeController
         }
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.controller\application\home\HomeController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -12,7 +12,3 @@ public class Supplyer {
     public String date;
     public ObservableList<ListSupplyer> supplyerDetails = FXCollections.observableArrayList();
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.dal\Supplyer.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

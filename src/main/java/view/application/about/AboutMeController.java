@@ -14,7 +14,3 @@ public class AboutMeController
         this.imgMyImg.setImage(this.image);
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\view\application\about\AboutMeController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

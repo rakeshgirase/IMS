@@ -95,7 +95,3 @@ public class AddRMAController
         this.taRMAComment.setText(this.rma.rmaComment);
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.controller\application\stock\AddRMAController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

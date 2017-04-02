@@ -2,8 +2,10 @@ package com.exuberant.ims.getway;
 import com.exuberant.ims.dal.SellCart;
 import com.exuberant.ims.list.ListSold;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.util.PropertyService;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +18,9 @@ public class SellCartGerway {
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
+
     public void save(SellCart sellCart) {
         this.con = this.dbCon.getConnection();
         try {
@@ -133,7 +136,3 @@ public class SellCartGerway {
         }
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.getway\SellCartGerway.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

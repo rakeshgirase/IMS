@@ -1,12 +1,13 @@
 package com.exuberant.ims.bll;
 import com.exuberant.ims.dal.CurrentProduct;
-import com.exuberant.ims.getway.CurrentProductGetway;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.getway.CurrentProductGetway;
+import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,8 +19,7 @@ public class CurrentProductBLL {
     Connection con = this.dbCon.getConnection();
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+    String db = PropertyService.getInstance().getProperty("db");
     SQL sql = new SQL();
     CurrentProductGetway currentProductGetway = new CurrentProductGetway();
     public void save(CurrentProduct currentProduct) {
@@ -123,7 +123,3 @@ public class CurrentProductBLL {
         return currentProduct;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.bll\CurrentProductBLL.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

@@ -2,8 +2,8 @@ package com.exuberant.ims.getway;
 import com.exuberant.ims.dal.CurrentProduct;
 import com.exuberant.ims.list.ListProduct;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
@@ -19,8 +19,7 @@ public class CurrentProductGetway {
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+    String db = PropertyService.getInstance().getProperty("db");
     SQL sql = new SQL();
     public void save(CurrentProduct currentProduct) {
         this.con = this.dbCon.getConnection();
@@ -469,7 +468,3 @@ public class CurrentProductGetway {
         return isNotSoled;
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.getway\CurrentProductGetway.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */

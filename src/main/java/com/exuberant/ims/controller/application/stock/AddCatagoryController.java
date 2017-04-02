@@ -3,8 +3,9 @@ import com.exuberant.ims.bll.CatagoryBLL;
 import com.exuberant.ims.dal.Catagory;
 import com.exuberant.ims.getway.CatagoryGetway;
 import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.DBProperties;
+
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,8 +44,8 @@ public class AddCatagoryController
     CatagoryGetway catagoryGetway = new CatagoryGetway();
     CatagoryBLL catagoryBLL = new CatagoryBLL();
     SQL sql = new SQL();
-    DBProperties dBProperties = new DBProperties();
-    String db = this.dBProperties.loadPropertiesFile();
+
+    String db = PropertyService.getInstance().getProperty("db");
     DBConnection dbCon = new DBConnection();
     Connection con = this.dbCon.getConnection();
     PreparedStatement pst;
@@ -216,7 +217,3 @@ public class AddCatagoryController
         this.cbSupplyerName.setPromptText(this.catagory.supplyerName);
     }
 }
-/* Location:              C:\Users\INTEL\Downloads\com.exuberant.ims.storekeeper-alpha\com.exuberant.ims.storekeeper-alpha.jar!\com.exuberant.ims.controller\application\stock\AddCatagoryController.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       0.7.1
- */
