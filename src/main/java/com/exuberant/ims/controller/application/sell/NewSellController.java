@@ -1,5 +1,8 @@
 package com.exuberant.ims.controller.application.sell;
+
 import com.exuberant.ims.bll.SellCartBLL;
+import com.exuberant.ims.custom.CustomTf;
+import com.exuberant.ims.custom.RandomIdGenarator;
 import com.exuberant.ims.dal.CurrentProduct;
 import com.exuberant.ims.dal.Customer;
 import com.exuberant.ims.dal.SellCart;
@@ -8,8 +11,8 @@ import com.exuberant.ims.getway.CustomerGetway;
 import com.exuberant.ims.getway.SellCartGerway;
 import com.exuberant.ims.list.ListCustomer;
 import com.exuberant.ims.list.ListPreSell;
-import com.exuberant.ims.custom.CustomTf;
-import com.exuberant.ims.custom.RandomIdGenarator;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,7 +30,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
@@ -298,7 +301,8 @@ public class NewSellController
         AddCustomerController acc = new AddCustomerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.setLocation(getClass().getResource("/view/application/sell/AddCustomer.fxml"));
+        URL resource = URLService.getFileAsResoure("application/sell/AddCustomer.fxml");
+        fXMLLoader.setLocation(resource);
         try {
             fXMLLoader.load();
             Parent parent = (Parent) fXMLLoader.getRoot();

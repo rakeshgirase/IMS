@@ -1,7 +1,9 @@
 package com.exuberant.ims.controller.application;
+
 import com.exuberant.ims.controller.application.stock.*;
 import com.exuberant.ims.database.DBConnection;
-
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +15,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -80,7 +82,8 @@ public class StockController
         CurrentStoreController asc = new CurrentStoreController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/stock/CurrentStore.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/stock/CurrentStore.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.usrId);
         CurrentStoreController currentStoreController = (CurrentStoreController) fXMLLoader.getController();
         currentStoreController.setMedia(this.userId);
@@ -97,7 +100,8 @@ public class StockController
         ViewSupplyerController vsc = new ViewSupplyerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/stock/ViewSupplier.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/stock/ViewSupplier.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.usrId);
         ViewSupplyerController viewSupplyerController = (ViewSupplyerController) fXMLLoader.getController();
         viewSupplyerController.setMedia(this.userId);
@@ -112,7 +116,8 @@ public class StockController
         ViewBrandController vbc = new ViewBrandController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/stock/ViewBrand.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/stock/ViewBrand.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.usrId);
         ViewBrandController viewBrandController = (ViewBrandController) fXMLLoader.getController();
         viewBrandController.setMedia(this.userId);
@@ -127,7 +132,8 @@ public class StockController
         ViewCatagoryController vcc = new ViewCatagoryController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/stock/ViewCategory.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/stock/ViewCategory.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.usrId);
         ViewCatagoryController viewCatagoryController = (ViewCatagoryController) fXMLLoader.getController();
         viewCatagoryController.setMedia(this.userId);
@@ -142,7 +148,8 @@ public class StockController
         ViewUnitController vuc = new ViewUnitController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/stock/ViewUnit.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/stock/ViewUnit.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.usrId);
         ViewUnitController viewUnitController = (ViewUnitController) fXMLLoader.getController();
         viewUnitController.setMedia(this.userId);
@@ -157,7 +164,8 @@ public class StockController
         ViewRMAController vrmac = new ViewRMAController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/stock/ViewRMA.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/stock/ViewRMA.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.usrId);
         ViewRMAController viewRMAController = (ViewRMAController) fXMLLoader.getController();
         viewRMAController.setMedia(this.userId);

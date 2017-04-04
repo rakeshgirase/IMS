@@ -70,7 +70,6 @@ public class ServerController
             this.properties.setProperty("db", this.tfDBName.getText().trim());
             this.properties.setProperty("user", this.tfUserName.getText().trim());
             this.properties.setProperty("password", this.pfPassword.getText().trim());
-            this.properties.store(this.output, null);
             if (dbConnect()) {
                 this.con.close();
                 Alert alert = new Alert(AlertType.INFORMATION);
@@ -91,17 +90,12 @@ public class ServerController
                 error_alert.initStyle(StageStyle.UNDECORATED);
                 error_alert.show();
             }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(StoreKeeper.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(StoreKeeper.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     public void checkSQLStatus() {
         try {
-            this.inputStream = new FileInputStream("database.properties");
             String host = PropertyService.getInstance().getProperty("host");
             int port = PropertyService.getInstance().getPropertyAsInt("port");
             Socket socket = new Socket(host, port);
@@ -121,7 +115,10 @@ public class ServerController
         loadPropertiesFile();
         try {
             Class.forName(PropertyService.getInstance().getProperty("driverName"));
-            this.con = DriverManager.getConnection(this.url + this.unicode, this.user, this.pass);
+            //this.con = DriverManager.getConnection(this.url + this.unicode, this.user, this.pass);
+            url = PropertyService.getInstance().getProperty("url");
+            System.err.println("this.url: " + url);
+            this.con = DriverManager.getConnection(this.url);
             return true;
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Too Many Connection");

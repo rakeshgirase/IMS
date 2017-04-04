@@ -10,6 +10,7 @@ import com.exuberant.ims.database.SQL;
 import com.exuberant.ims.getway.CurrentProductGetway;
 import com.exuberant.ims.list.ListProduct;
 import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -209,7 +210,8 @@ public class CurrentStoreController implements Initializable {
         AddProductController apc = new AddProductController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddProduct.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddProduct.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -292,7 +294,8 @@ public class CurrentStoreController implements Initializable {
         AddProductController apc = new AddProductController();
         UserNameMedia userMedia = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddProduct.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddProduct.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -322,7 +325,8 @@ public class CurrentStoreController implements Initializable {
             NewSellController acc = new NewSellController();
             UserNameMedia media = new UserNameMedia();
             FXMLLoader fXMLLoader = new FXMLLoader();
-            fXMLLoader.setLocation(getClass().getResource("/view/application/sell/NewSell.fxml"));
+            URL resource = URLService.getFileAsResoure("application/stock/NewSell.fxml");
+            fXMLLoader.setLocation(resource);
             try {
                 fXMLLoader.load();
                 Parent parent = (Parent) fXMLLoader.getRoot();

@@ -1,10 +1,12 @@
 package com.exuberant.ims.controller.application.stock;
+
 import com.exuberant.ims.bll.CurrentProductBLL;
 import com.exuberant.ims.dal.CurrentProduct;
-import com.exuberant.ims.getway.CurrentProductGetway;
 import com.exuberant.ims.database.DBConnection;
-
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.getway.CurrentProductGetway;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -20,7 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -405,7 +407,8 @@ public class AddProductController
         AddSupplyerController addSupplyerController = new AddSupplyerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddSupplier.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddSupplier.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -430,7 +433,8 @@ public class AddProductController
         AddBrandController addSupplyerController = new AddBrandController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddBrand.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddBrand.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -454,7 +458,8 @@ public class AddProductController
         AddCatagoryController addCatagoryController = new AddCatagoryController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddCategory.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddCategory.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -478,7 +483,8 @@ public class AddProductController
         AddUnitController addUnitController = new AddUnitController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddUnit.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddUnit.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -502,7 +508,8 @@ public class AddProductController
         AddRMAController addRMAController = new AddRMAController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddRMA.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddRMA.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -526,7 +533,8 @@ public class AddProductController
         try {
             CurrentStoreController asc = new CurrentStoreController();
             FXMLLoader fXMLLoader = new FXMLLoader();
-            fXMLLoader.load(getClass().getResource("/view/application/stock/CurrentStore.fxml").openStream());
+            URL resource = URLService.getFileAsResoure("application/stock/CurrentStore.fxml");
+            fXMLLoader.load(resource.openStream());
             CurrentStoreController currentStoreController = (CurrentStoreController) fXMLLoader.getController();
             currentStoreController.viewDetails();
         } catch (IOException ex) {

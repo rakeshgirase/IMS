@@ -7,6 +7,7 @@ import com.exuberant.ims.database.SQL;
 import com.exuberant.ims.getway.BrandsGetway;
 import com.exuberant.ims.list.ListBrands;
 import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -130,7 +131,8 @@ public class ViewBrandController
         AddBrandController addSupplyerController = new AddBrandController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddBrand.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddBrand.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -196,7 +198,8 @@ public class ViewBrandController
             AddBrandController addBrandController1 = new AddBrandController();
             UserNameMedia media = new UserNameMedia();
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddBrand.fxml"));
+            URL resource = URLService.getFileAsResoure("application/stock/AddBrand.fxml");
+            fxmlLoader.setLocation(resource);
             try {
                 fxmlLoader.load();
                 Parent parent = (Parent) fxmlLoader.getRoot();

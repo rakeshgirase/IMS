@@ -1,5 +1,5 @@
 package com.exuberant.ims.database;
-import com.exuberant.ims.controller.application.employe.AddEmployeController;
+import com.exuberant.ims.controller.application.employee.AddEmployeController;
 import com.exuberant.ims.controller.application.stock.ViewSupplyerController;
 import com.exuberant.ims.util.PropertyService;
 import javafx.scene.control.Label;

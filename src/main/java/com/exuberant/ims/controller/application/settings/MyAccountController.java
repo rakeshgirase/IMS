@@ -1,8 +1,10 @@
 package com.exuberant.ims.controller.application.settings;
-import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.getway.UsersGetway;
-import com.exuberant.ims.database.DBConnection;
 
+import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.database.DBConnection;
+import com.exuberant.ims.getway.UsersGetway;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.embed.swing.SwingFXUtils;
@@ -25,7 +27,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -115,7 +117,8 @@ public class MyAccountController
                     PassChangeController pcc = new PassChangeController();
                     UserNameMedia nameMedia = new UserNameMedia();
                     FXMLLoader loader = new FXMLLoader();
-                    loader.setLocation(getClass().getResource("/view/application/settings/PassChange.fxml"));
+                    URL resource = URLService.getFileAsResoure("application/settings/PassChange.fxml");
+                    loader.setLocation(resource);
                     loader.load();
                     Parent root = (Parent) loader.getRoot();
                     Scene scene = new Scene(root);

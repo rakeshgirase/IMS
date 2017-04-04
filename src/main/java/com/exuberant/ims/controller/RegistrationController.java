@@ -1,10 +1,11 @@
 package com.exuberant.ims.controller;
-import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.getway.UsersGetway;
+
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
-
+import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.getway.UsersGetway;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -71,7 +73,8 @@ public class RegistrationController
     }
     @FXML
     private void hlLogin(ActionEvent event) throws IOException {
-        Parent root = (Parent) FXMLLoader.load(getClass().getResource("/view/Login.fxml"));
+        URL resource = URLService.getFileAsResoure("Login.fxml");
+        Parent root = (Parent) FXMLLoader.load(resource);
         Scene scene = new Scene(root);
         Stage nStage = new Stage();
         nStage.setScene(scene);

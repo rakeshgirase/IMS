@@ -1,10 +1,12 @@
 package com.exuberant.ims.controller.application.stock;
+
 import com.exuberant.ims.bll.CatagoryBLL;
 import com.exuberant.ims.dal.Catagory;
-import com.exuberant.ims.getway.CatagoryGetway;
 import com.exuberant.ims.database.DBConnection;
-
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.getway.CatagoryGetway;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,7 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -91,7 +93,8 @@ public class AddCatagoryController
         AddSupplyerController addSupplyerController = new AddSupplyerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddSupplier.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddSupplier.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
@@ -117,7 +120,8 @@ public class AddCatagoryController
         AddBrandController addSupplyerController = new AddBrandController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddBrand.fxml"));
+        URL resource = URLService.getFileAsResoure("application/stock/AddBrand.fxml");
+        fxmlLoader.setLocation(resource);
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();

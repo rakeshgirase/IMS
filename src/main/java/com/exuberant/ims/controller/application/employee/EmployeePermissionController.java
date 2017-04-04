@@ -1,4 +1,4 @@
-package com.exuberant.ims.controller.application.employe;
+package com.exuberant.ims.controller.application.employee;
 import com.exuberant.ims.database.DBConnection;
 
 import com.exuberant.ims.util.PropertyService;

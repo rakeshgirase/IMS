@@ -1,4 +1,4 @@
-package com.exuberant.ims.controller.application.employe;
+package com.exuberant.ims.controller.application.employee;
 import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.getway.UsersGetway;
 import com.exuberant.ims.custom.CustomTf;

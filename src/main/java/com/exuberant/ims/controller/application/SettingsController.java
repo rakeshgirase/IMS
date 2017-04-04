@@ -1,8 +1,10 @@
 package com.exuberant.ims.controller.application;
+
 import com.exuberant.ims.controller.application.settings.MyAccountController;
 import com.exuberant.ims.controller.application.settings.OrgSettingController;
 import com.exuberant.ims.database.DBConnection;
-
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +15,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -62,7 +64,8 @@ public class SettingsController
         MyAccountController myAccount = new MyAccountController();
         UserNameMedia usrIdMedia = new UserNameMedia();
         FXMLLoader fxmlload = new FXMLLoader();
-        fxmlload.load(getClass().getResource("/view/application/settings/MyAccount.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/settings/MyAccount.fxml");
+        fxmlload.load(resource.openStream());
         usrIdMedia.setId(this.userID);
         MyAccountController mAccount = (MyAccountController) fxmlload.getController();
         mAccount.setUsrMediaID(this.usrMedia);
@@ -78,7 +81,8 @@ public class SettingsController
         OrgSettingController orgSetting = new OrgSettingController();
         UserNameMedia useridMedia = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/settings/OrgSetting.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/settings/OrgSetting.fxml");
+        fXMLLoader.load(resource.openStream());
         useridMedia.setId(this.userID);
         OrgSettingController orgnizeUsrId = (OrgSettingController) fXMLLoader.getController();
         orgnizeUsrId.setUsrIdMedia(useridMedia);

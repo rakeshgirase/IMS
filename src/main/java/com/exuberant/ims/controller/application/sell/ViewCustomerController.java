@@ -1,7 +1,10 @@
 package com.exuberant.ims.controller.application.sell;
+
 import com.exuberant.ims.dal.Customer;
 import com.exuberant.ims.getway.CustomerGetway;
 import com.exuberant.ims.list.ListCustomer;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -19,7 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -82,7 +85,8 @@ public class ViewCustomerController
         AddCustomerController acc = new AddCustomerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.setLocation(getClass().getResource("/view/application/sell/AddCustomer.fxml"));
+        URL resource = URLService.getFileAsResoure("application/sell/AddCustomer.fxml");
+        fXMLLoader.setLocation(resource);
         try {
             fXMLLoader.load();
             Parent parent = (Parent) fXMLLoader.getRoot();
@@ -148,7 +152,8 @@ public class ViewCustomerController
             AddCustomerController acc = new AddCustomerController();
             UserNameMedia media = new UserNameMedia();
             FXMLLoader fXMLLoader = new FXMLLoader();
-            fXMLLoader.setLocation(getClass().getResource("/view/application/sell/AddCustomer.fxml"));
+            URL resource = URLService.getFileAsResoure("application/sell/AddCustomer.fxml");
+            fXMLLoader.setLocation(resource);
             try {
                 fXMLLoader.load();
                 Parent parent = (Parent) fXMLLoader.getRoot();

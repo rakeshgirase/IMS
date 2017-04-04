@@ -1,4 +1,5 @@
 package com.exuberant.ims.database;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
@@ -52,7 +54,8 @@ public class DBModel {
         } catch (SQLException ex) {
             System.err.println(ex);
             try {
-                Parent root = (Parent) FXMLLoader.load(getClass().getResource("/view/Server.fxml"));
+                URL resource = URLService.getFileAsResoure("Server.fxml");
+                Parent root = (Parent) FXMLLoader.load(resource);
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);

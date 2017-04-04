@@ -1,6 +1,9 @@
 package com.exuberant.ims.controller.application;
+
 import com.exuberant.ims.controller.application.sell.ViewCustomerController;
 import com.exuberant.ims.controller.application.sell.ViewSellController;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,7 +13,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,7 +50,8 @@ public class SellController
         ViewSellController sellController = new ViewSellController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/sell/ViewSell.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/sell/ViewSell.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         ViewSellController controller = (ViewSellController) fXMLLoader.getController();
         controller.setNameMedia(this.nameMedia);
@@ -61,7 +65,8 @@ public class SellController
         ViewCustomerController customerController = new ViewCustomerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/sell/ViewCustomer.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/sell/ViewCustomer.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         ViewCustomerController controller = (ViewCustomerController) fXMLLoader.getController();
         controller.setNameMedia(this.nameMedia);

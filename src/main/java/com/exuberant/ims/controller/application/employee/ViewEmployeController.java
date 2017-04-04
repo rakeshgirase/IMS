@@ -1,13 +1,15 @@
-package com.exuberant.ims.controller.application.employe;
-import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.getway.UsersGetway;
-import com.exuberant.ims.list.ListEmployee;
+package com.exuberant.ims.controller.application.employee;
+
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.custom.History;
+import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.database.DBConnection;
-
 import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.getway.UsersGetway;
+import com.exuberant.ims.list.ListEmployee;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -31,7 +33,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -219,7 +221,8 @@ public class ViewEmployeController
         UserNameMedia usrID = new UserNameMedia();
         FXMLLoader loader = new FXMLLoader();
         System.out.println(this.id);
-        loader.setLocation(getClass().getResource("/view/application/employe/EmployeePermission.fxml"));
+        URL resource = URLService.getFileAsResoure("application/employee/EmployeePermission.fxml");
+        loader.setLocation(resource);
         loader.load();
         Parent root = (Parent) loader.getRoot();
         Scene scene = new Scene(root);

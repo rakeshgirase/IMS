@@ -7,6 +7,7 @@ import com.exuberant.ims.controller.application.SettingsController;
 import com.exuberant.ims.controller.application.StockController;
 import com.exuberant.ims.database.DBConnection;
 
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -58,8 +59,8 @@ public class ApplicationController implements Initializable {
     Image stockRed = new Image("/com/exuberant/ims/icon/stockRed.png");
     Image sell = new Image("/com/exuberant/ims/icon/sell2.png");
     Image sellRed = new Image("/com/exuberant/ims/icon/sell2Red.png");
-    Image employee = new Image("/com/exuberant/ims/icon/employe.png");
-    Image employeeRed = new Image("/com/exuberant/ims/icon/employeRed.png");
+    Image employee = new Image("/com/exuberant/ims/icon/employee.png");
+    Image employeeRed = new Image("/com/exuberant/ims/icon/employeeRed.png");
     Image setting = new Image("/com/exuberant/ims/icon/settings.png");
     Image settingRed = new Image("/com/exuberant/ims/icon/settingsRed.png");
     Image about = new Image("/com/exuberant/ims/icon/about.png");
@@ -162,7 +163,8 @@ public class ApplicationController implements Initializable {
     @FXML
     private void btnLogOut(ActionEvent event) throws IOException {
         this.acContent.getChildren().clear();
-        this.acContent.getChildren().add(FXMLLoader.load(getClass().getResource("/view/Login.fxml")));
+        URL resource = URLService.getFileAsResoure("Login.fxml");
+        this.acContent.getChildren().add(FXMLLoader.load(resource));
         this.acDashBord.getChildren().clear();
         this.acHead.getChildren().clear();
         this.acHead.setMaxHeight(0.0D);
@@ -179,7 +181,8 @@ public class ApplicationController implements Initializable {
         homeActive();
         FXMLLoader fxmlLoader = new FXMLLoader();
         try {
-            fxmlLoader.load(getClass().getResource("/view/application/home/Home.fxml").openStream());
+            URL resource = URLService.getFileAsResoure("application/home/Home.fxml");
+            fxmlLoader.load(resource.openStream());
         } catch (IOException localIOException) {
         }
         AnchorPane root = (AnchorPane) fxmlLoader.getRoot();
@@ -194,7 +197,8 @@ public class ApplicationController implements Initializable {
         StockController sc = new StockController();
         UserNameMedia nm = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/Stock.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/Stock.fxml");
+        fXMLLoader.load(resource.openStream());
         nm.setId(this.id);
         StockController stockController = (StockController) fXMLLoader.getController();
         stockController.bpStore.getStylesheets().add("/style/MainStyle.css");
@@ -211,7 +215,8 @@ public class ApplicationController implements Initializable {
         EmployeController ec = new EmployeController();
         UserNameMedia nm = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/Employe.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/Employee.fxml");
+        fXMLLoader.load(resource);
         nm.setId(this.id);
         EmployeController employeController = (EmployeController) fXMLLoader.getController();
         employeController.bpContent.getStylesheets().add("/style/MainStyle.css");
@@ -227,7 +232,8 @@ public class ApplicationController implements Initializable {
         SettingsController settingController = new SettingsController();
         UserNameMedia usrMedia = new UserNameMedia();
         FXMLLoader settingLoader = new FXMLLoader();
-        settingLoader.load(getClass().getResource("/view/application/Settings.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/Settings.fxml");
+        settingLoader.load(resource.openStream());
         usrMedia.setId(this.id);
         SettingsController settingControl = (SettingsController) settingLoader.getController();
         settingControl.bpSettings.getStylesheets().add("/style/MainStyle.css");
@@ -243,7 +249,8 @@ public class ApplicationController implements Initializable {
         try {
             aboutActive();
             FXMLLoader fXMLLoader = new FXMLLoader();
-            fXMLLoader.load(getClass().getResource("/view/application/about/AboutMe.fxml").openStream());
+            URL resource = URLService.getFileAsResoure("application/about/AboutMe.fxml");
+            fXMLLoader.load(resource);
             AnchorPane anchorPane = (AnchorPane) fXMLLoader.getRoot();
             this.acContent.getChildren().clear();
             this.acContent.getChildren().add(anchorPane);
@@ -258,7 +265,8 @@ public class ApplicationController implements Initializable {
         UserNameMedia nm = new UserNameMedia();
         try {
             FXMLLoader fXMLLoader = new FXMLLoader();
-            fXMLLoader.load(getClass().getResource("/view/application/Sell.fxml").openStream());
+            URL resource = URLService.getFileAsResoure("application/Sell.fxml");
+            fXMLLoader.load(resource.openStream());
             nm.setId(this.id);
             SellController sellController = (SellController) fXMLLoader.getController();
             sellController.setNameMedia(this.usrNameMedia);

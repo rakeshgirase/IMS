@@ -3,7 +3,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="560.0" prefWidth="713.0"
-            xmlns="http://javafx.com/javafx/8.0.40" fx:controller="com.exuberant.ims.controller.application.employe.AddEmployeController">
+            xmlns="http://javafx.com/javafx/8.0.40" fx:controller="com.exuberant.ims.controller.application.employee.AddEmployeController">
     <children>
         <HBox alignment="CENTER" layoutX="300.0" layoutY="167.0" prefHeight="481.0" prefWidth="612.0"
               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"

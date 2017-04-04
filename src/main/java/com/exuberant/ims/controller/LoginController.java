@@ -1,9 +1,11 @@
 package com.exuberant.ims.controller;
-import com.exuberant.ims.dal.Users;
+
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
+import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.database.DBConnection;
-
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -18,7 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -108,7 +110,8 @@ public class LoginController
             UserNameMedia media = new UserNameMedia();
             ApplicationController apController = new ApplicationController();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/Application.fxml"));
+            URL resource = URLService.getFileAsResoure("Application.fxml");
+            loader.setLocation(resource);
             loader.load();
             Parent parent = (Parent) loader.getRoot();
             Scene adminPanelScene = new Scene(parent);
@@ -190,7 +193,8 @@ public class LoginController
     private void loadRegistration() {
         Parent root = null;
         try {
-            root = (Parent) FXMLLoader.load(getClass().getResource("/view/Registration.fxml"));
+            URL resource = URLService.getFileAsResoure("Registration.fxml");
+            root = (Parent) FXMLLoader.load(resource);
             Scene scene = new Scene(root);
             Stage nStage = new Stage();
             nStage.setScene(scene);
@@ -207,7 +211,8 @@ public class LoginController
     private void hlDbOnAction(ActionEvent event) {
         Parent root = null;
         try {
-            root = (Parent) FXMLLoader.load(getClass().getResource("/view/Server.fxml"));
+            URL resource = URLService.getFileAsResoure("Server.fxml");
+            root = (Parent) FXMLLoader.load(resource);
             Scene scene = new Scene(root);
             Stage nStage = new Stage();
             nStage.setScene(scene);

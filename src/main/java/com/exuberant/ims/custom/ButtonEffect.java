@@ -12,8 +12,8 @@ public class ButtonEffect {
     Image stockRed = new Image("/com/exuberant/ims/icon/stockRed.png");
     Image sell = new Image("/com/exuberant/ims/icon/sell2.png");
     Image sellRed = new Image("/com/exuberant/ims/icon/sell2Red.png");
-    Image employee = new Image("/com/exuberant/ims/icon/employe.png");
-    Image employeeRed = new Image("/com/exuberant/ims/icon/employeRed.png");
+    Image employee = new Image("/com/exuberant/ims/icon/employee.png");
+    Image employeeRed = new Image("/com/exuberant/ims/icon/employeeRed.png");
     Image setting = new Image("/com/exuberant/ims/icon/settings.png");
     Image settingRed = new Image("/com/exuberant/ims/icon/settingsRed.png");
     Image about = new Image("/com/exuberant/ims/icon/about.png");

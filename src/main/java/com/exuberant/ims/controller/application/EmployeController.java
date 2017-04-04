@@ -1,6 +1,7 @@
 package com.exuberant.ims.controller.application;
-import com.exuberant.ims.controller.application.employe.AddEmployeController;
-import com.exuberant.ims.controller.application.employe.ViewEmployeController;
+import com.exuberant.ims.controller.application.employee.AddEmployeController;
+import com.exuberant.ims.controller.application.employee.ViewEmployeController;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -49,7 +50,8 @@ public class EmployeController
         ViewEmployeController vec = new ViewEmployeController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/employe/ViewEmploye.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/employee/ViewEmploye.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         ViewEmployeController viewEmployeController = (ViewEmployeController) fXMLLoader.getController();
         viewEmployeController.setNameMedia(this.nameMedia);
@@ -69,7 +71,8 @@ public class EmployeController
         AddEmployeController vec = new AddEmployeController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        fXMLLoader.load(getClass().getResource("/view/application/employe/AddEmploye.fxml").openStream());
+        URL resource = URLService.getFileAsResoure("application/employee/AddEmployee.fxml");
+        fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         AddEmployeController addEmployeController = (AddEmployeController) fXMLLoader.getController();
         addEmployeController.setNameMedia(this.nameMedia);

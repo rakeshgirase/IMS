@@ -78,7 +78,7 @@
                                                                    fitWidth="40.0" pickOnBounds="true"
                                                                    preserveRatio="true">
                                                             <image>
-                                                                <Image url="@../com/exuberant/ims/icon/employe.png"/>
+                                                                <Image url="@../com/exuberant/ims/icon/employee.png"/>
                                                             </image>
                                                         </ImageView>
                                                     </graphic>
