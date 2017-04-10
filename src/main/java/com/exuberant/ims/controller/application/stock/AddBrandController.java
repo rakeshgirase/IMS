@@ -1,8 +1,7 @@
 package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.BrandBLL;
-import com.exuberant.ims.dal.Brands;
-import com.exuberant.ims.database.DBConnection;
+import com.exuberant.ims.dal.Brand;
 import com.exuberant.ims.getway.BrandsGetway;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -42,17 +41,16 @@ public class AddBrandController
     public Button btnClose;
     @FXML
     public Button btnAddBrand;
-    Brands brands = new Brands();
+    Brand brand = new Brand();
     BrandsGetway brandsGetway = new BrandsGetway();
     BrandBLL brandBLL = new BrandBLL();
-    DBConnection dbCon = new DBConnection();
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
 
     String db = PropertyService.getInstance().getProperty("db");
     private UserNameMedia media;
-    private String usrId;
+    private Long userId;
     private String supplyerName;
     private String supplyerId;
     @FXML
@@ -65,20 +63,20 @@ public class AddBrandController
         return this.media;
     }
     public void setMedia(UserNameMedia media) {
-        this.usrId = media.getId();
+        this.userId = media.getId();
         this.media = media;
     }
     public void initialize(URL url, ResourceBundle rb) {
     }
     @FXML
     private void btnAddBrandOnAction(ActionEvent event) {
-        System.out.println(this.usrId);
+        System.out.println(this.userId);
         if (isNotNull()) {
-            this.brands.creatorId = this.usrId;
-            this.brands.brandName = this.tfBrandName.getText();
-            this.brands.brandComment = this.taDiscription.getText();
-            this.brands.supplyerName = ((String) this.cbSupplyer.getSelectionModel().getSelectedItem());
-            this.brandBLL.save(this.brands);
+            this.brand.creatorId = this.userId;
+            this.brand.brandName = this.tfBrandName.getText();
+            this.brand.brandComment = this.taDiscription.getText();
+            this.brand.supplierName = ((String) this.cbSupplyer.getSelectionModel().getSelectedItem());
+            this.brandBLL.save(this.brand);
         }
     }
     @FXML
@@ -87,7 +85,6 @@ public class AddBrandController
     @FXML
     private void cbSupplyerOnClick(MouseEvent event) {
         this.cbSupplyer.getItems().clear();
-        this.con = this.dbCon.getConnection();
         try {
             this.pst = this.con.prepareStatement("select * from " + this.db + ".Supplyer order by SupplyerName");
             this.rs = this.pst.executeQuery();
@@ -103,15 +100,15 @@ public class AddBrandController
     private void btnUpdateOnAction(ActionEvent event) {
         System.out.println();
         if (isNotNull()) {
-            this.brands.id = this.brandId;
+            this.brand.id = this.brandId;
             if (!this.cbSupplyer.getSelectionModel().isEmpty()) {
-                this.brands.supplyerName = ((String) this.cbSupplyer.getSelectionModel().getSelectedItem());
+                this.brand.supplierName = ((String) this.cbSupplyer.getSelectionModel().getSelectedItem());
             } else if (!this.cbSupplyer.getPromptText().isEmpty()) {
-                this.brands.supplyerName = this.cbSupplyer.getPromptText();
+                this.brand.supplierName = this.cbSupplyer.getPromptText();
             }
-            this.brands.brandName = this.tfBrandName.getText().trim();
-            this.brands.brandComment = this.taDiscription.getText();
-            this.brandBLL.update(this.brands);
+            this.brand.brandName = this.tfBrandName.getText().trim();
+            this.brand.brandComment = this.taDiscription.getText();
+            this.brandBLL.update(this.brand);
         }
     }
     @FXML
@@ -139,11 +136,11 @@ public class AddBrandController
         return isNotNull;
     }
     public void showDetails() {
-        this.brands.id = this.brandId;
-        this.brandsGetway.selectedView(this.brands);
-        this.tfBrandName.setText(this.brands.brandName);
-        this.taDiscription.setText(this.brands.brandComment);
-        this.cbSupplyer.setPromptText(this.brands.supplyerName);
+        this.brand.id = this.brandId;
+        this.brandsGetway.selectedView(this.brand);
+        this.tfBrandName.setText(this.brand.brandName);
+        this.taDiscription.setText(this.brand.brandComment);
+        this.cbSupplyer.setPromptText(this.brand.supplierName);
     }
     public void btnAddSupplyerOnAction(ActionEvent actionEvent) {
         AddSupplyerController addSupplyerController = new AddSupplyerController();
@@ -157,7 +154,7 @@ public class AddBrandController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddSupplyerController supplyerController = (AddSupplyerController) fxmlLoader.getController();
-            media.setId(this.usrId);
+            media.setId(this.userId);
             supplyerController.setMedia(media);
             supplyerController.lblCaption.setText("Add Item");
             supplyerController.btnUpdate.setVisible(false);

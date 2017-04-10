@@ -1,5 +1,5 @@
 package com.exuberant.ims.controller.application.stock;
-import com.exuberant.ims.dal.Supplyer;
+import com.exuberant.ims.dal.Supplier;
 import com.exuberant.ims.getway.SupplyerGetway;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,9 +25,9 @@ public class AddSupplyerController
     public Button btnClose;
     @FXML
     public Label lblCaption;
-    Supplyer oSupplier = new Supplyer();
+    Supplier oSupplier = new Supplier();
     SupplyerGetway supplyerGetway = new SupplyerGetway();
-    private String usrId;
+    private Long userId;
     private UserNameMedia media;
     @FXML
     private TextField tfSupplyerName;
@@ -44,7 +44,7 @@ public class AddSupplyerController
         return this.media;
     }
     public void setMedia(UserNameMedia media) {
-        this.usrId = media.getId();
+        this.userId = media.getId();
         this.media = media;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -52,11 +52,11 @@ public class AddSupplyerController
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
         if (isNotNull()) {
-            this.oSupplier.supplyerName = this.tfSupplyerName.getText();
-            this.oSupplier.supplyerContactNumber = this.taContactNumbers.getText();
-            this.oSupplier.supplyerAddress = this.taSupplyerAddress.getText();
-            this.oSupplier.supplyerDescription = this.taSupplyerDescription.getText();
-            this.oSupplier.creatorId = this.usrId;
+            this.oSupplier.supplierName = this.tfSupplyerName.getText();
+            this.oSupplier.supplierContactNumber = this.taContactNumbers.getText();
+            this.oSupplier.supplierAddress = this.taSupplyerAddress.getText();
+            this.oSupplier.supplierDescription = this.taSupplyerDescription.getText();
+            this.oSupplier.creatorId = this.userId;
             this.supplyerGetway.save(this.oSupplier);
             clrAll();
         }
@@ -89,10 +89,10 @@ public class AddSupplyerController
     private void btnUpdateOnAction(ActionEvent event) {
         if (isNotNull()) {
             this.oSupplier.id = this.supplyerId;
-            this.oSupplier.supplyerName = this.tfSupplyerName.getText().trim();
-            this.oSupplier.supplyerContactNumber = this.taContactNumbers.getText().trim();
-            this.oSupplier.supplyerAddress = this.taSupplyerAddress.getText().trim();
-            this.oSupplier.supplyerDescription = this.taSupplyerDescription.getText().trim();
+            this.oSupplier.supplierName = this.tfSupplyerName.getText().trim();
+            this.oSupplier.supplierContactNumber = this.taContactNumbers.getText().trim();
+            this.oSupplier.supplierAddress = this.taSupplyerAddress.getText().trim();
+            this.oSupplier.supplierDescription = this.taSupplyerDescription.getText().trim();
             this.supplyerGetway.update(this.oSupplier);
         }
     }
@@ -104,10 +104,10 @@ public class AddSupplyerController
     public void showDetails() {
         this.oSupplier.id = this.supplyerId;
         this.supplyerGetway.selectedView(this.oSupplier);
-        this.tfSupplyerName.setText(this.oSupplier.supplyerName);
-        this.taContactNumbers.setText(this.oSupplier.supplyerContactNumber);
-        this.taSupplyerAddress.setText(this.oSupplier.supplyerAddress);
-        this.taSupplyerDescription.setText(this.oSupplier.supplyerDescription);
+        this.tfSupplyerName.setText(this.oSupplier.supplierName);
+        this.taContactNumbers.setText(this.oSupplier.supplierContactNumber);
+        this.taSupplyerAddress.setText(this.oSupplier.supplierAddress);
+        this.taSupplyerDescription.setText(this.oSupplier.supplierDescription);
     }
     @FXML
     private void apOnMouseDragged(MouseEvent event) {

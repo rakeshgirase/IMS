@@ -7,11 +7,11 @@
 <?import java.net.URL?>
 <Group xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40"
        fx:controller="com.exuberant.ims.controller.application.stock.AddBrandController">
-    <children>
+
         <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="409.0" prefWidth="469.0">
-            <children>
+
                 <GridPane layoutX="35.0" layoutY="55.0">
-                    <children>
+
                         <Label text="Supplied By :"/>
                         <ComboBox fx:id="cbSupplyer" onAction="#cbSupplyerOnAction" onMouseClicked="#cbSupplyerOnClick"
                                   prefHeight="31.0" prefWidth="402.0" GridPane.columnSpan="3" GridPane.rowIndex="1"/>
@@ -31,13 +31,13 @@
                                 GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER"
                                 GridPane.rowIndex="9"/>
                         <Pane GridPane.columnIndex="3" GridPane.rowIndex="1">
-                            <children>
+
                                 <Button fx:id="btnAddSupplyer" layoutX="14.0" mnemonicParsing="false"
                                         onAction="#btnAddSupplyerOnAction" prefHeight="33.0" prefWidth="32.0"
-                                        stylesheets="@../../../style/AddButton.css"/>
-                            </children>
+                                        stylesheets="../../../style/AddButton.css"/>
+
                         </Pane>
-                    </children>
+
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -62,13 +62,13 @@
                         <Font name="System Bold" size="26.0"/>
                     </font>
                 </Label>
-            </children>
+
             <stylesheets>
-                <URL value="@../../../style/MainStyle.css"/>
+                <URL value="../../../style/MainStyle.css"/>
                 <URL value="@../../../style/PopUp.css"/>
             </stylesheets>
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="451.0" layoutY="-4.0" mnemonicParsing="false" onAction="#btnCloseOnAction"
-                prefHeight="36.0" prefWidth="38.0" stylesheets="@../../../style/btnOnText.css"/>
-    </children>
+                prefHeight="36.0" prefWidth="38.0" stylesheets="../../../style/btnOnText.css"/>
+
 </Group>

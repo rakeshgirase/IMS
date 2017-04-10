@@ -1,9 +1,9 @@
 package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.RmaBLL;
+import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.RMA;
 import com.exuberant.ims.getway.RmaGetway;
-import com.exuberant.ims.custom.CustomTf;
-import com.exuberant.ims.database.DBConnection;
+import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,11 +14,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ResourceBundle;
 public class AddRMAController
         implements Initializable {
@@ -33,11 +30,7 @@ public class AddRMAController
     RMA rma = new RMA();
     RmaGetway rmaGetway = new RmaGetway();
     RmaBLL rmaBLL = new RmaBLL();
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
-    private String usrId;
+    private Long usrId;
     private UserNameMedia media;
     @FXML
     private Button btnClose;

@@ -1,15 +1,15 @@
 package com.exuberant.ims.list;
 public class ListEmployee {
-    public String employeeId;
+    public Long employeeId;
     public String employeeName;
-    public ListEmployee(String employeeId, String employeeName) {
+    public ListEmployee(Long employeeId, String employeeName) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
     }
-    public String getEmployeeId() {
+    public Long getEmployeeId() {
         return this.employeeId;
     }
-    public void setEmployeeId(String employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
     public String getEmployeeName() {

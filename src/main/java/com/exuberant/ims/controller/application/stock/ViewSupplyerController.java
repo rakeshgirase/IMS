@@ -1,10 +1,12 @@
 package com.exuberant.ims.controller.application.stock;
+
 import com.exuberant.ims.bll.SupplyerBLL;
-import com.exuberant.ims.dal.Supplyer;
+import com.exuberant.ims.custom.History;
+import com.exuberant.ims.dal.Supplier;
 import com.exuberant.ims.getway.SupplyerGetway;
 import com.exuberant.ims.list.ListSupplyer;
-import com.exuberant.ims.custom.History;
-import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,7 +25,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -33,12 +35,11 @@ public class ViewSupplyerController implements Initializable {
     private static final int rowsPerPage = 1000;
     @FXML
     public AnchorPane acContent;
-    SQL sql = new SQL();
-    Supplyer supplyer = new Supplyer();
+    Supplier supplier = new Supplier();
     SupplyerGetway supplyerGetway = new SupplyerGetway();
     SupplyerBLL supplyerBLL = new SupplyerBLL();
     History history = new History();
-    private String usrId;
+    private Long userId;
     private String creatorName;
     private String creatorId;
     private String supplyerId;
@@ -73,7 +74,7 @@ public class ViewSupplyerController implements Initializable {
         return this.media;
     }
     public void setMedia(UserNameMedia media) {
-        this.usrId = media.getId();
+        this.userId = media.getId();
         this.media = media;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -90,40 +91,40 @@ public class ViewSupplyerController implements Initializable {
     }
     @FXML
     public void tfSearchOnType(Event event) {
-        this.supplyer.supplyerDetails.removeAll(new ListSupplyer[0]);
-        this.supplyer.supplyerName = this.tfSearch.getText().trim();
-        this.tblSupplyer.setItems(this.supplyer.supplyerDetails);
+        this.supplier.supplierDetails.removeAll(new ListSupplyer[0]);
+        this.supplier.supplierName = this.tfSearch.getText().trim();
+        this.tblSupplyer.setItems(this.supplier.supplierDetails);
         this.clmSUpplyerId.setCellValueFactory(new PropertyValueFactory("supplyerId"));
-        this.clmSupplyerName.setCellValueFactory(new PropertyValueFactory("supplyerName"));
+        this.clmSupplyerName.setCellValueFactory(new PropertyValueFactory("supplierName"));
         this.clmSupplyerPhoneNumber.setCellValueFactory(new PropertyValueFactory("supplyerPhoneNumber"));
-        this.clmSupplyerAddress.setCellValueFactory(new PropertyValueFactory("supplyerAddress"));
-        this.clmSupplyerDescription.setCellValueFactory(new PropertyValueFactory("supplyerDescription"));
+        this.clmSupplyerAddress.setCellValueFactory(new PropertyValueFactory("supplierAddress"));
+        this.clmSupplyerDescription.setCellValueFactory(new PropertyValueFactory("supplierDescription"));
         this.clmSupplyerJoining.setCellValueFactory(new PropertyValueFactory("dataOfjoining"));
-        this.supplyerGetway.searchView(this.supplyer);
+        this.supplyerGetway.searchView(this.supplier);
     }
     public void showDetails() {
-        this.tblSupplyer.setItems(this.supplyer.supplyerDetails);
+        this.tblSupplyer.setItems(this.supplier.supplierDetails);
         this.clmSUpplyerId.setCellValueFactory(new PropertyValueFactory("supplyerId"));
-        this.clmSupplyerName.setCellValueFactory(new PropertyValueFactory("supplyerName"));
+        this.clmSupplyerName.setCellValueFactory(new PropertyValueFactory("supplierName"));
         this.clmSupplyerPhoneNumber.setCellValueFactory(new PropertyValueFactory("supplyerPhoneNumber"));
-        this.clmSupplyerAddress.setCellValueFactory(new PropertyValueFactory("supplyerAddress"));
-        this.clmSupplyerDescription.setCellValueFactory(new PropertyValueFactory("supplyerDescription"));
+        this.clmSupplyerAddress.setCellValueFactory(new PropertyValueFactory("supplierAddress"));
+        this.clmSupplyerDescription.setCellValueFactory(new PropertyValueFactory("supplierDescription"));
         this.clmSupplyerJoining.setCellValueFactory(new PropertyValueFactory("dataOfjoining"));
-        this.supplyerGetway.view(this.supplyer);
+        this.supplyerGetway.view(this.supplier);
     }
     @FXML
     private void btnAdditemsOnAction(ActionEvent event) {
         AddSupplyerController addSupplyerController = new AddSupplyerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddSupplier.fxml"));
+        fxmlLoader.setLocation(URLService.getFileAsResoure("application/stock/AddSupplier.fxml"));
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddSupplyerController supplyerController = (AddSupplyerController) fxmlLoader.getController();
-            media.setId(this.usrId);
+            media.setId(this.userId);
             supplyerController.setMedia(media);
             supplyerController.lblCaption.setText("Add Item");
             supplyerController.btnUpdate.setVisible(false);
@@ -156,16 +157,16 @@ public class ViewSupplyerController implements Initializable {
                 AddSupplyerController addSupplyerController = new AddSupplyerController();
                 UserNameMedia media = new UserNameMedia();
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddSupplier.fxml"));
+                fxmlLoader.setLocation(URLService.getFileAsResoure("application/stock/AddSupplier.fxml"));
                 try {
                     fxmlLoader.load();
                     Parent parent = (Parent) fxmlLoader.getRoot();
                     Scene scene = new Scene(parent);
                     scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
                     AddSupplyerController supplyerController = (AddSupplyerController) fxmlLoader.getController();
-                    media.setId(this.usrId);
+                    media.setId(this.userId);
                     supplyerController.setMedia(media);
-                    supplyerController.lblCaption.setText("Supplyer Details");
+                    supplyerController.lblCaption.setText("Supplier Details");
                     supplyerController.btnUpdate.setVisible(true);
                     supplyerController.btnSave.setVisible(false);
                     supplyerController.supplyerId = selectedSupplyer.getSupplyerId();
@@ -206,9 +207,9 @@ public class ViewSupplyerController implements Initializable {
         alert.initStyle(StageStyle.UNDECORATED);
         Optional<ButtonType> result = alert.showAndWait();
         if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-            this.supplyer.id = selectedSupplyer.getSupplyerId();
-            System.out.println(this.supplyer.id + "On hear");
-            this.supplyerBLL.delete(this.supplyer);
+            this.supplier.id = selectedSupplyer.getSupplyerId();
+            System.out.println(this.supplier.id + "On hear");
+            this.supplyerBLL.delete(this.supplier);
             this.tblSupplyer.getItems().clear();
             showDetails();
         }
@@ -229,7 +230,7 @@ public class ViewSupplyerController implements Initializable {
     }
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
-        this.supplyer.supplyerDetails.clear();
+        this.supplier.supplierDetails.clear();
         showDetails();
     }
 }

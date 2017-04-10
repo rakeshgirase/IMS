@@ -3,10 +3,8 @@ package com.exuberant.ims.controller;
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.database.SQL;
-import com.exuberant.ims.getway.UsersGetway;
+import com.exuberant.ims.getway.UserGateway;
 import com.exuberant.ims.storekeeper.URLService;
-import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,9 +30,8 @@ import java.util.logging.Logger;
 public class RegistrationController
         implements Initializable {
     Users users = new Users();
-    UsersGetway usersGetway = new UsersGetway();
+    UserGateway userGateway = new UserGateway();
 
-    String db = PropertyService.getInstance().getProperty("db");
     @FXML
     private Hyperlink hlLogin;
     @FXML
@@ -86,13 +83,11 @@ public class RegistrationController
     }
     @FXML
     private void btnRegistration(ActionEvent event) {
-        SQL sql = new SQL();
         if (isValidCondition()) {
-            this.users.userName = this.tfUserName.getText();
-            this.users.fullName = this.tfUserName.getText();
-            this.users.password = this.pfUserPassword.getText();
-            this.usersGetway.save(this.users);
-            sql.basicPermission(this.tfUserName.getText());
+            this.users.setUserName(this.tfUserName.getText());
+            this.users.setFullName(this.tfUserName.getText());
+            this.users.setPassword(this.pfUserPassword.getText());
+            this.userGateway.save(this.users);
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Login Now");
             alert.setHeaderText("Login now");
@@ -125,10 +120,10 @@ public class RegistrationController
                 (this.tfFullName.getText().trim().isEmpty()) ||
                 (this.pfUserPassword.getText().isEmpty()) ||
                 (this.pfReUserPassword.getText().isEmpty())) {
-            System.out.println("Empty user Name");
+            System.out.println("Empty users Name");
             nullChecq = false;
         } else {
-            System.out.println("User Name not Empty");
+            System.out.println("Users Name not Empty");
             nullChecq = true;
         }
         return nullChecq;

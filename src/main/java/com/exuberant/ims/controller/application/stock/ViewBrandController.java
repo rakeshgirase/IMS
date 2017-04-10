@@ -1,9 +1,7 @@
 package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.BrandBLL;
-import com.exuberant.ims.dal.Brands;
-import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.dal.Brand;
 import com.exuberant.ims.getway.BrandsGetway;
 import com.exuberant.ims.list.ListBrands;
 import com.exuberant.ims.media.UserNameMedia;
@@ -35,11 +33,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 public class ViewBrandController
         implements Initializable {
-    SQL sql = new SQL();
-    Brands brands = new Brands();
+    Brand brand = new Brand();
     BrandsGetway brandsGetway = new BrandsGetway();
     BrandBLL brandBLL = new BrandBLL();
-    DBConnection dbCon = new DBConnection();
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
@@ -65,7 +61,7 @@ public class ViewBrandController
             return cell;
         }
     };
-    private String usrId;
+    private Long userId;
     private String usrName;
     private String brandId;
     private String creatorId;
@@ -99,8 +95,6 @@ public class ViewBrandController
         return this.media;
     }
     public void setMedia(UserNameMedia media) {
-        this.usrId = media.getId();
-        this.usrName = media.getUserName();
         this.media = media;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -114,17 +108,15 @@ public class ViewBrandController
     }
     @FXML
     private void tfSearchOnKeyPress(Event event) {
-        System.out.println(this.usrId);
-        this.brands.brandDitails.clear();
-        this.brands.brandName = this.tfSearch.getText();
-        this.tblBrand.setItems(this.brands.brandDitails);
+        System.out.println(this.userId);
+        this.brand.brandName = this.tfSearch.getText();
         this.tblCollumId.setCellValueFactory(new PropertyValueFactory("id"));
         this.tblCollumName.setCellValueFactory(new PropertyValueFactory("brandName"));
-        this.tblCollumSupplyer.setCellValueFactory(new PropertyValueFactory("supplyerName"));
+        this.tblCollumSupplyer.setCellValueFactory(new PropertyValueFactory("supplierName"));
         this.tblCollumDescription.setCellValueFactory(new PropertyValueFactory("brandComment"));
         this.tblCollumCreator.setCellValueFactory(new PropertyValueFactory("creatorId"));
         this.tblClmDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.brandsGetway.searchView(this.brands);
+        this.brandsGetway.searchView(this.brand);
     }
     @FXML
     private void btnAddBrandOnAction(ActionEvent event) {
@@ -139,7 +131,7 @@ public class ViewBrandController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddBrandController supplyerController = (AddBrandController) fxmlLoader.getController();
-            media.setId(this.usrId);
+            media.setId(this.userId);
             supplyerController.setMedia(media);
             supplyerController.lblHeader.setText("Add Brand");
             supplyerController.btnUpdate.setVisible(false);
@@ -171,22 +163,21 @@ public class ViewBrandController
         alert.initStyle(StageStyle.UNDECORATED);
         Optional<ButtonType> result = alert.showAndWait();
         if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-            this.brands.id = selectedBrand.getId();
-            System.out.println(this.brands.id + "On hear");
-            this.brandBLL.delete(this.brands);
+            this.brand.id = selectedBrand.getId();
+            System.out.println(this.brand.id + "On hear");
+            this.brandBLL.delete(this.brand);
             this.tblBrand.getItems().clear();
             showDetails();
         }
     }
     public void showDetails() {
-        this.tblBrand.setItems(this.brands.brandDitails);
         this.tblCollumId.setCellValueFactory(new PropertyValueFactory("id"));
         this.tblCollumName.setCellValueFactory(new PropertyValueFactory("brandName"));
-        this.tblCollumSupplyer.setCellValueFactory(new PropertyValueFactory("supplyerName"));
+        this.tblCollumSupplyer.setCellValueFactory(new PropertyValueFactory("supplierName"));
         this.tblCollumDescription.setCellValueFactory(new PropertyValueFactory("brandComment"));
         this.tblCollumCreator.setCellValueFactory(new PropertyValueFactory("creatorId"));
         this.tblClmDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.brandsGetway.view(this.brands);
+        this.brandsGetway.view(this.brand);
     }
     @FXML
     public void tfSearchOnAction(ActionEvent event) {
@@ -206,7 +197,7 @@ public class ViewBrandController
                 Scene scene = new Scene(parent);
                 scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
                 AddBrandController addBrandController = (AddBrandController) fxmlLoader.getController();
-                media.setId(this.usrId);
+                media.setId(this.userId);
                 addBrandController.setMedia(media);
                 addBrandController.lblHeader.setText("Brand Details");
                 addBrandController.btnUpdate.setVisible(true);
@@ -245,7 +236,6 @@ public class ViewBrandController
     }
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
-        this.brands.brandDitails.clear();
         showDetails();
     }
 }

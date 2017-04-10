@@ -1,12 +1,9 @@
 package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.CurrentProductBLL;
-import com.exuberant.ims.controller.application.SettingsController;
 import com.exuberant.ims.controller.application.sell.NewSellController;
 import com.exuberant.ims.controller.application.sell.ViewCustomerController;
 import com.exuberant.ims.dal.CurrentProduct;
-import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.SQL;
 import com.exuberant.ims.getway.CurrentProductGetway;
 import com.exuberant.ims.list.ListProduct;
 import com.exuberant.ims.media.UserNameMedia;
@@ -31,14 +28,12 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class CurrentStoreController implements Initializable {
     @FXML
     public javafx.scene.layout.StackPane spProductContent;
@@ -56,12 +51,7 @@ public class CurrentStoreController implements Initializable {
     String catagoryName;
     String rmaID;
     String rmaName;
-    SQL sql = new SQL();
-    DBConnection dbCon = new DBConnection();
-    Connection con = this.dbCon.getConnection();
-    PreparedStatement pst;
-    ResultSet rs;
-    private String usrId;
+    private Long usrId;
     private UserNameMedia media;
     @FXML
     private TextField tfSearch;
@@ -80,7 +70,7 @@ public class CurrentStoreController implements Initializable {
     @FXML
     private Button btnDelete;
     @FXML
-    private TableView<ListProduct> tblViewCurrentStore;
+    private TableView<List<CurrentProduct>> tblViewCurrentStore;
     @FXML
     private TableColumn<Object, Object> tblClmProductId;
     @FXML
@@ -122,89 +112,26 @@ public class CurrentStoreController implements Initializable {
     }
     @FXML
     private void tfSearchOnKeyRelese(KeyEvent event) {
-        this.productCurrent.productId = this.tfSearch.getText();
-        this.productCurrent.productName = this.tfSearch.getText();
+        this.productCurrent.setProductId(this.tfSearch.getText());
+        this.productCurrent.setProductName(this.tfSearch.getText());
         this.currentProductGetway.searchView(this.productCurrent);
     }
     @FXML
     private void cbSoteViewSupplyerOnClick(MouseEvent event) {
-        this.con = this.dbCon.getConnection();
-        this.cbSoteViewSupplyer.getItems().clear();
-        this.cbSoteViewBrands.setPromptText("Select Brand");
-        this.cbSoteViewCatagory.setPromptText("Select Category");
-        try {
-            this.pst = this.con.prepareStatement("select * from Supplyer");
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                this.cbSoteViewSupplyer.getItems().remove(this.rs.getString(2));
-                this.cbSoteViewSupplyer.getItems().add(this.rs.getString(2));
-            }
-            this.rs.close();
-            this.con.close();
-            this.pst.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
+
     @FXML
     private void cbSoteViewBrandOnClick(MouseEvent event) {
-        this.con = this.dbCon.getConnection();
-        this.cbSoteViewBrands.getItems().clear();
-        this.suplyerName = ((String) this.cbSoteViewSupplyer.getSelectionModel().getSelectedItem());
-        this.suplyerId = this.sql.getIdNo(this.suplyerName, this.suplyerId, "Supplyer", "SupplyerName");
-        try {
-            this.pst = this.con.prepareStatement("select * from Brands where SupplyerId=?");
-            this.pst.setString(1, this.suplyerId);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                this.cbSoteViewBrands.getItems().add(this.rs.getString(2));
-            }
-            this.rs.close();
-            this.con.close();
-            this.pst.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CurrentStoreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
+
     @FXML
     private void cbSoteViewCatagoryOnClick(MouseEvent event) {
-        this.con = this.dbCon.getConnection();
-        this.cbSoteViewCatagory.getItems().clear();
-        this.suplyerName = ((String) this.cbSoteViewSupplyer.getSelectionModel().getSelectedItem());
-        this.suplyerId = this.sql.getIdNo(this.suplyerName, this.suplyerId, "Supplyer", "SupplyerName");
-        this.brandId = this.sql.getBrandID(this.suplyerId, this.brandId, this.brandName);
-        try {
-            this.pst = this.con.prepareStatement("select * from Catagory where SupplyerId=? and BrandId=?");
-            this.pst.setString(1, this.suplyerId);
-            this.pst.setString(2, this.brandId);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                this.cbSoteViewCatagory.getItems().add(this.rs.getString(2));
-            }
-            this.rs.close();
-            this.con.close();
-            this.pst.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CurrentStoreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
+
     @FXML
     private void cbSoteViewRMAOnClick(MouseEvent event) {
-        this.cbSoteViewRMA.getItems().clear();
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from RMA");
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                this.cbSoteViewRMA.getItems().add(this.rs.getString(2));
-            }
-            this.rs.close();
-            this.con.close();
-            this.pst.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(CurrentStoreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
+
     @FXML
     private void btnAddNewOnAction(ActionEvent event) {
         AddProductController apc = new AddProductController();
@@ -250,7 +177,7 @@ public class CurrentStoreController implements Initializable {
         if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
             String item = ((ListProduct) this.tblViewCurrentStore.getSelectionModel().getSelectedItem()).getId();
             System.out.println("Product id" + item);
-            this.productCurrent.id = item;
+            this.productCurrent.setId(item);
             this.currentProductBLL.delete(this.productCurrent);
             btnRefreshOnACtion(event);
         }
@@ -274,7 +201,7 @@ public class CurrentStoreController implements Initializable {
     }
     public void viewDetails() {
         System.out.println("CLCKED");
-        this.tblViewCurrentStore.setItems(this.productCurrent.currentProductList);
+        //this.tblViewCurrentStore.setItems(this.productCurrent.getcurrentProductList);
         this.tblClmProductId.setCellValueFactory(new PropertyValueFactory("productId"));
         this.tblClmProductName.setCellValueFactory(new PropertyValueFactory("productName"));
         this.tblClmProductquantity.setCellValueFactory(new PropertyValueFactory("quantity"));
@@ -352,7 +279,7 @@ public class CurrentStoreController implements Initializable {
     private void cbSoteViewSupplyerOnAction(ActionEvent event) {
         if (this.cbSoteViewSupplyer.getSelectionModel().getSelectedItem() != null) {
             this.suplyerName = ((String) this.cbSoteViewSupplyer.getSelectionModel().getSelectedItem());
-            this.productCurrent.supplierName = this.suplyerName;
+            this.productCurrent.setSupplierName(this.suplyerName);
             this.currentProductGetway.searchBySupplyer(this.productCurrent);
         }
     }
@@ -361,8 +288,8 @@ public class CurrentStoreController implements Initializable {
         if (this.cbSoteViewBrands.getSelectionModel().getSelectedItem() != null) {
             this.brandName = ((String) this.cbSoteViewBrands.getSelectionModel().getSelectedItem());
             this.suplyerName = this.cbSoteViewSupplyer.getPromptText();
-            this.productCurrent.supplierName = this.suplyerName;
-            this.productCurrent.brandName = this.brandName;
+            this.productCurrent.setSupplierName(this.suplyerName);
+            this.productCurrent.setBrandName(this.brandName);
             this.currentProductGetway.searchByBrand(this.productCurrent);
         }
     }
@@ -372,47 +299,27 @@ public class CurrentStoreController implements Initializable {
             this.brandName = ((String) this.cbSoteViewBrands.getSelectionModel().getSelectedItem());
             this.suplyerName = this.cbSoteViewSupplyer.getPromptText();
             this.catagoryName = ((String) this.cbSoteViewCatagory.getSelectionModel().getSelectedItem());
-            this.productCurrent.supplierName = this.suplyerName;
-            this.productCurrent.brandName = this.brandName;
-            this.productCurrent.catagoryName = this.catagoryName;
+            this.productCurrent.setSupplierName(this.suplyerName);
+            this.productCurrent.setBrandName(this.brandName);
+            this.productCurrent.setCatagoryName(this.catagoryName);
             this.currentProductGetway.searchByCatagory(this.productCurrent);
         }
     }
     public void settingPermission() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".UserPermission where id=?");
-            this.pst.setString(1, this.usrId);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                if (this.rs.getInt(8) == 0) {
-                    this.btnUpdate.setDisable(true);
-                    this.btnDelete.setDisable(true);
-                }
-                if (this.rs.getInt(3) == 0) {
-                    this.btnAddNew.setDisable(true);
-                }
-                if (this.rs.getInt("SellProduct") == 0) {
-                    this.miSellSelected.setDisable(true);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     @FXML
     private void btnRefreshOnACtion(ActionEvent event) {
-        this.productCurrent.currentProductList.clear();
         this.tfSearch.clear();
         this.cbSoteViewRMA.getItems().clear();
         this.cbSoteViewSupplyer.getItems().clear();
         this.cbSoteViewBrands.getItems().clear();
         this.cbSoteViewCatagory.getItems().clear();
         this.cbSoteViewSupplyer.setPromptText("Select supplier");
-        this.cbSoteViewBrands.setPromptText("select brands");
+        this.cbSoteViewBrands.setPromptText("select brand");
         this.cbSoteViewCatagory.setPromptText("select category");
         this.cbSoteViewRMA.setPromptText("select rma");
-        this.tblViewCurrentStore.setItems(this.productCurrent.currentProductList);
+        /*List<CurrentProduct> currentProducts = HibernateRepository.getRepository().getAll(CurrentProduct.class);
+        this.tblViewCurrentStore.setItems(observableList(currentProducts));*/
         this.tblClmProductId.setCellValueFactory(new PropertyValueFactory("productId"));
         this.tblClmProductName.setCellValueFactory(new PropertyValueFactory("productName"));
         this.tblClmProductquantity.setCellValueFactory(new PropertyValueFactory("quantity"));
@@ -430,22 +337,7 @@ public class CurrentStoreController implements Initializable {
     }
     @FXML
     private void cbSoteViewRMAOnAction(ActionEvent event) {
-        this.con = this.dbCon.getConnection();
-        this.rmaName = ((String) this.cbSoteViewRMA.getSelectionModel().getSelectedItem());
-        System.out.println("Rma Name " + this.rmaName);
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".RMA where RMAName=?");
-            this.pst.setString(1, this.rmaName);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                System.out.println("in the loop" + this.rs.getString(1));
-                this.rmaID = this.rs.getString(1);
-                System.out.println("Print rma id" + this.rmaID);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(CurrentStoreController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        this.productCurrent.rmaId = this.rmaID;
+        this.productCurrent.setRmaId(this.rmaID);
         this.currentProductGetway.searchByRMA(this.productCurrent);
     }
     @FXML

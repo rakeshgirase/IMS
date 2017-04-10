@@ -34,7 +34,7 @@ public class AddCustomerController
     private TextArea taCustomerAddress;
     @FXML
     private Button btnClose;
-    private String userId;
+    private Long userId;
     public void setNameMedia(UserNameMedia nameMedia) {
         this.userId = nameMedia.getId();
         this.nameMedia = nameMedia;

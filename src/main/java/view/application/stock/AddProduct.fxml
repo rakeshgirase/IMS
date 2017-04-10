@@ -3,12 +3,12 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<Group xmlns:fx="http://javafx.com/fxml/1" stylesheets="@../../../style/PopUp.css"
+<Group xmlns:fx="http://javafx.com/fxml/1" stylesheets="../../../style/PopUp.css"
        xmlns="http://javafx.com/javafx/8.0.40" fx:controller="com.exuberant.ims.controller.application.stock.AddProductController">
-    <children>
+
         <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="570.0" prefWidth="734.0"
-                    stylesheets="@../../../style/MainStyle.css">
-            <children>
+                    stylesheets="../../../style/MainStyle.css">
+
                 <Label fx:id="lblHeader" alignment="CENTER" layoutX="4.0" layoutY="14.0" prefHeight="30.0"
                        prefWidth="726.0" text="ADD PRODUCT">
                     <font>
@@ -43,7 +43,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                     </rowConstraints>
-                    <children>
+
                         <Label text="Product Id :"/>
                         <RadioButton fx:id="rbStatic" mnemonicParsing="false" onAction="#rbStaticOnAction"
                                      onMouseClicked="#rbStaticOnClicked" text="Static" GridPane.columnIndex="1"/>
@@ -77,39 +77,39 @@
                         <DatePicker fx:id="dpDate" GridPane.columnIndex="4" GridPane.columnSpan="2"
                                     GridPane.rowIndex="11"/>
                         <Pane GridPane.columnIndex="6" GridPane.rowIndex="1">
-                            <children>
+
                                 <Button fx:id="btnAddSupplier" layoutX="14.0" layoutY="-1.0" mnemonicParsing="false"
                                         onAction="#btnAddSupplierOnAction" prefHeight="30.0" prefWidth="30.0"
-                                        stylesheets="@../../../style/AddButton.css"/>
-                            </children>
+                                        stylesheets="../../../style/AddButton.css"/>
+
                         </Pane>
                         <Pane GridPane.columnIndex="6" GridPane.rowIndex="3">
-                            <children>
+
                                 <Button fx:id="btnAddBrand" layoutX="14.0" mnemonicParsing="false"
                                         onAction="#btnAddBrandOnAction" prefHeight="32.0" prefWidth="30.0"
-                                        stylesheets="@../../../style/AddButton.css"/>
-                            </children>
+                                        stylesheets="../../../style/AddButton.css"/>
+
                         </Pane>
                         <Pane GridPane.columnIndex="6" GridPane.rowIndex="5">
-                            <children>
+
                                 <Button fx:id="btnAddCatagory" layoutX="14.0" mnemonicParsing="false"
                                         onAction="#btnAddCatagoryOnAction" prefHeight="30.0" prefWidth="30.0"
-                                        stylesheets="@../../../style/AddButton.css"/>
-                            </children>
+                                        stylesheets="../../../style/AddButton.css"/>
+
                         </Pane>
                         <Pane GridPane.columnIndex="6" GridPane.rowIndex="7">
-                            <children>
+
                                 <Button fx:id="btnAddUnit" layoutX="14.0" layoutY="-1.0" mnemonicParsing="false"
                                         onAction="#btnAddUnitOnAction" prefHeight="30.0" prefWidth="30.0"
-                                        stylesheets="@../../../style/AddButton.css"/>
-                            </children>
+                                        stylesheets="../../../style/AddButton.css"/>
+
                         </Pane>
                         <Pane GridPane.columnIndex="6" GridPane.rowIndex="9">
-                            <children>
+
                                 <Button fx:id="btnAddRma" layoutX="14.0" mnemonicParsing="false"
                                         onAction="#btnAddRmaOnAction" prefHeight="33.0" prefWidth="30.0"
-                                        stylesheets="@../../../style/AddButton.css"/>
-                            </children>
+                                        stylesheets="../../../style/AddButton.css"/>
+
                         </Pane>
                         <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSaveOnAction" text="Save"
                                 GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER"
@@ -128,11 +128,11 @@
                         <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update"
                                 GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.halignment="CENTER"
                                 GridPane.rowIndex="15"/>
-                    </children>
+
                 </GridPane>
-            </children>
+
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="729.0" layoutY="-4.0" mnemonicParsing="false" onAction="#btnCloseOnAction"
-                prefHeight="32.0" prefWidth="30.0" stylesheets="@../../../style/btnOnText.css"/>
-    </children>
+                prefHeight="32.0" prefWidth="30.0" stylesheets="../../../style/btnOnText.css"/>
+
 </Group>

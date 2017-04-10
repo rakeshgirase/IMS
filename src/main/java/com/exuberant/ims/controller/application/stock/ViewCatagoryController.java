@@ -3,8 +3,6 @@ package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.CatagoryBLL;
 import com.exuberant.ims.custom.CellFactories;
 import com.exuberant.ims.dal.Catagory;
-import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.SQL;
 import com.exuberant.ims.getway.CatagoryGetway;
 import com.exuberant.ims.list.ListCatagory;
 import com.exuberant.ims.media.UserNameMedia;
@@ -38,16 +36,14 @@ public class ViewCatagoryController
     public TableColumn<Object, Object> clmSupplyer;
     @FXML
     public TableColumn tablClmBox;
-    SQL sql = new SQL();
     Catagory catagory = new Catagory();
     CellFactories cellFactories = new CellFactories();
     CatagoryGetway catagoryGetway = new CatagoryGetway();
     CatagoryBLL catagoryBLL = new CatagoryBLL();
-    DBConnection dbCon = new DBConnection();
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    private String usrId;
+    private Long usrId;
     private String catagoryId;
     private String brandId;
     private String brandName;
@@ -192,7 +188,7 @@ public class ViewCatagoryController
                 AddCatagoryController addCatagoryController = new AddCatagoryController();
                 UserNameMedia media = new UserNameMedia();
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddCategory.fxml"));
+                fxmlLoader.setLocation(URLService.getFileAsResoure("application/stock/AddCategory.fxml"));
                 try {
                     fxmlLoader.load();
                     Parent parent = (Parent) fxmlLoader.getRoot();

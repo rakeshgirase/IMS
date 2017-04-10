@@ -1,10 +1,8 @@
 package com.exuberant.ims.controller.application;
 
 import com.exuberant.ims.controller.application.stock.*;
-import com.exuberant.ims.database.DBConnection;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
-import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,29 +16,17 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public class StockController
         implements Initializable {
     @FXML
     public BorderPane bpStore;
-
-    String db = PropertyService.getInstance().getProperty("db");
-    DBConnection dbCon = new DBConnection();
-    Connection con = this.dbCon.getConnection();
-    PreparedStatement pst;
-    ResultSet rs;
     @FXML
     private AnchorPane acHeadStore;
     @FXML
     private StackPane spMainContent;
-    private String usrId;
-    private UserNameMedia userId;
+    private UserNameMedia userNameMedia;
+    private Long userId;
     @FXML
     private Label lblHeader;
     @FXML
@@ -57,12 +43,9 @@ public class StockController
     private ToggleButton btnRma;
     @FXML
     private ToggleButton btnRepoerts;
-    public UserNameMedia getUserId() {
-        return this.userId;
-    }
+
     public void setUserId(UserNameMedia userId) {
-        this.usrId = userId.getId();
-        this.userId = userId;
+        this.userId = userId.getId();
     }
     public void initialize(URL url, ResourceBundle rb) {
         ToggleGroup toggleGroup = new ToggleGroup();
@@ -84,11 +67,11 @@ public class StockController
         FXMLLoader fXMLLoader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("application/stock/CurrentStore.fxml");
         fXMLLoader.load(resource.openStream());
-        media.setId(this.usrId);
+        media.setId(this.userId);
         CurrentStoreController currentStoreController = (CurrentStoreController) fXMLLoader.getController();
-        currentStoreController.setMedia(this.userId);
+        currentStoreController.setMedia(media);
         currentStoreController.viewDetails();
-        currentStoreController.apCombobox.getStylesheets().add("/style/StoreCombobox.css");
+        currentStoreController.apCombobox.getStylesheets().add("style/StoreCombobox.css");
         currentStoreController.settingPermission();
         StackPane acPane = (StackPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
@@ -96,15 +79,15 @@ public class StockController
     }
     @FXML
     private void btnSupplyerOnAction(ActionEvent event) throws IOException {
-        this.lblHeader.setText("Supplyer");
+        this.lblHeader.setText("Supplier");
         ViewSupplyerController vsc = new ViewSupplyerController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("application/stock/ViewSupplier.fxml");
         fXMLLoader.load(resource.openStream());
-        media.setId(this.usrId);
+        media.setId(this.userId);
         ViewSupplyerController viewSupplyerController = (ViewSupplyerController) fXMLLoader.getController();
-        viewSupplyerController.setMedia(this.userId);
+        viewSupplyerController.setMedia(media);
         viewSupplyerController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
@@ -112,15 +95,15 @@ public class StockController
     }
     @FXML
     private void btnBrandsOnAction(ActionEvent event) throws IOException {
-        this.lblHeader.setText("Brands");
+        this.lblHeader.setText("Brand");
         ViewBrandController vbc = new ViewBrandController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("application/stock/ViewBrand.fxml");
         fXMLLoader.load(resource.openStream());
-        media.setId(this.usrId);
+        media.setId(this.userId);
         ViewBrandController viewBrandController = (ViewBrandController) fXMLLoader.getController();
-        viewBrandController.setMedia(this.userId);
+        viewBrandController.setMedia(media);
         viewBrandController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
@@ -134,9 +117,9 @@ public class StockController
         FXMLLoader fXMLLoader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("application/stock/ViewCategory.fxml");
         fXMLLoader.load(resource.openStream());
-        media.setId(this.usrId);
+        media.setId(this.userId);
         ViewCatagoryController viewCatagoryController = (ViewCatagoryController) fXMLLoader.getController();
-        viewCatagoryController.setMedia(this.userId);
+        viewCatagoryController.setMedia(media);
         viewCatagoryController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
@@ -150,9 +133,9 @@ public class StockController
         FXMLLoader fXMLLoader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("application/stock/ViewUnit.fxml");
         fXMLLoader.load(resource.openStream());
-        media.setId(this.usrId);
+        media.setId(this.userId);
         ViewUnitController viewUnitController = (ViewUnitController) fXMLLoader.getController();
-        viewUnitController.setMedia(this.userId);
+        viewUnitController.setMedia(media);
         viewUnitController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
@@ -166,9 +149,9 @@ public class StockController
         FXMLLoader fXMLLoader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("application/stock/ViewRMA.fxml");
         fXMLLoader.load(resource.openStream());
-        media.setId(this.usrId);
+        media.setId(this.userId);
         ViewRMAController viewRMAController = (ViewRMAController) fXMLLoader.getController();
-        viewRMAController.setMedia(this.userId);
+        viewRMAController.setMedia(media);
         viewRMAController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
@@ -178,26 +161,6 @@ public class StockController
     private void btnRepoertsOnAction(ActionEvent event) {
     }
     public void settingPermission() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".UserPermission where id=?");
-            this.pst.setString(1, this.usrId);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                if ((this.rs.getInt(2) == 0) && (this.rs.getInt(9) == 0))
-                    this.btnSupplyer.setDisable(true);
-                if ((this.rs.getInt(4) == 0) && (this.rs.getInt(10) == 0))
-                    this.btnBrands.setDisable(true);
-                if ((this.rs.getInt(5) == 0) && (this.rs.getInt(11) == 0))
-                    this.btnCatagory.setDisable(true);
-                if ((this.rs.getInt(6) == 0) && (this.rs.getInt(12) == 0))
-                    this.btnUnit.setDisable(true);
-                if (this.rs.getInt(14) == 0) {
-                    this.btnRma.setDisable(true);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 }

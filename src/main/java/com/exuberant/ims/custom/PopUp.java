@@ -1,9 +1,12 @@
 package com.exuberant.ims.custom;
+
 import com.exuberant.ims.controller.popup.SucessController;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,7 +16,7 @@ public class PopUp {
         System.out.println("COmm");
         try {
             FXMLLoader fXMLLoader = new FXMLLoader();
-            fXMLLoader.load(getClass().getResource("/view/popup/Sucess.fxml").openStream());
+            fXMLLoader.load(URLService.getFileAsStream("popup/Sucess.fxml"));
             fXMLLoader.load();
             SucessController sucessController = (SucessController) fXMLLoader.getController();
             System.out.println("Come 2");

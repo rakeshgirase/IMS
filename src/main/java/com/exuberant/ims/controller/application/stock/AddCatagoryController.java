@@ -1,13 +1,13 @@
 package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.CatagoryBLL;
+import com.exuberant.ims.dal.Brand;
 import com.exuberant.ims.dal.Catagory;
-import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.SQL;
+import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.gateway.HibernateRepository;
 import com.exuberant.ims.getway.CatagoryGetway;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
-import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,10 +24,9 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 public class AddCatagoryController
         implements Initializable {
@@ -45,14 +44,9 @@ public class AddCatagoryController
     Catagory catagory = new Catagory();
     CatagoryGetway catagoryGetway = new CatagoryGetway();
     CatagoryBLL catagoryBLL = new CatagoryBLL();
-    SQL sql = new SQL();
 
-    String db = PropertyService.getInstance().getProperty("db");
-    DBConnection dbCon = new DBConnection();
-    Connection con = this.dbCon.getConnection();
-    PreparedStatement pst;
     ResultSet rs;
-    private String userId;
+    private Users users;
     private String brandId;
     private String brnadName;
     private UserNameMedia media;
@@ -72,7 +66,7 @@ public class AddCatagoryController
         return this.media;
     }
     public void setMedia(UserNameMedia media) {
-        this.userId = media.getId();
+        this.users = media.getUsers();
         this.media = media;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -84,7 +78,7 @@ public class AddCatagoryController
             this.catagory.supplyerName = ((String) this.cbSupplyerName.getSelectionModel().getSelectedItem());
             this.catagory.catagoryName = this.tfCatagoryName.getText().trim();
             this.catagory.catagoryDescription = this.taCatagoryDescription.getText().trim();
-            this.catagory.creatorId = this.userId;
+            this.catagory.users = this.users;
             this.catagoryBLL.save(this.catagory);
         }
     }
@@ -101,9 +95,9 @@ public class AddCatagoryController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddSupplyerController supplyerController = (AddSupplyerController) fxmlLoader.getController();
-            media.setId(this.userId);
+            media.setUsers(this.users);
             supplyerController.setMedia(media);
-            supplyerController.lblCaption.setText("Add Supplyer");
+            supplyerController.lblCaption.setText("Add Supplier");
             supplyerController.btnUpdate.setVisible(false);
             Stage nStage = new Stage();
             supplyerController.addSupplyerStage(nStage);
@@ -128,7 +122,7 @@ public class AddCatagoryController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddBrandController supplyerController = (AddBrandController) fxmlLoader.getController();
-            media.setId(this.userId);
+            media.setUsers(this.users);
             supplyerController.setMedia(media);
             supplyerController.lblHeader.setText("Add Brand");
             supplyerController.btnUpdate.setVisible(false);
@@ -186,31 +180,14 @@ public class AddCatagoryController
     }
     @FXML
     private void cbSupplyerNameOnClick(MouseEvent event) {
-        this.cbBrandName.getItems().clear();
-        this.cbBrandName.setPromptText(null);
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".Supplyer");
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                this.supplyerName = this.rs.getString(2);
-                this.cbSupplyerName.getItems().remove(this.supplyerName);
-                this.cbSupplyerName.getItems().add(this.supplyerName);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
+
     @FXML
     private void cbBrandNameOnClick(MouseEvent event) throws SQLException {
         this.cbBrandName.getItems().clear();
         this.supplyerName = ((String) this.cbSupplyerName.getSelectionModel().getSelectedItem());
-        this.supplyerId = this.sql.getIdNo(this.supplyerName, this.supplyerId, "Supplyer", "SupplyerName");
-        this.pst = this.con.prepareStatement("select * from " + this.db + ".Brands where SupplyerId=?");
-        this.pst.setString(1, this.supplyerId);
-        this.rs = this.pst.executeQuery();
-        while (this.rs.next()) {
-            this.cbBrandName.getItems().add(this.rs.getString(2));
-        }
+        List<Brand> brands = HibernateRepository.getRepository().getAll(Brand.class);
+        brands.forEach(brand->this.cbBrandName.getItems().add(brand.brandName));
     }
     public void showDetails() {
         this.catagory.id = this.catagoryId;

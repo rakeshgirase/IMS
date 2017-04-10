@@ -6,11 +6,11 @@
 <?import java.net.URL?>
 <Group xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
        fx:controller="com.exuberant.ims.controller.application.stock.AddUnitController">
-    <children>
+
         <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="362.0" prefWidth="370.0">
-            <children>
+
                 <GridPane layoutX="35.0" layoutY="83.0">
-                    <children>
+
                         <Label text="Unit Name :"/>
                         <Label text="Comment :" GridPane.rowIndex="2"/>
                         <TextField fx:id="tfUnitName" GridPane.columnSpan="3" GridPane.rowIndex="1"/>
@@ -19,11 +19,11 @@
                         <Button fx:id="btnSave" mnemonicParsing="false" onAction="#btnSaveOnAction" text="Save"
                                 GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
                         <Button fx:id="btnClrUnitName" mnemonicParsing="false" prefHeight="29.0" prefWidth="33.0"
-                                stylesheets="@../../../style/btnOnText.css" GridPane.columnSpan="3"
+                                stylesheets="../../../style/btnOnText.css" GridPane.columnSpan="3"
                                 GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
                         <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update"
                                 GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="7"/>
-                    </children>
+
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
@@ -45,13 +45,13 @@
                         <Font name="System Bold" size="26.0"/>
                     </font>
                 </Label>
-            </children>
+
             <stylesheets>
-                <URL value="@../../../style/MainStyle.css"/>
+                <URL value="../../../style/MainStyle.css"/>
                 <URL value="@../../../style/PopUp.css"/>
             </stylesheets>
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="358.0" layoutY="-3.0" mnemonicParsing="false" onAction="#btnCloseOnAction"
-                prefHeight="33.0" prefWidth="33.0" stylesheets="@../../../style/btnOnText.css"/>
-    </children>
+                prefHeight="33.0" prefWidth="33.0" stylesheets="../../../style/btnOnText.css"/>
+
 </Group>

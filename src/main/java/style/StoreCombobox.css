@@ -21,7 +21,7 @@ and open the template in the editor.
 .combo-box:hover {
     -fx-text-fill: white;
 }
-.combo-box:checked {
+.combo-box:filled {
 }
 .combo-box-base:hover {
     -fx-border-color: green;

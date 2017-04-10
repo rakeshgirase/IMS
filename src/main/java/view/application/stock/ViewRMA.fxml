@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="482.0" prefWidth="736.0"
-            stylesheets="@../../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
+            stylesheets="../../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
             fx:controller="com.exuberant.ims.controller.application.stock.ViewRMAController">
-    <children>
+
         <BorderPane layoutX="268.0" layoutY="101.0" prefHeight="482.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <center>
@@ -28,26 +28,26 @@
             <bottom>
                 <HBox alignment="CENTER_RIGHT" prefHeight="69.0" prefWidth="736.0" spacing="20.0"
                       BorderPane.alignment="CENTER">
-                    <children>
+
                         <Button fx:id="btnAddNew" mnemonicParsing="false" onAction="#btnAddNew" text="Add New"/>
                         <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update"/>
                         <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete"/>
-                    </children>
+
                 </HBox>
             </bottom>
             <top>
                 <HBox alignment="CENTER" prefHeight="60.0" prefWidth="736.0" spacing="10.0"
                       BorderPane.alignment="CENTER">
-                    <children>
+
                         <TextField fx:id="tfSearch" onKeyReleased="#tfSearchOnKeyRelesh" prefHeight="25.0"
                                    prefWidth="467.0" promptText="Search Rma"/>
                         <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#btnRefreshOnAction"
                                 prefHeight="31.0" prefWidth="33.0"/>
-                    </children>
+
                 </HBox>
             </top>
         </BorderPane>
-    </children>
+
     <padding>
         <Insets left="30.0" right="30.0"/>
     </padding>

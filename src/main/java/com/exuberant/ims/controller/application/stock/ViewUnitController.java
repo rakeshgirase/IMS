@@ -1,9 +1,11 @@
 package com.exuberant.ims.controller.application.stock;
+
 import com.exuberant.ims.bll.UnitBLL;
 import com.exuberant.ims.dal.Unit;
 import com.exuberant.ims.getway.UnitGetway;
 import com.exuberant.ims.list.ListUnit;
-import com.exuberant.ims.database.DBConnection;
+import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -19,12 +21,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 public class ViewUnitController
@@ -32,11 +31,7 @@ public class ViewUnitController
     Unit unit = new Unit();
     UnitGetway unitGetway = new UnitGetway();
     UnitBLL unitBLL = new UnitBLL();
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
-    private String usrId;
+    private Long userId;
     private String creatorId;
     private String unitId;
     private UserNameMedia media;
@@ -76,7 +71,7 @@ public class ViewUnitController
         return this.media;
     }
     public void setMedia(UserNameMedia media) {
-        this.usrId = media.getId();
+        this.userId = media.getId();
         this.media = media;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -94,14 +89,14 @@ public class ViewUnitController
         AddUnitController addUnitController = new AddUnitController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddUnit.fxml"));
+        fxmlLoader.setLocation(URLService.getFileAsResoure("application/stock/AddUnit.fxml"));
         try {
             fxmlLoader.load();
             Parent parent = (Parent) fxmlLoader.getRoot();
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddUnitController unitController = (AddUnitController) fxmlLoader.getController();
-            media.setId(this.usrId);
+            media.setId(this.userId);
             unitController.setNameMedia(media);
             unitController.lblContent.setText("ADD UNIT");
             unitController.btnUpdate.setVisible(false);
@@ -182,14 +177,14 @@ public class ViewUnitController
                 AddUnitController addUnitController = new AddUnitController();
                 UserNameMedia media = new UserNameMedia();
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddUnit.fxml"));
+                fxmlLoader.setLocation(URLService.getFileAsResoure("application/stock/AddUnit.fxml"));
                 try {
                     fxmlLoader.load();
                     Parent parent = (Parent) fxmlLoader.getRoot();
                     Scene scene = new Scene(parent);
                     scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
                     AddUnitController unitController = (AddUnitController) fxmlLoader.getController();
-                    media.setId(this.usrId);
+                    media.setId(this.userId);
                     unitController.setNameMedia(media);
                     unitController.lblContent.setText("UNIT DETAILS");
                     unitController.btnUpdate.setVisible(true);

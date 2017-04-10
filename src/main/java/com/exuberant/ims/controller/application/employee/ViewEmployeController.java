@@ -4,9 +4,7 @@ import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.custom.History;
 import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.database.SQL;
-import com.exuberant.ims.getway.UsersGetway;
+import com.exuberant.ims.getway.UserGateway;
 import com.exuberant.ims.list.ListEmployee;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -40,11 +38,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Blob;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public class ViewEmployeController
         implements Initializable {
     @FXML
@@ -62,25 +58,19 @@ public class ViewEmployeController
     CustomPf cPf = new CustomPf();
     CustomTf cTf = new CustomTf();
     Users users = new Users();
-    UsersGetway usersGetway = new UsersGetway();
-    SQL sql = new SQL();
-    DBConnection dbCon = new DBConnection();
+    UserGateway userGateway = new UserGateway();
 
     String db = PropertyService.getInstance().getProperty("db");
-    Connection con = this.dbCon.getConnection();
-    PreparedStatement pst;
-    ResultSet rs;
-    Image usrImg = new Image("/com/exuberant/ims/image/rifat.jpg");
+    Image usrImg = new Image(URLService.getFileAsStream("image/rifat.jpg"));
     private File file;
     private BufferedImage bufferedImage;
     private String imagePath;
     private Image image;
     private Blob blobImage;
-    private String userId;
     private String name;
-    private String id;
+    private Long id;
     private UserNameMedia nameMedia;
-    private String creatorId;
+    private Long creatorId;
     private String creatorName;
     @FXML
     private TextField tfUserName;
@@ -126,8 +116,8 @@ public class ViewEmployeController
         return this.nameMedia;
     }
     public void setNameMedia(UserNameMedia nameMedia) {
-        this.userId = nameMedia.getId();
-        this.name = nameMedia.getUserName();
+        this.users = nameMedia.getUsers();
+        this.name = nameMedia.getUsers().getUserName();
         this.nameMedia = nameMedia;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -170,21 +160,21 @@ public class ViewEmployeController
     }
     @FXML
     private void btnUpdateOnAction(ActionEvent event) throws FileNotFoundException {
-        this.users.userName = this.tfUserName.getText();
-        this.users.fullName = this.tfFullName.getText();
-        this.users.emailAddress = this.tfEmailAddress.getText();
-        this.users.contactNumber = this.tfPhoneNumber.getText();
-        this.users.salary = this.tfSalary.getText();
-        this.users.address = this.taAddress.getText();
-        this.users.image = this.usrImg;
+        this.users.setUserName(this.tfUserName.getText());
+        this.users.setFullName(this.tfFullName.getText());
+        this.users.setEmailAddress(this.tfEmailAddress.getText());
+        this.users.setAddress(this.taAddress.getText());
+        this.users.setContactNumber(this.tfPhoneNumber.getText());
+        this.users.setSalary(this.tfSalary.getText());
+        this.users.setAddress(this.taAddress.getText());
+        //this.users.image = this.usrImg;
         if (this.cbStatus.isSelected()) {
-            this.users.status = "1";
+            this.users.setStatus("1");
         } else {
-            this.users.status = "0";
+            this.users.setStatus("0");
         }
-        this.users.imagePath = this.imagePath;
-        this.users.creatorId = this.userId;
-        this.usersGetway.update(this.users);
+        this.users.setCreatorId(this.users.getId());
+        this.userGateway.update(this.users);
     }
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
@@ -195,8 +185,8 @@ public class ViewEmployeController
         alert.initStyle(StageStyle.UNDECORATED);
         Optional<ButtonType> result = alert.showAndWait();
         if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-            this.usersGetway.selectedView(this.users);
-            this.usersGetway.delete(this.users);
+            this.userGateway.selectedView(this.users);
+            this.userGateway.delete(this.users);
         }
         this.tblEmoyeeList.getItems().clear();
         showDetails();
@@ -215,8 +205,8 @@ public class ViewEmployeController
     @FXML
     private void hlViewPermissionOnAction(ActionEvent event)
             throws IOException {
-        this.usersGetway.selectedView(this.users);
-        this.id = this.users.id;
+        this.userGateway.selectedView(this.users);
+        this.id = this.users.getId();
         EmployeePermissionController pcc = new EmployeePermissionController();
         UserNameMedia usrID = new UserNameMedia();
         FXMLLoader loader = new FXMLLoader();
@@ -248,29 +238,28 @@ public class ViewEmployeController
         clearAll();
         ListEmployee employeeList = (ListEmployee) this.tblEmoyeeList.getSelectionModel().getSelectedItem();
         if (employeeList != null) {
-            this.users.id = employeeList.getEmployeeId();
-            this.usersGetway.selectedView(this.users);
-            this.id = this.users.id;
-            this.tfUserName.setText(this.users.userName);
-            this.tfFullName.setText(this.users.fullName);
-            this.tfPhoneNumber.setText(this.users.contactNumber);
-            this.tfEmailAddress.setText(this.users.emailAddress);
-            this.tfSalary.setText(this.users.salary);
-            this.tfDateofJoin.setText(this.users.date);
-            this.creatorId = this.users.creatorId;
-            this.taAddress.setText(this.users.address);
-            this.image = this.users.image;
+            this.users.setId(employeeList.getEmployeeId());
+            this.userGateway.selectedView(this.users);
+            this.id = this.users.getId();
+            this.tfUserName.setText(this.users.getUserName());
+            this.tfFullName.setText(this.users.getFullName());
+            this.tfPhoneNumber.setText(this.users.getContactNumber());
+            this.tfEmailAddress.setText(this.users.getEmailAddress());
+            this.tfSalary.setText(this.users.getSalary());
+            this.tfDateofJoin.setText(this.users.getDate());
+            this.creatorId = this.users.getCreatorId();
+            this.taAddress.setText(this.users.getAddress());
+            //this.image = this.users.image;
             this.recUsrImage.setFill(new ImagePattern(this.image));
-            this.sql.creatorNameFindar(this.creatorId, this.lblCreator);
             this.tfCreatedBy.setText(this.lblCreator.getText());
-            if (this.users.status.matches("1")) {
+            if (this.users.getStatus().matches("1")) {
                 this.cbStatus.setSelected(true);
                 this.cbStatus.setText("Active");
-            } else if (this.users.status.matches("0")) {
+            } else if (this.users.getStatus().matches("0")) {
                 this.cbStatus.setSelected(false);
                 this.cbStatus.setText("Deactive");
             }
-            if (this.users.id.matches("1")) {
+            if (this.users.getStatus().matches("1")) {
                 this.btnUpdate.setVisible(false);
                 this.btnDelete.setVisible(false);
                 this.hlChangePassword.setVisible(false);
@@ -284,27 +273,15 @@ public class ViewEmployeController
         }
     }
     public void showDetails() {
-        this.tblEmoyeeList.setItems(this.users.employeeLists);
+        this.tblEmoyeeList.setItems(this.userGateway.getAll());
         this.clmEmployeId.setCellValueFactory(new PropertyValueFactory("employeeId"));
         this.clmEmployeName.setCellValueFactory(new PropertyValueFactory("employeeName"));
-        this.usersGetway.view(this.users);
+        this.userGateway.view(this.users);
     }
     public void checqPermission() {
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".UserPermission where UserId=?");
-            this.pst.setString(1, this.userId);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                if (this.rs.getInt(13) != 1) {
-                    this.hlChangePassword.setDisable(true);
-                } else {
-                    this.hlChangePassword.setDisable(false);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewEmployeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
+
     private void clearAll() {
         this.tfUserName.clear();
         this.tfFullName.clear();

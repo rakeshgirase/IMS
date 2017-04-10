@@ -1,5 +1,4 @@
 package com.exuberant.ims.database;
-import com.exuberant.ims.storekeeper.StoreKeeper;
 import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,8 +7,9 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import java.io.*;
-import java.net.Socket;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -46,7 +46,6 @@ public class ServerController
     @FXML
     private TextField tfUserName;
     public void initialize(URL url, ResourceBundle rb) {
-        checkSQLStatus();
         getDataFromFile();
     }
     @FXML
@@ -71,6 +70,7 @@ public class ServerController
             this.properties.setProperty("user", this.tfUserName.getText().trim());
             this.properties.setProperty("password", this.pfPassword.getText().trim());
             if (dbConnect()) {
+                System.out.println("Connected to database...");
                 this.con.close();
                 Alert alert = new Alert(AlertType.INFORMATION);
                 alert.setTitle("Server connect successfully");
@@ -94,18 +94,7 @@ public class ServerController
             Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void checkSQLStatus() {
-        try {
-            String host = PropertyService.getInstance().getProperty("host");
-            int port = PropertyService.getInstance().getPropertyAsInt("port");
-            Socket socket = new Socket(host, port);
-            this.lablServerStatus.setText("Server is running");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(ServerController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
     public void loadPropertiesFile() {
             this.url = PropertyService.getInstance().getProperty("url");
             this.user = this.properties.getProperty("user");
@@ -115,7 +104,7 @@ public class ServerController
         loadPropertiesFile();
         try {
             Class.forName(PropertyService.getInstance().getProperty("driverName"));
-            //this.con = DriverManager.getConnection(this.url + this.unicode, this.user, this.pass);
+            //this.con = DriverManager.getConnection(this.url + this.unicode, this.users, this.password);
             url = PropertyService.getInstance().getProperty("url");
             System.err.println("this.url: " + url);
             this.con = DriverManager.getConnection(this.url);

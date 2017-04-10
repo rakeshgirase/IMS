@@ -1,9 +1,7 @@
 package com.exuberant.ims.controller.application.settings;
-import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.custom.CustomPf;
-import com.exuberant.ims.database.DBConnection;
-
-import com.exuberant.ims.util.PropertyService;
+import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,25 +14,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public class PassChangeController
+public class ChangePasswordController
         implements Initializable {
     Users users = new Users();
     CustomPf customPf = new CustomPf();
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    ResultSet rs;
-    PreparedStatement pst;
 
-    String db = PropertyService.getInstance().getProperty("db");
     @FXML
     private PasswordField pfCurrentPass;
     @FXML
@@ -51,8 +38,6 @@ public class PassChangeController
     private Button btnChangePass;
     @FXML
     private Button btnClose;
-    private String userId;
-    private String userName;
     private UserNameMedia nameMedia;
     @FXML
     private ImageView imgCurrentPassMatch;
@@ -62,8 +47,7 @@ public class PassChangeController
         return this.nameMedia;
     }
     public void setNameMedia(UserNameMedia nameMedia) {
-        this.userId = nameMedia.getId();
-        this.userName = nameMedia.getUserName();
+        this.users = nameMedia.getUsers();
         this.nameMedia = nameMedia;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -108,26 +92,6 @@ public class PassChangeController
     }
     private boolean isCurrentPasswordChecqOk() {
         boolean conDitionValid = true;
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from User where Id=? and Password=?");
-            this.pst.setString(1, this.userId);
-            this.pst.setString(2, this.pfCurrentPass.getText());
-            this.rs = this.pst.executeQuery();
-            if (this.rs.next()) {
-                System.out.println("Old Password Match");
-                return conDitionValid;
-            }
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("ERROR");
-            alert.setHeaderText("ERROR ");
-            alert.setContentText("Invalid password");
-            alert.initStyle(StageStyle.UNDECORATED);
-            alert.showAndWait();
-            conDitionValid = false;
-        } catch (SQLException ex) {
-            Logger.getLogger(PassChangeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return conDitionValid;
     }
     private boolean isPasswordMatch() {
@@ -147,20 +111,6 @@ public class PassChangeController
         return passMatch;
     }
     private void updatePassword() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("Update " + this.db + ".User set Password=? where Id=?");
-            this.pst.setString(1, this.pfNewPass.getText());
-            this.pst.setString(2, this.userId);
-            this.pst.executeUpdate();
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Sucess");
-            alert.setHeaderText("Sucess ");
-            alert.setContentText("Update Password Sucessfuly");
-            alert.initStyle(StageStyle.UNDECORATED);
-            alert.showAndWait();
-        } catch (SQLException ex) {
-            Logger.getLogger(PassChangeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 }

@@ -6,21 +6,20 @@
     -fx-border-width: 0px 0px 0px 5px;
     -fx-border-radius: 0px;
     -fx-background-radius: 0px;
-    *-fx-border-color: white;
-    */ -fx-text-fill: #4E4F52;
-    *-fx-border-radius: 50px;
-    */ *
+    /*-fx-border-color: white;*/
+    -fx-text-fill: #4E4F52;
+    /*-fx-border-radius: 50px;
     -fx-background-radius: 50px;
     */ -fx-background-color: #282E34;
-    *-fx-font-size: 15px;
-    */ *
+    /*-fx-font-size: 15px;
+
     -fx-padding: 5px 25px;
     */ -fx-font-weight: 700;
     -fx-font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 .button:focused {
     -fx-border-width: 0px 0px 0px 0px;
-    *-fx-text-fill: #FFFFFF;
+    /*-fx-text-fill: #FFFFFF;
     */
 }
 .button:pressed {
@@ -33,8 +32,8 @@
 MenuButton {
 }
 .scroll-pane {
-    *-fx-background-insets: 0;
-    */ -fx-padding: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
     -fx-background: #282E34;
 }
 .list-view .scroll-bar:horizontal .track,
@@ -55,8 +54,8 @@ MenuButton {
 .list-view .mylistview .scroll-bar:horizontal .decrement-button {
     -fx-border-color: derive(#D7D7D7, 100%);
     -fx-background-color: derive(#D7D7D7, 100%);
-    *-fx-background-color: transparent;
-    */ -fx-background-radius: 0em;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0em;
     -fx-padding: 0 0 10 0;
 }
 .list-view .scroll-bar:horizontal .increment-arrow,
@@ -72,8 +71,8 @@ MenuButton {
 .list-view .mylistview .scroll-bar:horizontal .decrement-button {
     -fx-border-color: derive(#D7D7D7, 100%);
     -fx-background-color: derive(#D7D7D7, 100%);
-    *-fx-background-color: transparent;
-    */ -fx-background-radius: 0em;
+    /*-fx-background-color: transparent;*/
+    -fx-background-radius: 0em;
     -fx-padding: 0 0 10 0;
 }
 .list-view .scroll-bar:vertical .increment-arrow,

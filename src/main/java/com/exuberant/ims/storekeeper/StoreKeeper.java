@@ -1,6 +1,5 @@
 package com.exuberant.ims.storekeeper;
 
-import com.exuberant.ims.database.DBModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,11 +12,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StoreKeeper extends Application {
-
-    public StoreKeeper() {
-        DBModel model = new DBModel();
-        model.createDataBase();
-    }
 
     public static void main(String[] args) {
         launch(args);

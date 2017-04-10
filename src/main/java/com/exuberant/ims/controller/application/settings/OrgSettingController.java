@@ -1,7 +1,5 @@
 package com.exuberant.ims.controller.application.settings;
-import com.exuberant.ims.database.DBConnection;
-
-import com.exuberant.ims.util.PropertyService;
+import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -18,23 +16,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public class OrgSettingController
         implements Initializable {
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
 
-    String db = PropertyService.getInstance().getProperty("db");
     @FXML
     private TextField tfOrganizeName;
     @FXML
@@ -46,7 +37,7 @@ public class OrgSettingController
     private File file;
     private BufferedImage bufferedImage;
     private Image image;
-    private String userId;
+    private Long userId;
     private String imagePath;
     private UserNameMedia usrIdMedia;
     @FXML
@@ -95,121 +86,24 @@ public class OrgSettingController
         }
     }
     public void showDetails() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".Organize where Id=?");
-            this.pst.setString(1, "1");
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                this.tfOrganizeName.setText(this.rs.getString(2));
-                this.tfWebSite.setText(this.rs.getString(3));
-                this.taContactNumber.setText(this.rs.getString(4));
-                this.taAdddress.setText(this.rs.getString(5));
-                Blob blob = this.rs.getBlob(6);
-                if (blob != null) {
-                    ByteArrayInputStream in = new ByteArrayInputStream(blob.getBytes(1L, (int) blob.length()));
-                    this.image = new Image(in);
-                    this.retOrgLogo.setFill(new ImagePattern(this.image));
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(OrgSettingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     private boolean isFoundData() {
         boolean dataFound = true;
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".Organize ORDER BY Id ASC LIMIT 1");
-            this.rs = this.pst.executeQuery();
-            if (this.rs.next()) {
-                System.out.println("Data Found");
-                return dataFound;
-            }
-            System.out.println("Data not found");
-            dataFound = false;
-        } catch (SQLException ex) {
-            Logger.getLogger(OrgSettingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return dataFound;
     }
     private void updateOrganizeWithImage() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("Update " + this.db + ".Organize set OrgName=?,OrgWeb=?,OrgContactNumbers=?,OrgContactAddress=?,OrgLogo=? where Id=1");
-            this.pst.setString(1, this.tfOrganizeName.getText());
-            this.pst.setString(2, this.tfWebSite.getText());
-            this.pst.setString(3, this.taContactNumber.getText());
-            this.pst.setString(4, this.taAdddress.getText());
-            if (this.imagePath != null) {
-                try {
-                    InputStream is = new FileInputStream(new File(this.imagePath));
-                    this.pst.setBlob(5, is);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(OrgSettingController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                this.pst.setBlob(5, (Blob) null);
-            }
-            this.pst.executeUpdate();
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Update");
-            alert.setHeaderText("Update ");
-            alert.setContentText("Update Sucessfully");
-            alert.initStyle(StageStyle.UNDECORATED);
-            alert.showAndWait();
-        } catch (SQLException ex) {
-            Logger.getLogger(OrgSettingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
     private void insertOrganizeWithImage() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("insert into " + this.db + ".Organize values(?,?,?,?,?,?,?)");
-            this.pst.setString(1, "1");
-            this.pst.setString(2, this.tfOrganizeName.getText());
-            this.pst.setString(3, this.tfWebSite.getText());
-            this.pst.setString(4, this.taContactNumber.getText());
-            this.pst.setString(5, this.taAdddress.getText());
-            if (this.imagePath != null) {
-                try {
-                    InputStream is = new FileInputStream(new File(this.imagePath));
-                    this.pst.setBlob(6, is);
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(OrgSettingController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                this.pst.setBlob(6, (Blob) null);
-            }
-            this.pst.setString(7, this.userId);
-            this.pst.executeUpdate();
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Update");
             alert.setHeaderText("Sucess ");
             alert.setContentText("Insert Data Sucessfuly");
             alert.initStyle(StageStyle.UNDECORATED);
             alert.showAndWait();
-        } catch (SQLException ex) {
-            Logger.getLogger(OrgSettingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
+
     private void updateOrganizeWithOutImage() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("Update " + this.db + ".Organize set OrgName=?,OrgWeb=?,OrgContactNumbers=?,OrgContactAddress=? where Id=1");
-            this.pst.setString(1, this.tfOrganizeName.getText());
-            this.pst.setString(2, this.tfWebSite.getText());
-            this.pst.setString(3, this.taContactNumber.getText());
-            this.pst.setString(4, this.taAdddress.getText());
-            this.pst.executeUpdate();
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Update");
-            alert.setHeaderText("Sucess ");
-            alert.setContentText("Update sucessfuly");
-            alert.initStyle(StageStyle.UNDECORATED);
-            alert.showAndWait();
-        } catch (SQLException ex) {
-            Logger.getLogger(OrgSettingController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 }

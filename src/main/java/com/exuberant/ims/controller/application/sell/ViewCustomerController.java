@@ -1,6 +1,7 @@
 package com.exuberant.ims.controller.application.sell;
 
 import com.exuberant.ims.dal.Customer;
+import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.getway.CustomerGetway;
 import com.exuberant.ims.list.ListCustomer;
 import com.exuberant.ims.media.UserNameMedia;
@@ -33,7 +34,7 @@ public class ViewCustomerController
         implements Initializable {
     Customer customer = new Customer();
     CustomerGetway customerGetway = new CustomerGetway();
-    String userId;
+    Users users;
     UserNameMedia nameMedia;
     @FXML
     private AnchorPane acCustomerMainContent;
@@ -61,8 +62,9 @@ public class ViewCustomerController
     private TableColumn<Object, Object> tblClmTotalBuy;
     @FXML
     private Button btnRefresh;
+
     public void setNameMedia(UserNameMedia nameMedia) {
-        this.userId = nameMedia.getId();
+        this.users = nameMedia.getUsers();
         this.nameMedia = nameMedia;
     }
     public void initialize(URL location, ResourceBundle resources) {
@@ -93,7 +95,7 @@ public class ViewCustomerController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddCustomerController addCustomerController = (AddCustomerController) fXMLLoader.getController();
-            media.setId(this.userId);
+            media.setUsers(this.users);
             addCustomerController.setNameMedia(this.nameMedia);
             addCustomerController.lblCustomerContent.setText("ADD CUSTOMER");
             addCustomerController.btnUpdate.setVisible(false);
@@ -160,7 +162,7 @@ public class ViewCustomerController
                 Scene scene = new Scene(parent);
                 scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
                 AddCustomerController addCustomerController = (AddCustomerController) fXMLLoader.getController();
-                media.setId(this.userId);
+                media.setUsers(this.users);
                 addCustomerController.setNameMedia(this.nameMedia);
                 addCustomerController.lblCustomerContent.setText("Customer Details");
                 addCustomerController.btnSave.setVisible(false);

@@ -2,7 +2,6 @@ package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.RmaBLL;
 import com.exuberant.ims.dal.RMA;
-import com.exuberant.ims.database.DBConnection;
 import com.exuberant.ims.getway.RmaGetway;
 import com.exuberant.ims.list.ListRma;
 import com.exuberant.ims.media.UserNameMedia;
@@ -36,11 +35,10 @@ public class ViewRMAController
     RMA rma = new RMA();
     RmaGetway rmaGetway = new RmaGetway();
     RmaBLL rmaBLL = new RmaBLL();
-    DBConnection dbCon = new DBConnection();
     Connection con;
     PreparedStatement pst;
     ResultSet rs;
-    private String usrId;
+    private Long usrId;
     private String rmaId;
     private UserNameMedia media;
     private String creatorId;
@@ -175,7 +173,7 @@ public class ViewRMAController
                 AddUnitController addUnitController = new AddUnitController();
                 UserNameMedia media = new UserNameMedia();
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/view/application/stock/AddRMA.fxml"));
+                fxmlLoader.setLocation(URLService.getFileAsResoure("application/stock/AddRMA.fxml"));
                 try {
                     fxmlLoader.load();
                     Parent parent = (Parent) fxmlLoader.getRoot();

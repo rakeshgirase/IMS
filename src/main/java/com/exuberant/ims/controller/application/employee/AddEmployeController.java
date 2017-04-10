@@ -1,10 +1,8 @@
 package com.exuberant.ims.controller.application.employee;
-import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.getway.UsersGetway;
 import com.exuberant.ims.custom.CustomTf;
-import com.exuberant.ims.database.DBConnection;
-
-import com.exuberant.ims.util.PropertyService;
+import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.getway.UserGateway;
+import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -17,19 +15,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
-import com.exuberant.ims.media.UserNameMedia;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public class AddEmployeController
         implements Initializable {
     @FXML
@@ -45,9 +37,7 @@ public class AddEmployeController
     @FXML
     public Button btnClrPassword;
 
-    String db = PropertyService.getInstance().getProperty("db");
-    Users users = new Users();
-    UsersGetway usersGetway = new UsersGetway();
+    UserGateway userGateway = new UserGateway();
     @FXML
     private TextField tfUserName;
     @FXML
@@ -72,13 +62,13 @@ public class AddEmployeController
     private BufferedImage bufferedImage;
     private Image image;
     private String imagePath;
-    private String usrId;
+    private Users users;
     private UserNameMedia nameMedia;
     public UserNameMedia getNameMedia() {
         return this.nameMedia;
     }
     public void setNameMedia(UserNameMedia nameMedia) {
-        this.usrId = nameMedia.getId();
+        this.users = nameMedia.getUsers();
         this.nameMedia = nameMedia;
     }
     public void initialize(URL url, ResourceBundle rb) {
@@ -111,51 +101,19 @@ public class AddEmployeController
     }
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
-        this.users.userName = this.tfUserName.getText();
-        this.users.fullName = this.tfFullName.getText();
-        this.users.emailAddress = this.tfEmail.getText();
-        this.users.contactNumber = this.tfPhone.getText();
-        this.users.salary = this.tfSalary.getText();
-        this.users.address = this.taAddress.getText();
-        this.users.password = this.tfPassword.getText();
-        this.users.imagePath = this.imagePath;
-        this.users.creatorId = this.usrId;
-        this.usersGetway.save(this.users);
+        this.users.setUserName(this.tfUserName.getText());
+        this.users.setFullName(this.tfFullName.getText());
+        this.users.setEmailAddress(this.tfEmail.getText());
+        this.users.setContactNumber(this.tfPhone.getText());
+        this.users.setSalary(this.tfSalary.getText());
+        this.users.setAddress(this.taAddress.getText());
+        this.users.setPassword(this.tfPassword.getText());
+        this.users.setImagePath(this.imagePath);
+        this.users.setCreatorId(this.users.getId());
+        this.userGateway.save(this.users);
         basicPermission();
     }
     private void basicPermission() {
-        DBConnection dbCon = new DBConnection();
-        Connection con = dbCon.getConnection();
-        try {
-            PreparedStatement pst = con.prepareStatement("Select Id FROM " + this.db + ".User where UsrName=?");
-            pst.setString(1, this.tfUserName.getText());
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                pst = con.prepareStatement("insert into " + this.db + ".UserPermission values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-                pst.setString(1, null);
-                pst.setInt(2, 0);
-                pst.setInt(3, 0);
-                pst.setInt(4, 0);
-                pst.setInt(5, 0);
-                pst.setInt(6, 0);
-                pst.setInt(7, 0);
-                pst.setInt(8, 0);
-                pst.setInt(9, 0);
-                pst.setInt(10, 0);
-                pst.setInt(11, 0);
-                pst.setInt(12, 0);
-                pst.setInt(13, 0);
-                pst.setInt(14, 0);
-                pst.setInt(15, 0);
-                pst.setInt(16, 0);
-                pst.setInt(17, 0);
-                pst.setInt(18, 0);
-                pst.setInt(19, 0);
-                pst.setInt(20, rs.getInt("Id"));
-                pst.executeUpdate();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AddEmployeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 }

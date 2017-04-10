@@ -1,9 +1,9 @@
 package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.UnitBLL;
+import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.Unit;
 import com.exuberant.ims.getway.UnitGetway;
-import com.exuberant.ims.custom.CustomTf;
-import com.exuberant.ims.database.DBConnection;
+import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,11 +13,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ResourceBundle;
 public class AddUnitController
         implements Initializable {
@@ -32,15 +29,11 @@ public class AddUnitController
     UnitGetway unitGetway = new UnitGetway();
     UnitBLL unitBLL = new UnitBLL();
     CustomTf ctf = new CustomTf();
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
     @FXML
     private TextField tfUnitName;
     @FXML
     private Button btnClrUnitName;
-    private String usrId;
+    private Long usrId;
     private UserNameMedia nameMedia;
     @FXML
     private TextArea taDescription;

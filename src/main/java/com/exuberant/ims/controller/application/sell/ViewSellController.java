@@ -33,7 +33,7 @@ public class ViewSellController
         implements Initializable {
     Customer customer = new Customer();
     CustomerGetway customerGetway = new CustomerGetway();
-    String userId;
+    Long userId;
     UserNameMedia nameMedia;
     @FXML
     private AnchorPane acCustomerMainContent;

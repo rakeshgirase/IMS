@@ -21,12 +21,12 @@ public class EmployeController
         implements Initializable {
     @FXML
     public BorderPane bpContent;
-    Image image = new Image("/com/exuberant/ims/icon/d.png");
+    Image image = new Image(URLService.getFileAsStream("icon/d.png"));
     @FXML
     private MenuItem btnViewEmployee;
     @FXML
     private MenuItem btnAddEmployee;
-    private String userId;
+    private Long userId;
     private UserNameMedia nameMedia;
     @FXML
     private StackPane spEmployeContent;
@@ -56,11 +56,11 @@ public class EmployeController
         ViewEmployeController viewEmployeController = (ViewEmployeController) fXMLLoader.getController();
         viewEmployeController.setNameMedia(this.nameMedia);
         viewEmployeController.showDetails();
-        viewEmployeController.btnClrCreatortf.getStylesheets().add("/style/btnOnText.css");
-        viewEmployeController.btnClrEmailtf.getStylesheets().add("/style/btnOnText.css");
-        viewEmployeController.btnClrFulNametf.getStylesheets().add("/style/btnOnText.css");
-        viewEmployeController.btnClrSalarytf.getStylesheets().add("/style/btnOnText.css");
-        viewEmployeController.btnClrPhonetf.getStylesheets().add("/style/btnOnText.css");
+        viewEmployeController.btnClrCreatortf.getStylesheets().add("style/btnOnText.css");
+        viewEmployeController.btnClrEmailtf.getStylesheets().add("style/btnOnText.css");
+        viewEmployeController.btnClrFulNametf.getStylesheets().add("style/btnOnText.css");
+        viewEmployeController.btnClrSalarytf.getStylesheets().add("style/btnOnText.css");
+        viewEmployeController.btnClrPhonetf.getStylesheets().add("style/btnOnText.css");
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spEmployeContent.getChildren().clear();
         this.spEmployeContent.getChildren().add(acPane);
@@ -76,12 +76,12 @@ public class EmployeController
         media.setId(this.userId);
         AddEmployeController addEmployeController = (AddEmployeController) fXMLLoader.getController();
         addEmployeController.setNameMedia(this.nameMedia);
-        addEmployeController.btnClrEmail.getStylesheets().add("/style/btnOnText.css");
-        addEmployeController.btnClrFullName.getStylesheets().add("/style/btnOnText.css");
-        addEmployeController.btnClrPassword.getStylesheets().add("/style/btnOnText.css");
-        addEmployeController.btnClrPhone.getStylesheets().add("/style/btnOnText.css");
-        addEmployeController.btnClrSalary.getStylesheets().add("/style/btnOnText.css");
-        addEmployeController.btnClrUsrName.getStylesheets().add("/style/btnOnText.css");
+        addEmployeController.btnClrEmail.getStylesheets().add("style/btnOnText.css");
+        addEmployeController.btnClrFullName.getStylesheets().add("style/btnOnText.css");
+        addEmployeController.btnClrPassword.getStylesheets().add("style/btnOnText.css");
+        addEmployeController.btnClrPhone.getStylesheets().add("style/btnOnText.css");
+        addEmployeController.btnClrSalary.getStylesheets().add("style/btnOnText.css");
+        addEmployeController.btnClrUsrName.getStylesheets().add("style/btnOnText.css");
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spEmployeContent.getChildren().clear();
         this.spEmployeContent.getChildren().add(acPane);

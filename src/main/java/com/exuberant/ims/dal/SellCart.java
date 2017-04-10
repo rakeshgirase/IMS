@@ -3,6 +3,10 @@ import com.exuberant.ims.list.ListPreSell;
 import com.exuberant.ims.list.ListSold;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
+import javax.persistence.Entity;
+
+@Entity
 public class SellCart {
     public String Id;
     public String sellID;
@@ -14,7 +18,7 @@ public class SellCart {
     public String totalPrice;
     public String pursrsDate;
     public String warrentyVoidDate;
-    public String sellerID;
+    public Long sellerID;
     public String sellDate;
     public String oldQuentity;
     public String customerName;

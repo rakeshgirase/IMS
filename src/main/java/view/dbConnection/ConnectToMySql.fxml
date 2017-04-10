@@ -3,16 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="424.0" prefWidth="596.0"
-            stylesheets="@../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
+            stylesheets="../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
             fx:controller="com.exuberant.ims.controller.dbConnection.ConnectToMySqlController">
-    <children>
+
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                     AnchorPane.topAnchor="0.0">
             <center>
                 <HBox alignment="CENTER" prefHeight="424.0" prefWidth="596.0">
-                    <children>
+
                         <AnchorPane>
-                            <children>
+
                                 <GridPane layoutX="60.0" layoutY="-8.0" prefHeight="278.0" prefWidth="440.0">
                                     <columnConstraints>
                                         <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"
@@ -35,7 +35,7 @@
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                     </rowConstraints>
-                                    <children>
+
                                         <Label text="Host Name :  "/>
                                         <Label text="Port Name :  " GridPane.rowIndex="2"/>
                                         <Label text="User Name :  " GridPane.rowIndex="4"/>
@@ -58,19 +58,19 @@
                                         <Label alignment="CENTER" contentDisplay="TOP" layoutX="95.0" layoutY="18.0"
                                                nodeOrientation="LEFT_TO_RIGHT" text=" *" textFill="#f20707"
                                                GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-                                    </children>
+
                                 </GridPane>
-                            </children>
+
                             <HBox.margin>
                                 <Insets top="10.0"/>
                             </HBox.margin>
                         </AnchorPane>
-                    </children>
+
                 </HBox>
             </center>
             <top>
                 <AnchorPane prefHeight="86.0" prefWidth="596.0" BorderPane.alignment="CENTER"/>
             </top>
         </BorderPane>
-    </children>
+
 </AnchorPane>

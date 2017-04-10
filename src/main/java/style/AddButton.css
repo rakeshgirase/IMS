@@ -12,14 +12,14 @@ and open the template in the editor.
     -fx-border-color: transparent;
     -fx-font-size: 15px;
     -fx-padding: 0px;
-    -fx-background-image: url("../com/exuberant/ims/icon/add_black32.png");
+    -fx-background-image: url("../view/icon/add_black32.png");
     *-fx-background-size: cover;
     */ /*    -fx-background-repeat: stretch;
     -fx-background-position: center center;*/
 }
 .button:hover {
     -fx-background-color: none;
-    -fx-background-image: url("../com/exuberant/ims/icon/add_red32.png");
+    -fx-background-image: url("../view/icon/add_red32.png");
 }
 .button:focused {
     -fx-background-color: none;

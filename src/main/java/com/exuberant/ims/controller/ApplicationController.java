@@ -1,14 +1,11 @@
 package com.exuberant.ims.controller;
-import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.getway.UsersGetway;
 import com.exuberant.ims.controller.application.EmployeController;
 import com.exuberant.ims.controller.application.SellController;
 import com.exuberant.ims.controller.application.SettingsController;
 import com.exuberant.ims.controller.application.StockController;
-import com.exuberant.ims.database.DBConnection;
-
+import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
-import com.exuberant.ims.util.PropertyService;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,44 +24,34 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 public class ApplicationController implements Initializable {
     String usrName;
-    String id;
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
+    Long id;
 
-    String db = PropertyService.getInstance().getProperty("db");
     Users users = new Users();
-    UsersGetway usersGetway = new UsersGetway();
-    Image menuImage = new Image("/com/exuberant/ims/icon/menu.png");
-    Image menuImageRed = new Image("/com/exuberant/ims/icon/menuRed.png");
+    Image menuImage = new Image(URLService.getFileAsStream("icon/menu.png"));
+    Image menuImageRed = new Image(URLService.getFileAsStream("icon/menuRed.png"));
     Image image;
     String defultStyle = "-fx-border-width: 0px 0px 0px 5px;-fx-border-color:none";
     String activeStyle = "-fx-border-width: 0px 0px 0px 5px;-fx-border-color:#FF4E3C";
-    Image home = new Image("/com/exuberant/ims/icon/home.png");
-    Image homeRed = new Image("/com/exuberant/ims/icon/homeRed.png");
-    Image stock = new Image("/com/exuberant/ims/icon/stock.png");
-    Image stockRed = new Image("/com/exuberant/ims/icon/stockRed.png");
-    Image sell = new Image("/com/exuberant/ims/icon/sell2.png");
-    Image sellRed = new Image("/com/exuberant/ims/icon/sell2Red.png");
-    Image employee = new Image("/com/exuberant/ims/icon/employee.png");
-    Image employeeRed = new Image("/com/exuberant/ims/icon/employeeRed.png");
-    Image setting = new Image("/com/exuberant/ims/icon/settings.png");
-    Image settingRed = new Image("/com/exuberant/ims/icon/settingsRed.png");
-    Image about = new Image("/com/exuberant/ims/icon/about.png");
-    Image aboutRed = new Image("/com/exuberant/ims/icon/aboutRed.png");
+    Image home = new Image(URLService.getFileAsStream("icon/home.png"));
+    Image homeRed = new Image(URLService.getFileAsStream("icon/homeRed.png"));
+    Image stock = new Image(URLService.getFileAsStream("icon/stock.png"));
+    Image stockRed = new Image(URLService.getFileAsStream("icon/stockRed.png"));
+    Image sell = new Image(URLService.getFileAsStream("icon/sell2.png"));
+    Image sellRed = new Image(URLService.getFileAsStream("icon/sell2Red.png"));
+    Image employee = new Image(URLService.getFileAsStream("icon/employee.png"));
+    Image employeeRed = new Image(URLService.getFileAsStream("icon/employeeRed.png"));
+    Image setting = new Image(URLService.getFileAsStream("icon/settings.png"));
+    Image settingRed = new Image(URLService.getFileAsStream("icon/settingsRed.png"));
+    Image about = new Image(URLService.getFileAsStream("icon/about.png"));
+    Image aboutRed = new Image(URLService.getFileAsStream("icon/aboutRed.png"));
     @FXML
     private StackPane acContent;
     @FXML
@@ -132,15 +119,15 @@ public class ApplicationController implements Initializable {
         return this.usrNameMedia;
     }
     public void setUsrNameMedia(UserNameMedia usrNameMedia) {
-        this.lblUserId.setText(usrNameMedia.getId());
-        this.lblUsrName.setText(usrNameMedia.getUserName());
+        this.lblUserId.setText(String.valueOf(usrNameMedia.getId()));
+        this.lblUsrName.setText(usrNameMedia.getUsers().getUserName());
         this.id = usrNameMedia.getId();
-        this.usrName = usrNameMedia.getUserName();
+        this.usrName = usrNameMedia.getUsers().getUserName();
         this.usrNameMedia = usrNameMedia;
     }
     public void initialize(URL url, ResourceBundle rb) {
         this.imgMenuBtn.setImage(this.menuImage);
-        Image usrImg = new Image("/com/exuberant/ims/image/rifat.jpg");
+        Image usrImg = new Image(URLService.getFileAsStream("image/rifat.jpg"));
         this.imgUsrTop.setFill(new ImagePattern(usrImg));
         this.circleImgUsr.setFill(new ImagePattern(usrImg));
     }
@@ -201,7 +188,7 @@ public class ApplicationController implements Initializable {
         fXMLLoader.load(resource.openStream());
         nm.setId(this.id);
         StockController stockController = (StockController) fXMLLoader.getController();
-        stockController.bpStore.getStylesheets().add("/style/MainStyle.css");
+        stockController.bpStore.getStylesheets().add("style/MainStyle.css");
         stockController.setUserId(this.usrNameMedia);
         stockController.btnStockOnAction(event);
         stockController.settingPermission();
@@ -219,7 +206,7 @@ public class ApplicationController implements Initializable {
         fXMLLoader.load(resource);
         nm.setId(this.id);
         EmployeController employeController = (EmployeController) fXMLLoader.getController();
-        employeController.bpContent.getStylesheets().add("/style/MainStyle.css");
+        employeController.bpContent.getStylesheets().add("style/MainStyle.css");
         employeController.setNameMedia(this.usrNameMedia);
         employeController.btnViewEmployeeOnAction(event);
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
@@ -236,7 +223,7 @@ public class ApplicationController implements Initializable {
         settingLoader.load(resource.openStream());
         usrMedia.setId(this.id);
         SettingsController settingControl = (SettingsController) settingLoader.getController();
-        settingControl.bpSettings.getStylesheets().add("/style/MainStyle.css");
+        settingControl.bpSettings.getStylesheets().add("style/MainStyle.css");
         settingControl.setUsrMedia(usrMedia);
         settingControl.miMyASccountOnClick(event);
         settingControl.settingPermission();
@@ -270,7 +257,7 @@ public class ApplicationController implements Initializable {
             nm.setId(this.id);
             SellController sellController = (SellController) fXMLLoader.getController();
             sellController.setNameMedia(this.usrNameMedia);
-            sellController.acMainSells.getStylesheets().add("/style/MainStyle.css");
+            sellController.acMainSells.getStylesheets().add("style/MainStyle.css");
             sellController.tbtnSellOnAction(event);
             AnchorPane anchorPane = (AnchorPane) fXMLLoader.getRoot();
             this.acContent.getChildren().clear();
@@ -289,23 +276,9 @@ public class ApplicationController implements Initializable {
     private void acMainOnMouseMove(MouseEvent event) {
     }
     public void permission() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".UserPermission where UserId=?");
-            this.pst.setString(1, this.id);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                if (this.rs.getInt(17) == 0) {
-                    this.btnEmplopye.setDisable(true);
-                }
-                if (this.rs.getInt(15) == 0) {
-                    this.btnSell.setDisable(true);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
+
     private void homeActive() {
         this.imgHomeBtn.setImage(this.homeRed);
         this.imgStoreBtn.setImage(this.stock);
@@ -391,12 +364,11 @@ public class ApplicationController implements Initializable {
         this.btnAbout.setStyle(this.activeStyle);
     }
     public void viewDetails() {
-        this.users.id = this.id;
-        this.usersGetway.selectedView(this.users);
-        this.image = this.users.image;
-        this.circleImgUsr.setFill(new ImagePattern(this.image));
-        this.imgUsrTop.setFill(new ImagePattern(this.image));
-        this.lblFullName.setText(this.users.fullName);
-        this.lblUsrNamePopOver.setText(this.users.userName);
+        this.users.setId(this.id);
+        //this.image = this.users.image;
+        //this.circleImgUsr.setFill(new ImagePattern(this.image));
+//        this.imgUsrTop.setFill(new ImagePattern(this.image));
+        this.lblFullName.setText(this.users.getFullName());
+        this.lblUsrNamePopOver.setText(this.users.getUserName());
     }
 }

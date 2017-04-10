@@ -1,9 +1,12 @@
 package com.exuberant.ims.custom;
+
 import com.exuberant.ims.controller.HistoryController;
+import com.exuberant.ims.storekeeper.URLService;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.util.logging.Level;
@@ -32,7 +35,7 @@ public class History {
             HistoryController hc = new HistoryController();
             StringBuilder sb = new StringBuilder();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/view/history.fxml"));
+            loader.setLocation(URLService.getFileAsResoure("history.fxml"));
             loader.load();
             Parent root = (Parent) loader.getRoot();
             Stage s1 = new Stage();

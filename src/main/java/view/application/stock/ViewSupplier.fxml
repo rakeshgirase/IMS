@@ -3,18 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" fx:id="acContent" prefHeight="607.0"
-            prefWidth="880.0" stylesheets="@../../../style/MainStyle.css"
+            prefWidth="880.0" stylesheets="../../../style/MainStyle.css"
             xmlns="http://javafx.com/javafx/8.0.40" fx:controller="com.exuberant.ims.controller.application.stock.ViewSupplyerController">
-    <children>
+
         <BorderPane layoutX="24.0" prefHeight="563.0" prefWidth="752.0" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
                 <AnchorPane prefHeight="55.0" prefWidth="752.0" BorderPane.alignment="CENTER">
-                    <children>
+
                         <HBox alignment="CENTER" layoutX="78.0" layoutY="-22.0" prefHeight="78.0" prefWidth="752.0"
                               spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <children>
+
                                 <TextField fx:id="tfSearch" onKeyReleased="#tfSearchOnType" prefHeight="31.0"
                                            prefWidth="570.0" promptText="Search Supplier"/>
                                 <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#btnRefreshOnAction"
@@ -23,9 +23,9 @@
                                         <Tooltip text="refresh"/>
                                     </tooltip>
                                 </Button>
-                            </children>
+
                         </HBox>
-                    </children>
+
                 </AnchorPane>
             </top>
             <center>
@@ -59,24 +59,24 @@
             </center>
             <bottom>
                 <AnchorPane prefHeight="75.0" prefWidth="820.0" BorderPane.alignment="CENTER">
-                    <children>
+
                         <HBox alignment="CENTER_RIGHT" layoutX="157.0" prefHeight="100.0" prefWidth="820.0"
                               spacing="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
                               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                            <children>
+
                                 <Button fx:id="btnAdditems" mnemonicParsing="false" onAction="#btnAdditemsOnAction"
                                         text="Add New"/>
                                 <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction"
                                         prefHeight="33.0" prefWidth="117.0" text="Update"/>
                                 <Button mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="33.0"
                                         prefWidth="120.0" text="Delete"/>
-                            </children>
+
                         </HBox>
-                    </children>
+
                 </AnchorPane>
             </bottom>
         </BorderPane>
-    </children>
+
     <padding>
         <Insets left="30.0" right="30.0"/>
     </padding>

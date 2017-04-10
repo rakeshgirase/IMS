@@ -2,7 +2,6 @@ package com.exuberant.ims.controller.application;
 
 import com.exuberant.ims.controller.application.settings.MyAccountController;
 import com.exuberant.ims.controller.application.settings.OrgSettingController;
-import com.exuberant.ims.database.DBConnection;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
@@ -18,21 +17,11 @@ import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public class SettingsController
         implements Initializable {
     @FXML
     public BorderPane bpSettings;
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
 
     String db = PropertyService.getInstance().getProperty("db");
     UserNameMedia usrMedia;
@@ -46,7 +35,7 @@ public class SettingsController
     private StackPane spSettingContent;
     @FXML
     private Label lblCurrentStatus;
-    private String userID;
+    private Long userID;
     public UserNameMedia getUsrMedia() {
         return this.usrMedia;
     }
@@ -95,18 +84,6 @@ public class SettingsController
     private void miBackupOnAction(ActionEvent event) {
     }
     public void settingPermission() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".UserPermission where id=?");
-            this.pst.setString(1, this.userID);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                if (this.rs.getInt(18) == 0) {
-                    this.miOrganize.setDisable(true);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SettingsController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
 }

@@ -1,26 +1,31 @@
 package com.exuberant.ims.media;
+
+import com.exuberant.ims.dal.Users;
+
 public class UserNameMedia {
-    String id;
-    String userName;
+    Long id;
+    Users users;
     public UserNameMedia() {
     }
-    public UserNameMedia(String Id) {
+    public UserNameMedia(Long Id) {
         this.id = Id;
     }
-    public UserNameMedia(String id, String userName) {
+    public UserNameMedia(Long id, Users users) {
         this.id = id;
-        this.userName = userName;
+        this.users = users;
     }
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
-    public String getUserName() {
-        return this.userName;
+
+    public Users getUsers() {
+        return users;
     }
-    public void setUserName(String userName) {
-        this.userName = userName;
+
+    public void setUsers(Users users) {
+        this.users = users;
     }
 }

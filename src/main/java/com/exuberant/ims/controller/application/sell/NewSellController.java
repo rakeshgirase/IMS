@@ -43,7 +43,7 @@ public class NewSellController
     @FXML
     public TextField tfProductId;
     UserNameMedia nameMedia;
-    String userId;
+    Long userId;
     String customerId;
     int quantity;
     Customer customer = new Customer();
@@ -180,7 +180,7 @@ public class NewSellController
     @FXML
     private void btnAddToChartOnAction(ActionEvent event) {
         if (inNotNull()) {
-            this.preList.add(new ListPreSell(this.currrentProduct.id, this.currrentProduct.productId, this.customerId, this.currrentProduct.pursesPrice, this.tfSellPrice.getText(), this.lblCurrentQuantity.getText(), this.tfQuantity.getText(), this.lblNetCost.getText(), this.currrentProduct.date, this.tfWarrentVoidDate.getText(), this.userId, LocalDateTime.now().toString()));
+            //TODO: Set something here
             viewAll();
             sumTotalCost();
             clearAll();

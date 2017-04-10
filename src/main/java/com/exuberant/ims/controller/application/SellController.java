@@ -22,7 +22,7 @@ public class SellController
     @FXML
     public AnchorPane acMainSells;
     UserNameMedia nameMedia;
-    String userId;
+    Long userId;
     @FXML
     private ToggleButton tbtnSell;
     @FXML

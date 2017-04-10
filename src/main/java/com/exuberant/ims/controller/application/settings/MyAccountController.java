@@ -1,11 +1,9 @@
 package com.exuberant.ims.controller.application.settings;
 
 import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.database.DBConnection;
-import com.exuberant.ims.getway.UsersGetway;
+import com.exuberant.ims.getway.UserGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
-import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -35,23 +33,12 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 public class MyAccountController
         implements Initializable {
     Users users = new Users();
-    UsersGetway usersGetway = new UsersGetway();
-    DBConnection dbCon = new DBConnection();
-    Connection con;
-    PreparedStatement pst;
-    ResultSet rs;
+    UserGateway userGateway = new UserGateway();
 
-    String db = PropertyService.getInstance().getProperty("db");
     @FXML
     private TextField tfUserName;
     @FXML
@@ -74,7 +61,7 @@ public class MyAccountController
     private FileOutputStream fileOutput;
     private byte[] userImage;
     private String imgPath;
-    private String userID;
+    private Long userID;
     private UserNameMedia usrMediaID;
     @FXML
     private AnchorPane apMyAccountMother;
@@ -94,79 +81,56 @@ public class MyAccountController
     }
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
-        this.users.userName = this.tfUserName.getText();
-        this.users.fullName = this.tfFullName.getText();
-        this.users.emailAddress = this.tfEmailAddress.getText();
-        this.users.address = this.taAddress.getText();
-        this.users.contactNumber = this.tfContractNumber.getText();
-        this.users.imagePath = this.imgPath;
-        this.users.image = this.image;
-        this.usersGetway.update(this.users);
+        this.users.setUserName(this.tfUserName.getText());
+        this.users.setFullName(this.tfFullName.getText());
+        this.users.setEmailAddress(this.tfEmailAddress.getText());
+        this.users.setAddress(this.taAddress.getText());
+        this.users.setContactNumber(this.tfContractNumber.getText());
+        this.users.setImagePath(this.imgPath);
+        //this.users.image = this.image;
+        this.userGateway.update(this.users);
     }
     @FXML
     private void hlChangePasswordOnClick(ActionEvent event)
             throws IOException {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".UserPermission where id=?");
-            this.pst.setString(1, this.userID);
-            this.rs = this.pst.executeQuery();
-            while (this.rs.next()) {
-                if (this.rs.getInt("ChangeOwnPass") != 0) {
-                    System.out.println("You can change your password");
-                    PassChangeController pcc = new PassChangeController();
-                    UserNameMedia nameMedia = new UserNameMedia();
-                    FXMLLoader loader = new FXMLLoader();
-                    URL resource = URLService.getFileAsResoure("application/settings/PassChange.fxml");
-                    loader.setLocation(resource);
-                    loader.load();
-                    Parent root = (Parent) loader.getRoot();
-                    Scene scene = new Scene(root);
-                    scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
-                    PassChangeController passChangeController = (PassChangeController) loader.getController();
-                    nameMedia.setId(this.userID);
-                    passChangeController.setNameMedia(nameMedia);
-                    Stage nStage = new Stage();
-                    nStage.setScene(scene);
-                    nStage.setTitle("Registration -com.exuberant.ims.storekeeper");
-                    nStage.initModality(Modality.APPLICATION_MODAL);
-                    nStage.initStyle(StageStyle.TRANSPARENT);
-                    nStage.show();
-                } else {
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setTitle("Permiss");
-                    alert.setHeaderText("Permission denied");
-                    alert.setContentText("You are no longer to make change your password");
-                    alert.initStyle(StageStyle.UNDECORATED);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MyAccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println(this.con);
+        System.out.println("You can change your password");
+        ChangePasswordController pcc = new ChangePasswordController();
+        UserNameMedia nameMedia = new UserNameMedia();
+        FXMLLoader loader = new FXMLLoader();
+        URL resource = URLService.getFileAsResoure("application/settings/PasswordChange.fxml");
+        loader.setLocation(resource);
+        loader.load();
+        Parent root = (Parent) loader.getRoot();
+        Scene scene = new Scene(root);
+        scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
+        ChangePasswordController changePasswordController = (ChangePasswordController) loader.getController();
+        nameMedia.setId(this.userID);
+        changePasswordController.setNameMedia(nameMedia);
+        Stage nStage = new Stage();
+        nStage.setScene(scene);
+        nStage.setTitle("Registration -com.exuberant.ims.storekeeper");
+        nStage.initModality(Modality.APPLICATION_MODAL);
+        nStage.initStyle(StageStyle.TRANSPARENT);
+        nStage.show();
     }
     @FXML
     private void apOnOpenAction(MouseEvent event) {
     }
     public void showDetails() {
-        this.users.id = this.userID;
-        this.usersGetway.selectedView(this.users);
-        this.tfUserName.setText(this.users.userName);
-        this.tfFullName.setText(this.users.fullName);
-        this.tfContractNumber.setText(this.users.contactNumber);
-        this.tfEmailAddress.setText(this.users.emailAddress);
-        this.taAddress.setText(this.users.address);
-        this.image = this.users.image;
+        this.users.setId(this.userID);
+        this.userGateway.selectedView(this.users);
+        this.tfUserName.setText(this.users.getUserName());
+        this.tfFullName.setText(this.users.getFullName());
+        this.tfContractNumber.setText(this.users.getContactNumber());
+        this.tfEmailAddress.setText(this.users.getEmailAddress());
+        this.taAddress.setText(this.users.getAddress());
+        //this.image = this.users.image;
         this.retImage.setFill(new ImagePattern(this.image));
     }
     public void accountPermission() {
-        this.con = this.dbCon.getConnection();
-        try {
-            this.pst = this.con.prepareStatement("select * from " + this.db + ".UserPermission where UserId=?");
-        } catch (SQLException ex) {
-            Logger.getLogger(MyAccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }
+
     @FXML
     private void attachImageOnAction(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -184,9 +148,9 @@ public class MyAccountController
                 this.imgPath = this.file.getAbsolutePath();
             } else {
                 Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Permiss");
+                alert.setTitle("Permission");
                 alert.setHeaderText("Permission denied");
-                alert.setContentText("Your Image file is too big to upload \nplease choise another com.exuberant.ims.image");
+                alert.setContentText("Your Ioomage file is too big to upload \nplease chanother view.image");
                 alert.initStyle(StageStyle.UNDECORATED);
             }
         }
