@@ -1,4 +1,5 @@
 package com.exuberant.ims.list;
+
 public class ListSold {
     String Id;
     String sellId;
@@ -16,6 +17,7 @@ public class ListSold {
     String sellerID;
     String sellerName;
     String sellDate;
+
     public ListSold(String Id, String sellId, String productId, String productGId, String customerId, String customerName, String pursesPrice, String sellPrice, String oldQuantity, String quantity, String totalPrice, String pursrsDate, String warrentyVoidDate, String sellerID, String sellerName, String sellDate) {
         this.Id = Id;
         this.sellId = sellId;
@@ -34,99 +36,131 @@ public class ListSold {
         this.sellerName = sellerName;
         this.sellDate = sellDate;
     }
+
     public String getSellId() {
         return this.sellId;
     }
+
     public void setSellId(String sellId) {
         this.sellId = sellId;
     }
+
     public String getId() {
         return this.Id;
     }
+
     public void setId(String Id) {
         this.Id = Id;
     }
+
     public String getProductId() {
         return this.productId;
     }
+
     public void setProductId(String productId) {
         this.productId = productId;
     }
+
     public String getProductGId() {
         return this.productGId;
     }
+
     public void setProductGId(String productGId) {
         this.productGId = productGId;
     }
+
     public String getCustomerId() {
         return this.customerId;
     }
+
     public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
+
     public String getCustomerName() {
         return this.customerName;
     }
+
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
+
     public String getPursesPrice() {
         return this.pursesPrice;
     }
+
     public void setPursesPrice(String pursesPrice) {
         this.pursesPrice = pursesPrice;
     }
+
     public String getSellPrice() {
         return this.sellPrice;
     }
+
     public void setSellPrice(String sellPrice) {
         this.sellPrice = sellPrice;
     }
+
     public String getOldQuantity() {
         return this.oldQuantity;
     }
+
     public void setOldQuantity(String oldQuantity) {
         this.oldQuantity = oldQuantity;
     }
+
     public String getQuantity() {
         return this.quantity;
     }
+
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
+
     public String getTotalPrice() {
         return this.totalPrice;
     }
+
     public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
+
     public String getPursrsDate() {
         return this.pursrsDate;
     }
+
     public void setPursrsDate(String pursrsDate) {
         this.pursrsDate = pursrsDate;
     }
+
     public String getWarrentyVoidDate() {
         return this.warrentyVoidDate;
     }
+
     public void setWarrentyVoidDate(String warrentyVoidDate) {
         this.warrentyVoidDate = warrentyVoidDate;
     }
+
     public String getSellerID() {
         return this.sellerID;
     }
+
     public void setSellerID(String sellerID) {
         this.sellerID = sellerID;
     }
+
     public String getSellerName() {
         return this.sellerName;
     }
+
     public void setSellerName(String sellerName) {
         this.sellerName = sellerName;
     }
+
     public String getSellDate() {
         return this.sellDate;
     }
+
     public void setSellDate(String sellDate) {
         this.sellDate = sellDate;
     }

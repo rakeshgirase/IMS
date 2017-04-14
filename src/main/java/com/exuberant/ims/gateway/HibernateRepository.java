@@ -7,10 +7,10 @@ public class HibernateRepository {
 
     private static final HibernateRepository INSTANCE = new HibernateRepository();
 
-    private HibernateRepository(){
+    private HibernateRepository() {
     }
 
-    public  static HibernateRepository getRepository(){
+    public static HibernateRepository getRepository() {
         return INSTANCE;
     }
 
@@ -21,12 +21,12 @@ public class HibernateRepository {
         return e;
     }
 
-    public <E> E get(Class<E> entityType, Serializable id){
+    public <E> E get(Class<E> entityType, Serializable id) {
         Transactionable transactionable = HibernateTransactionable.getHibernateTransactionable();
         return transactionable.fetch(session -> session.get(entityType, id));
     }
 
-    public <E> List<E> getAll(Class<E> entityType){
+    public <E> List<E> getAll(Class<E> entityType) {
         Transactionable transactionable = HibernateTransactionable.getHibernateTransactionable();
         return transactionable.fetch(session -> session.createCriteria(entityType).list());
     }

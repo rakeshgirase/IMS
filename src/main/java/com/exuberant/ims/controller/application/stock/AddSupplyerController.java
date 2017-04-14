@@ -1,6 +1,8 @@
 package com.exuberant.ims.controller.application.stock;
+
 import com.exuberant.ims.dal.Supplier;
 import com.exuberant.ims.getway.SupplyerGetway;
+import com.exuberant.ims.media.UserNameMedia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,10 +12,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import static com.exuberant.ims.custom.EffectUtility.makeDraggable;
+
 public class AddSupplyerController
         implements Initializable {
     public String supplyerId;
@@ -40,15 +44,19 @@ public class AddSupplyerController
     private Stage primaryStage;
     @FXML
     private AnchorPane apContent;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.userId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
         if (isNotNull()) {
@@ -61,6 +69,7 @@ public class AddSupplyerController
             clrAll();
         }
     }
+
     public boolean isNotNull() {
         boolean isNotNull;
         if ((this.tfSupplyerName.getText().trim().isEmpty()) ||
@@ -79,12 +88,14 @@ public class AddSupplyerController
         }
         return isNotNull;
     }
+
     private void clrAll() {
         this.tfSupplyerName.clear();
         this.taContactNumbers.clear();
         this.taSupplyerAddress.clear();
         this.taSupplyerDescription.clear();
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         if (isNotNull()) {
@@ -96,11 +107,13 @@ public class AddSupplyerController
             this.supplyerGetway.update(this.oSupplier);
         }
     }
+
     @FXML
     private void btnCloseOnAction(ActionEvent event) {
         Stage stage = (Stage) this.btnUpdate.getScene().getWindow();
         stage.close();
     }
+
     public void showDetails() {
         this.oSupplier.id = this.supplyerId;
         this.supplyerGetway.selectedView(this.oSupplier);
@@ -109,12 +122,15 @@ public class AddSupplyerController
         this.taSupplyerAddress.setText(this.oSupplier.supplierAddress);
         this.taSupplyerDescription.setText(this.oSupplier.supplierDescription);
     }
+
     @FXML
     private void apOnMouseDragged(MouseEvent event) {
     }
+
     @FXML
     private void apOnMousePressed(MouseEvent event) {
     }
+
     public void addSupplyerStage(Stage stage) {
         makeDraggable(stage, this.apContent);
     }

@@ -28,6 +28,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+
 public class AddCatagoryController
         implements Initializable {
     public String supplyerId;
@@ -62,15 +63,19 @@ public class AddCatagoryController
     private Button btnAddSupplyer;
     @FXML
     private Button btnAddBrand;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.users = media.getUsers();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void btnSaveCatagory(ActionEvent event) {
         if (isNotNull()) {
@@ -82,6 +87,7 @@ public class AddCatagoryController
             this.catagoryBLL.save(this.catagory);
         }
     }
+
     @FXML
     private void btnAddSupplyerOnAction(ActionEvent event) {
         AddSupplyerController addSupplyerController = new AddSupplyerController();
@@ -109,6 +115,7 @@ public class AddCatagoryController
             e.printStackTrace();
         }
     }
+
     @FXML
     private void btnAddBrandOnAction(ActionEvent event) {
         AddBrandController addSupplyerController = new AddBrandController();
@@ -135,6 +142,7 @@ public class AddCatagoryController
             e.printStackTrace();
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         System.out.println("Clicked");
@@ -155,10 +163,12 @@ public class AddCatagoryController
             this.catagoryBLL.update(this.catagory);
         }
     }
+
     public void btnCloseOnAction(ActionEvent actionEvent) {
         Stage stage = (Stage) this.btnClose.getScene().getWindow();
         stage.close();
     }
+
     public boolean isNotNull() {
         boolean isNotNull;
         if ((this.tfCatagoryName.getText().trim().isEmpty()) ||
@@ -178,6 +188,7 @@ public class AddCatagoryController
         }
         return isNotNull;
     }
+
     @FXML
     private void cbSupplyerNameOnClick(MouseEvent event) {
     }
@@ -187,8 +198,9 @@ public class AddCatagoryController
         this.cbBrandName.getItems().clear();
         this.supplyerName = ((String) this.cbSupplyerName.getSelectionModel().getSelectedItem());
         List<Brand> brands = HibernateRepository.getRepository().getAll(Brand.class);
-        brands.forEach(brand->this.cbBrandName.getItems().add(brand.brandName));
+        brands.forEach(brand -> this.cbBrandName.getItems().add(brand.brandName));
     }
+
     public void showDetails() {
         this.catagory.id = this.catagoryId;
         this.catagoryGetway.selectedView(this.catagory);

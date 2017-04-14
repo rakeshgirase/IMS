@@ -1,4 +1,5 @@
 package com.exuberant.ims.controller.popup;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -6,8 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class SucessController
         implements Initializable {
     @FXML
@@ -16,8 +19,10 @@ public class SucessController
     public Text message;
     @FXML
     private ImageView ivSucessImage;
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void btnCloseOnAction(ActionEvent event) {
         Stage stage = (Stage) this.btnClose.getScene().getWindow();

@@ -2,6 +2,7 @@ package com.exuberant.ims.custom;
 
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.scene.image.Image;
+
 public class ButtonEffect {
     Image menuImage = new Image(URLService.getFileAsStream("icon/menu.png"));
     Image menuImageRed = new Image(URLService.getFileAsStream("icon/menuRed.png"));
@@ -20,6 +21,7 @@ public class ButtonEffect {
     Image settingRed = new Image(URLService.getFileAsStream("icon/settingsRed.png"));
     Image about = new Image(URLService.getFileAsStream("icon/about.png"));
     Image aboutRed = new Image(URLService.getFileAsStream("icon/aboutRed.png"));
+
     public void btnHomeEffect() {
     }
 }

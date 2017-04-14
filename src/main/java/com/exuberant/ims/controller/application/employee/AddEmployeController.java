@@ -1,4 +1,5 @@
 package com.exuberant.ims.controller.application.employee;
+
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.getway.UserGateway;
@@ -22,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class AddEmployeController
         implements Initializable {
     @FXML
@@ -64,13 +66,16 @@ public class AddEmployeController
     private String imagePath;
     private Users users;
     private UserNameMedia nameMedia;
+
     public UserNameMedia getNameMedia() {
         return this.nameMedia;
     }
+
     public void setNameMedia(UserNameMedia nameMedia) {
         this.users = nameMedia.getUsers();
         this.nameMedia = nameMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         CustomTf cTf = new CustomTf();
         cTf.clearTextFieldByButton(this.tfUserName, this.btnClrUsrName);
@@ -85,6 +90,7 @@ public class AddEmployeController
                 .or(this.tfPassword.textProperty().isEmpty()));
         this.btnSave.disableProperty().bind(binding);
     }
+
     @FXML
     private void btnAttachImageOnAction(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -99,6 +105,7 @@ public class AddEmployeController
             this.imagePath = this.file.getAbsolutePath();
         }
     }
+
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
         this.users.setUserName(this.tfUserName.getText());
@@ -113,6 +120,7 @@ public class AddEmployeController
         this.userGateway.save(this.users);
         basicPermission();
     }
+
     private void basicPermission() {
 
     }

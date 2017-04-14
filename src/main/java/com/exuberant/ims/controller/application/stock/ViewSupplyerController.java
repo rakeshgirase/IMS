@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 public class ViewSupplyerController implements Initializable {
     private static final int dataSize = 10023;
     private static final int rowsPerPage = 1000;
@@ -70,15 +71,19 @@ public class ViewSupplyerController implements Initializable {
     private MenuItem mbSearch;
     @FXML
     private Button btnRefresh;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.userId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void tblSupplyerOnClick(MouseEvent event) {
         int click = event.getClickCount();
@@ -86,9 +91,11 @@ public class ViewSupplyerController implements Initializable {
             viewDetails();
         }
     }
+
     @FXML
     private void tblSupplyerOnKeyPress(KeyEvent event) {
     }
+
     @FXML
     public void tfSearchOnType(Event event) {
         this.supplier.supplierDetails.removeAll(new ListSupplyer[0]);
@@ -102,6 +109,7 @@ public class ViewSupplyerController implements Initializable {
         this.clmSupplyerJoining.setCellValueFactory(new PropertyValueFactory("dataOfjoining"));
         this.supplyerGetway.searchView(this.supplier);
     }
+
     public void showDetails() {
         this.tblSupplyer.setItems(this.supplier.supplierDetails);
         this.clmSUpplyerId.setCellValueFactory(new PropertyValueFactory("supplyerId"));
@@ -112,6 +120,7 @@ public class ViewSupplyerController implements Initializable {
         this.clmSupplyerJoining.setCellValueFactory(new PropertyValueFactory("dataOfjoining"));
         this.supplyerGetway.view(this.supplier);
     }
+
     @FXML
     private void btnAdditemsOnAction(ActionEvent event) {
         AddSupplyerController addSupplyerController = new AddSupplyerController();
@@ -139,6 +148,7 @@ public class ViewSupplyerController implements Initializable {
         }
         tfSearchOnType(event);
     }
+
     @FXML
     private void btnUpdateOnAction(Event event) {
         if (this.tblSupplyer.getSelectionModel().getSelectedItem() != null) {
@@ -147,6 +157,7 @@ public class ViewSupplyerController implements Initializable {
             System.out.println("EMPTY SELECTION");
         }
     }
+
     private void viewDetails() {
         if (!this.tblSupplyer.getSelectionModel().isEmpty()) {
             ListSupplyer selectedSupplyer = (ListSupplyer) this.tblSupplyer.getSelectionModel().getSelectedItem();
@@ -184,17 +195,21 @@ public class ViewSupplyerController implements Initializable {
             System.out.println("empty Selection");
         }
     }
+
     @FXML
     private void mbView(ActionEvent event) {
         btnUpdateOnAction(event);
     }
+
     @FXML
     private void mbViewHistory(ActionEvent event) {
     }
+
     @FXML
     private void mbAddNew(ActionEvent event) {
         btnAdditemsOnAction(event);
     }
+
     @FXML
     private void mbDeleteItem(ActionEvent event) {
         System.out.println("clicked to delete");
@@ -214,20 +229,24 @@ public class ViewSupplyerController implements Initializable {
             showDetails();
         }
     }
+
     @FXML
     private void mbEdit(ActionEvent event) {
         btnUpdateOnAction(event);
         tfSearchOnType(event);
     }
+
     @FXML
     private void mbSearch(ActionEvent event) {
         this.tblSupplyer.getSelectionModel().clearSelection();
         this.tfSearch.requestFocus();
     }
+
     @FXML
     public void btnDeleteOnAction(ActionEvent event) {
         mbDeleteItem(event);
     }
+
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
         this.supplier.supplierDetails.clear();

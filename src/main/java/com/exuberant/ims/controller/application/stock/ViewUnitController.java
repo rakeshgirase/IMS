@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 public class ViewUnitController
         implements Initializable {
     Unit unit = new Unit();
@@ -67,15 +68,19 @@ public class ViewUnitController
     private MenuItem miView;
     @FXML
     private Button btnRefresh;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.userId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void tblViewUnitOnClick(MouseEvent event) {
         if (event.getClickCount() == 2) {
@@ -84,6 +89,7 @@ public class ViewUnitController
             System.out.println(event.getClickCount());
         }
     }
+
     @FXML
     private void btnAddItemOnAction(ActionEvent event) {
         AddUnitController addUnitController = new AddUnitController();
@@ -109,6 +115,7 @@ public class ViewUnitController
             e.printStackTrace();
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         if (this.tblViewUnit.getSelectionModel().getSelectedItem() != null) {
@@ -117,6 +124,7 @@ public class ViewUnitController
             System.out.println("EMPTY SELECTION");
         }
     }
+
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
         if (!this.tblViewUnit.getSelectionModel().isEmpty()) {
@@ -138,26 +146,32 @@ public class ViewUnitController
             System.out.println("NULL SELECTED");
         }
     }
+
     @FXML
     private void miSearchOnAction(ActionEvent event) {
         this.tfSearch.requestFocus();
     }
+
     @FXML
     private void miAddNewOnAction(ActionEvent event) {
         btnAddItemOnAction(event);
     }
+
     @FXML
     private void miUpdateOnAction(ActionEvent event) {
         btnUpdateOnAction(event);
     }
+
     @FXML
     private void miDeleteOnAction(ActionEvent event) {
         btnDeleteOnAction(event);
     }
+
     @FXML
     private void miViewOnAction(ActionEvent event) {
         miUpdateOnAction(event);
     }
+
     public void showDetails() {
         this.tblViewUnit.setItems(this.unit.unitDetails);
         this.clmUnitId.setCellValueFactory(new PropertyValueFactory("unitId"));
@@ -167,6 +181,7 @@ public class ViewUnitController
         this.clmUnitCreateDate.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
         this.unitGetway.view(this.unit);
     }
+
     private void viewDetails() {
         if (!this.tblViewUnit.getSelectionModel().isEmpty()) {
             ListUnit selectedUnit = (ListUnit) this.tblViewUnit.getSelectionModel().getSelectedItem();
@@ -204,6 +219,7 @@ public class ViewUnitController
             System.out.println("empty Selection");
         }
     }
+
     @FXML
     public void tfSearchOnKeyResele(Event event) {
         this.unit.unitDetails.clear();
@@ -216,6 +232,7 @@ public class ViewUnitController
         this.clmUnitCreateDate.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
         this.unitGetway.searchView(this.unit);
     }
+
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
         this.unit.unitDetails.clear();

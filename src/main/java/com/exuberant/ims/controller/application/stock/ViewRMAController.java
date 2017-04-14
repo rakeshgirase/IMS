@@ -30,6 +30,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 public class ViewRMAController
         implements Initializable {
     RMA rma = new RMA();
@@ -66,15 +67,19 @@ public class ViewRMAController
     private Button btnUpdate;
     @FXML
     private Button btnDelete;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.usrId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void tblViewRMAOnClick(MouseEvent event) {
         if ((!this.tblViewRMA.getSelectionModel().isEmpty()) &&
@@ -82,6 +87,7 @@ public class ViewRMAController
             viewDetails();
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         if (!this.tblViewRMA.getSelectionModel().isEmpty()) {
@@ -90,6 +96,7 @@ public class ViewRMAController
             System.out.println("EMPTY SELECTION");
         }
     }
+
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
         if (!this.tblViewRMA.getSelectionModel().isEmpty()) {
@@ -111,6 +118,7 @@ public class ViewRMAController
             System.out.println("NULL SELECTED");
         }
     }
+
     public void showDetails() {
         this.tblViewRMA.setItems(this.rma.rmaDetails);
         this.clmRMAId.setCellValueFactory(new PropertyValueFactory("ramId"));
@@ -121,9 +129,11 @@ public class ViewRMAController
         this.clmRMADate.setCellValueFactory(new PropertyValueFactory("date"));
         this.rmaGetway.view(this.rma);
     }
+
     @FXML
     private void tblViewRMAOnKeyResele(KeyEvent event) {
     }
+
     @FXML
     public void btnAddNew(ActionEvent actionEvent) {
         AddRMAController addRMAController = new AddRMAController();
@@ -150,6 +160,7 @@ public class ViewRMAController
             e.printStackTrace();
         }
     }
+
     @FXML
     public void tfSearchOnKeyRelesh(Event event) {
         this.rma.rmaDetails.clear();
@@ -163,6 +174,7 @@ public class ViewRMAController
         this.clmRMADate.setCellValueFactory(new PropertyValueFactory("date"));
         this.rmaGetway.searchView(this.rma);
     }
+
     private void viewDetails() {
         if (!this.tblViewRMA.getSelectionModel().isEmpty()) {
             ListRma selectedRma = (ListRma) this.tblViewRMA.getSelectionModel().getSelectedItem();
@@ -200,6 +212,7 @@ public class ViewRMAController
             System.out.println("empty Selection");
         }
     }
+
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
         this.rma.rmaDetails.clear();

@@ -1,4 +1,5 @@
 package com.exuberant.ims.dal;
+
 import com.exuberant.ims.list.ListCustomer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

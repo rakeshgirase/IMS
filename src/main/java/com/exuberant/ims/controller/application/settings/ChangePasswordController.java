@@ -1,4 +1,5 @@
 package com.exuberant.ims.controller.application.settings;
+
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.media.UserNameMedia;
@@ -17,6 +18,7 @@ import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class ChangePasswordController
         implements Initializable {
     Users users = new Users();
@@ -43,13 +45,16 @@ public class ChangePasswordController
     private ImageView imgCurrentPassMatch;
     @FXML
     private ImageView imgNewPassMatch;
+
     public UserNameMedia getNameMedia() {
         return this.nameMedia;
     }
+
     public void setNameMedia(UserNameMedia nameMedia) {
         this.users = nameMedia.getUsers();
         this.nameMedia = nameMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         this.customPf.clearPassFieldByButton(this.pfCurrentPass, this.btnClrCurrentPf);
         this.customPf.clearPassFieldByButton(this.pfNewPass, this.btnClrNewPass);
@@ -58,6 +63,7 @@ public class ChangePasswordController
                 .or(this.pfRePass.textProperty().isEmpty()));
         this.btnChangePass.disableProperty().bind(binding);
     }
+
     @FXML
     private void btnChangePassOnAction(ActionEvent event) {
         if (isCurrentPasswordChecqOk()) {
@@ -68,15 +74,18 @@ public class ChangePasswordController
             System.out.println("ddd");
         }
     }
+
     @FXML
     private void btnCloseOnAction(ActionEvent event) {
         Stage stage = (Stage) this.btnClose.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     private void pfOnAction(ActionEvent event) {
         btnChangePassOnAction(event);
     }
+
     @FXML
     private void pfNewPassWordMatch(KeyEvent event) {
         if (this.pfNewPass.getText().matches(this.pfRePass.getText())) {
@@ -90,10 +99,12 @@ public class ChangePasswordController
             alert.showAndWait();
         }
     }
+
     private boolean isCurrentPasswordChecqOk() {
         boolean conDitionValid = true;
         return conDitionValid;
     }
+
     private boolean isPasswordMatch() {
         boolean passMatch;
         if (this.pfNewPass.getText().matches(this.pfRePass.getText())) {
@@ -110,6 +121,7 @@ public class ChangePasswordController
         }
         return passMatch;
     }
+
     private void updatePassword() {
 
     }

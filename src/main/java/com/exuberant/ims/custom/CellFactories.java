@@ -1,9 +1,11 @@
 package com.exuberant.ims.custom;
+
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.util.Callback;
+
 public class CellFactories {
     public Callback<TableColumn, TableCell> cellFactoryCheckBox = new Callback<TableColumn, TableCell>() {
         public TableCell call(TableColumn param) {

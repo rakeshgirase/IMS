@@ -218,14 +218,14 @@ public class AddProductController
     private void cbUnitOnClick(MouseEvent event) {
         this.cbUnit.getItems().clear();
         List<Unit> units = HibernateRepository.getRepository().getAll(Unit.class);
-        units.forEach(unit-> this.cbUnit.getItems().add(unit.unitName));
+        units.forEach(unit -> this.cbUnit.getItems().add(unit.unitName));
     }
 
     @FXML
     private void cbRMAOnClick(MouseEvent event) {
         this.cbRMA.getItems().clear();
         List<RMA> rmas = HibernateRepository.getRepository().getAll(RMA.class);
-        rmas.forEach(rma->this.cbRMA.getItems().add(rma.rmaName));
+        rmas.forEach(rma -> this.cbRMA.getItems().add(rma.rmaName));
     }
 
     private boolean isNotNull() {

@@ -1,6 +1,6 @@
 package com.exuberant.ims.getway;
-import com.exuberant.ims.dal.MysqlConnector;
 
+import com.exuberant.ims.dal.MysqlConnector;
 import com.exuberant.ims.database.SQLightConnection;
 import com.exuberant.ims.util.PropertyService;
 
@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class MySqlConnectorGetway {
     SQLightConnection qLightConnection = new SQLightConnection();
     Connection con = this.qLightConnection.sqliteConnection();
@@ -31,6 +32,7 @@ public class MySqlConnectorGetway {
             Logger.getLogger(MySqlConnectorGetway.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void view(MysqlConnector connector) {
         try {
             this.pst = this.con.prepareStatement("select * from mysqlInfo where Id=1");

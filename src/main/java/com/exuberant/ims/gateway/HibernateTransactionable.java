@@ -15,7 +15,7 @@ public class HibernateTransactionable implements Transactionable {
         return singleton;
     }
 
-    public void runInTransaction(UnitOfWork unitOfWork){
+    public void runInTransaction(UnitOfWork unitOfWork) {
         Session session = getSession();
         session.beginTransaction();
         unitOfWork.work(session);

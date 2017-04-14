@@ -101,21 +101,26 @@ public class CurrentStoreController implements Initializable {
     private MenuItem miSellSelected;
     @FXML
     private Button btnRefresh;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.usrId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void tfSearchOnKeyRelese(KeyEvent event) {
         this.productCurrent.setProductId(this.tfSearch.getText());
         this.productCurrent.setProductName(this.tfSearch.getText());
         this.currentProductGetway.searchView(this.productCurrent);
     }
+
     @FXML
     private void cbSoteViewSupplyerOnClick(MouseEvent event) {
     }
@@ -158,6 +163,7 @@ public class CurrentStoreController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         if (!this.tblViewCurrentStore.getSelectionModel().isEmpty()) {
@@ -166,6 +172,7 @@ public class CurrentStoreController implements Initializable {
             System.out.println("EMPTY SELECTION");
         }
     }
+
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -182,6 +189,7 @@ public class CurrentStoreController implements Initializable {
             btnRefreshOnACtion(event);
         }
     }
+
     @FXML
     private void tblViewCurrentStoreOnClick(MouseEvent event) {
         if (event.getClickCount() == 2) {
@@ -199,6 +207,7 @@ public class CurrentStoreController implements Initializable {
             });
         }
     }
+
     public void viewDetails() {
         System.out.println("CLCKED");
         //this.tblViewCurrentStore.setItems(this.productCurrent.getcurrentProductList);
@@ -217,6 +226,7 @@ public class CurrentStoreController implements Initializable {
         this.tblClmProductdate.setCellValueFactory(new PropertyValueFactory("date"));
         this.currentProductGetway.viewFistTen(this.productCurrent);
     }
+
     private void viewSelected() {
         AddProductController apc = new AddProductController();
         UserNameMedia userMedia = new UserNameMedia();
@@ -245,6 +255,7 @@ public class CurrentStoreController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void miSellSelectedOnAction(ActionEvent event) {
         if (this.tblViewCurrentStore.getSelectionModel().getSelectedItem() != null) {
@@ -275,6 +286,7 @@ public class CurrentStoreController implements Initializable {
             }
         }
     }
+
     @FXML
     private void cbSoteViewSupplyerOnAction(ActionEvent event) {
         if (this.cbSoteViewSupplyer.getSelectionModel().getSelectedItem() != null) {
@@ -283,6 +295,7 @@ public class CurrentStoreController implements Initializable {
             this.currentProductGetway.searchBySupplyer(this.productCurrent);
         }
     }
+
     @FXML
     private void cbSoteViewBrandOnAction(ActionEvent event) {
         if (this.cbSoteViewBrands.getSelectionModel().getSelectedItem() != null) {
@@ -293,6 +306,7 @@ public class CurrentStoreController implements Initializable {
             this.currentProductGetway.searchByBrand(this.productCurrent);
         }
     }
+
     @FXML
     private void cbSoteViewCatagoryOnAction(ActionEvent event) {
         if (this.cbSoteViewCatagory.getSelectionModel().getSelectedItem() != null) {
@@ -305,8 +319,10 @@ public class CurrentStoreController implements Initializable {
             this.currentProductGetway.searchByCatagory(this.productCurrent);
         }
     }
+
     public void settingPermission() {
     }
+
     @FXML
     private void btnRefreshOnACtion(ActionEvent event) {
         this.tfSearch.clear();
@@ -335,11 +351,13 @@ public class CurrentStoreController implements Initializable {
         this.tblClmProductdate.setCellValueFactory(new PropertyValueFactory("date"));
         this.currentProductGetway.view(this.productCurrent);
     }
+
     @FXML
     private void cbSoteViewRMAOnAction(ActionEvent event) {
         this.productCurrent.setRmaId(this.rmaID);
         this.currentProductGetway.searchByRMA(this.productCurrent);
     }
+
     @FXML
     private void tblViewCurrentStoreOnScroll(ScrollEvent event) {
         if (event.isInertia()) {

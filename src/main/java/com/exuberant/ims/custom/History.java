@@ -11,6 +11,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class History {
     public void writeText(String Catagorys, String nameOrId, String userName) {
         System.out.println("Hited");
@@ -30,6 +31,7 @@ public class History {
             e.printStackTrace();
         }
     }
+
     public void viewText(String Catagoryes, String nameOrId, String userName) {
         try {
             HistoryController hc = new HistoryController();

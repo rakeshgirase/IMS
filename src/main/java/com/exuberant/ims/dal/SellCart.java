@@ -1,4 +1,5 @@
 package com.exuberant.ims.dal;
+
 import com.exuberant.ims.list.ListPreSell;
 import com.exuberant.ims.list.ListSold;
 import javafx.collections.FXCollections;

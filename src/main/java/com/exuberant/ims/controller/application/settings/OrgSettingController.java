@@ -1,4 +1,5 @@
 package com.exuberant.ims.controller.application.settings;
+
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.embed.swing.SwingFXUtils;
@@ -23,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class OrgSettingController
         implements Initializable {
 
@@ -46,19 +48,23 @@ public class OrgSettingController
     private TextArea taContactNumber;
     @FXML
     private TextArea taAdddress;
+
     public UserNameMedia getUsrIdMedia() {
         return this.usrIdMedia;
     }
+
     public void setUsrIdMedia(UserNameMedia usrIdMedia) {
         this.userId = usrIdMedia.getId();
         this.usrIdMedia = usrIdMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         BooleanBinding boolenBind = this.tfOrganizeName.textProperty().isEmpty().or(this.tfWebSite.textProperty().isEmpty()
                 .or(this.taContactNumber.textProperty().isEmpty())
                 .or(this.taAdddress.textProperty().isEmpty()));
         this.btnSaveOrganize.disableProperty().bind(boolenBind);
     }
+
     @FXML
     private void btnSaveOrganizeOnClick(ActionEvent event) {
         if (isFoundData()) {
@@ -71,6 +77,7 @@ public class OrgSettingController
             insertOrganizeWithImage();
         }
     }
+
     @FXML
     private void btnAttechLogoOnAction(ActionEvent event) throws IOException {
         FileChooser fileChooser = new FileChooser();
@@ -85,22 +92,26 @@ public class OrgSettingController
             this.imagePath = this.file.getAbsolutePath();
         }
     }
+
     public void showDetails() {
     }
+
     private boolean isFoundData() {
         boolean dataFound = true;
         return dataFound;
     }
+
     private void updateOrganizeWithImage() {
 
     }
+
     private void insertOrganizeWithImage() {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Update");
-            alert.setHeaderText("Sucess ");
-            alert.setContentText("Insert Data Sucessfuly");
-            alert.initStyle(StageStyle.UNDECORATED);
-            alert.showAndWait();
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Update");
+        alert.setHeaderText("Sucess ");
+        alert.setContentText("Insert Data Sucessfuly");
+        alert.initStyle(StageStyle.UNDECORATED);
+        alert.showAndWait();
     }
 
     private void updateOrganizeWithOutImage() {

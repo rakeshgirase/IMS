@@ -33,10 +33,10 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class NewSellController
         implements Initializable {
     public Button btnAddCustomer;
@@ -124,19 +124,23 @@ public class NewSellController
     private Button btnClearSelected;
     @FXML
     private Label lblSellId;
+
     public void setNameMedia(UserNameMedia nameMedia) {
         this.userId = nameMedia.getId();
         this.nameMedia = nameMedia;
     }
+
     public void initialize(URL location, ResourceBundle resources) {
         clearAll();
     }
+
     @FXML
     private void tblCustomerOnClick(MouseEvent event) {
         this.mbtnCustomer.setText(((ListCustomer) this.tblCustomerSortView.getSelectionModel().getSelectedItem()).getCustomerName());
         this.customerId = ((ListCustomer) this.tblCustomerSortView.getSelectionModel().getSelectedItem()).getId();
         System.out.println(this.customerId);
     }
+
     @FXML
     private void mbtnCustomerOnClicked(MouseEvent event) {
         this.customer.customerName = this.tfCustomerSearch.getText().trim();
@@ -145,11 +149,13 @@ public class NewSellController
         this.tblClmCustomerPhoneNo.setCellValueFactory(new PropertyValueFactory("customerContNo"));
         this.customerGetway.searchView(this.customer);
     }
+
     @FXML
     private void btnCloseOnAction(ActionEvent event) {
         Stage stage = (Stage) this.btnClose.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     private void tfCustomerSearchOnKeyReleased(KeyEvent event) {
         this.customer.customerName = this.tfCustomerSearch.getText().trim();
@@ -158,6 +164,7 @@ public class NewSellController
         this.tblClmCustomerPhoneNo.setCellValueFactory(new PropertyValueFactory("customerContNo"));
         this.customerGetway.searchView(this.customer);
     }
+
     @FXML
     public void tfProductIdOnAction(ActionEvent event) {
         if (this.tfProductId.getText().isEmpty()) {
@@ -177,6 +184,7 @@ public class NewSellController
             this.tfSellPrice.setText(this.currrentProduct.sellPrice);
         }
     }
+
     @FXML
     private void btnAddToChartOnAction(ActionEvent event) {
         if (inNotNull()) {
@@ -186,6 +194,7 @@ public class NewSellController
             clearAll();
         }
     }
+
     private void sumTotalCost() {
         this.tblSellPreList.getSelectionModel().selectFirst();
         float sum = 0.0F;
@@ -202,6 +211,7 @@ public class NewSellController
         String totalItem = String.valueOf(items);
         this.lblTotalItems.setText(totalItem);
     }
+
     public void viewAll() {
         this.tblSellPreList.setItems(this.preList);
         this.tblClmProductId.setCellValueFactory(new PropertyValueFactory("productID"));
@@ -210,6 +220,7 @@ public class NewSellController
         this.tblClmTotalPrice.setCellValueFactory(new PropertyValueFactory("totalPrice"));
         this.tblClmWarrentyVoidDate.setCellValueFactory(new PropertyValueFactory("warrentyVoidDate"));
     }
+
     @FXML
     private void btnSellOnAction(ActionEvent event) {
         if (!this.tblSellPreList.getItems().isEmpty()) {
@@ -244,6 +255,7 @@ public class NewSellController
             System.out.println("EMPTY");
         }
     }
+
     public void clearAll() {
         this.tfBrand.clear();
         this.tfProductId.clear();
@@ -259,6 +271,7 @@ public class NewSellController
         this.lblUnit.setText(null);
         this.lblPursesDate.setText(null);
     }
+
     @FXML
     private void tfQuantityOnAction(KeyEvent event) {
         if (!this.tfQuantity.getText().isEmpty()) {
@@ -280,6 +293,7 @@ public class NewSellController
             this.lblNetCost.setText("0.0");
         }
     }
+
     @FXML
     private void tfSellPriceOnAction(KeyEvent event) {
         System.out.println("PRESSES");
@@ -295,6 +309,7 @@ public class NewSellController
             this.lblNetCost.setText("0.0");
         }
     }
+
     @FXML
     public void btnAddCustomerOnAction(ActionEvent actionEvent) {
         System.out.println(this.userId);
@@ -322,9 +337,11 @@ public class NewSellController
             Logger.getLogger(ViewCustomerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void btnClearAllOnAction(ActionEvent event) {
     }
+
     @FXML
     private void btnClearSelectedOnAction(ActionEvent event) {
         if (this.tblSellPreList.getItems().size() != 0) {
@@ -335,6 +352,7 @@ public class NewSellController
             System.out.println("EMPTY");
         }
     }
+
     public void genarateSellID() {
         String id = RandomIdGenarator.randomstring();
         if (id.matches("001215")) {
@@ -344,6 +362,7 @@ public class NewSellController
             this.lblSellId.setText(id);
         }
     }
+
     public boolean inNotNull() {
         boolean isNotNull = false;
         if ((this.mbtnCustomer.getText().matches("Select Customer")) || (this.tfSellPrice.getText() == null) || (this.tfQuantity.getText().trim().matches(""))) {

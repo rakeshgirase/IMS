@@ -1,6 +1,8 @@
 package com.exuberant.ims.bll;
+
 import com.exuberant.ims.dal.SellCart;
 import com.exuberant.ims.getway.SellCartGerway;
+
 public class SellCartBLL {
     SellCartGerway sellCartGerway = new SellCartGerway();
 
@@ -8,6 +10,7 @@ public class SellCartBLL {
         updateCurrentQuentity(sellCart);
         this.sellCartGerway.save(sellCart);
     }
+
     public void updateCurrentQuentity(SellCart sellCart) {
         System.out.println("In Update");
         int oQ = Integer.parseInt(sellCart.oldQuentity);

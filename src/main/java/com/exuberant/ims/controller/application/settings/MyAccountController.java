@@ -34,6 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class MyAccountController
         implements Initializable {
     Users users = new Users();
@@ -67,18 +68,22 @@ public class MyAccountController
     private AnchorPane apMyAccountMother;
     @FXML
     private Button attachImage;
+
     public UserNameMedia getUsrMediaID() {
         return this.usrMediaID;
     }
+
     public void setUsrMediaID(UserNameMedia usrMediaID) {
         this.userID = usrMediaID.getId();
         this.usrMediaID = usrMediaID;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         BooleanBinding boolenBinding = this.tfFullName.textProperty().isEmpty().or(this.tfEmailAddress.textProperty().isEmpty()
                 .or(this.tfContractNumber.textProperty().isEmpty()));
         this.btnSave.disableProperty().bind(boolenBinding);
     }
+
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
         this.users.setUserName(this.tfUserName.getText());
@@ -90,6 +95,7 @@ public class MyAccountController
         //this.users.image = this.image;
         this.userGateway.update(this.users);
     }
+
     @FXML
     private void hlChangePasswordOnClick(ActionEvent event)
             throws IOException {
@@ -113,9 +119,11 @@ public class MyAccountController
         nStage.initStyle(StageStyle.TRANSPARENT);
         nStage.show();
     }
+
     @FXML
     private void apOnOpenAction(MouseEvent event) {
     }
+
     public void showDetails() {
         this.users.setId(this.userID);
         this.userGateway.selectedView(this.users);
@@ -127,6 +135,7 @@ public class MyAccountController
         //this.image = this.users.image;
         this.retImage.setFill(new ImagePattern(this.image));
     }
+
     public void accountPermission() {
 
     }
@@ -155,6 +164,7 @@ public class MyAccountController
             }
         }
     }
+
     private boolean nullCheck() {
         boolean notNull = false;
         if ((this.tfFullName.getText().trim().length() == 0) ||

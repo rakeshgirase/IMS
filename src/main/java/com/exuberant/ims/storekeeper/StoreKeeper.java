@@ -24,7 +24,7 @@ public class StoreKeeper extends Application {
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle("Welcome to Urvi Masale -Login");
- //           primaryStage.getIcons().add(new Image("/com/exuberant/ims/image/icon.png"));
+            //           primaryStage.getIcons().add(new Image("/com/exuberant/ims/image/icon.png"));
             primaryStage.setMaximized(false);
             primaryStage.setMinHeight(500.0D);
             primaryStage.setMinWidth(850.0D);

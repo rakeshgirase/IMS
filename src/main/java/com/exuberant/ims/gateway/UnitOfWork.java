@@ -4,5 +4,5 @@ import org.hibernate.Session;
 
 @FunctionalInterface
 public interface UnitOfWork {
-   void work(Session session);
+    void work(Session session);
 }

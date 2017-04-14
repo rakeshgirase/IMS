@@ -31,6 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 public class ViewBrandController
         implements Initializable {
     Brand brand = new Brand();
@@ -91,14 +92,18 @@ public class ViewBrandController
     private Button btnDelete;
     @FXML
     private Button btnRefresh;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     public void tblBrandOnClick(MouseEvent event) {
         int click = event.getClickCount();
@@ -106,6 +111,7 @@ public class ViewBrandController
             viewDetails();
         }
     }
+
     @FXML
     private void tfSearchOnKeyPress(Event event) {
         System.out.println(this.userId);
@@ -118,6 +124,7 @@ public class ViewBrandController
         this.tblClmDate.setCellValueFactory(new PropertyValueFactory("date"));
         this.brandsGetway.searchView(this.brand);
     }
+
     @FXML
     private void btnAddBrandOnAction(ActionEvent event) {
         AddBrandController addSupplyerController = new AddBrandController();
@@ -145,6 +152,7 @@ public class ViewBrandController
         }
         tfSearchOnAction(event);
     }
+
     @FXML
     private void btnUpdateOnAction(Event event) {
         if (this.tblBrand.getSelectionModel().getSelectedItem() != null) {
@@ -153,6 +161,7 @@ public class ViewBrandController
             System.out.println("EMPTY SELECTION");
         }
     }
+
     @FXML
     private void btnDeleteOnAction(Event event) {
         ListBrands selectedBrand = (ListBrands) this.tblBrand.getSelectionModel().getSelectedItem();
@@ -170,6 +179,7 @@ public class ViewBrandController
             showDetails();
         }
     }
+
     public void showDetails() {
         this.tblCollumId.setCellValueFactory(new PropertyValueFactory("id"));
         this.tblCollumName.setCellValueFactory(new PropertyValueFactory("brandName"));
@@ -179,9 +189,11 @@ public class ViewBrandController
         this.tblClmDate.setCellValueFactory(new PropertyValueFactory("date"));
         this.brandsGetway.view(this.brand);
     }
+
     @FXML
     public void tfSearchOnAction(ActionEvent event) {
     }
+
     private void viewDetails() {
         ListBrands selectedBrand = (ListBrands) this.tblBrand.getSelectionModel().getSelectedItem();
         String items = selectedBrand.getId();
@@ -214,26 +226,32 @@ public class ViewBrandController
             }
         }
     }
+
     @FXML
     private void miSearch(ActionEvent event) {
         this.tblBrand.getSelectionModel().clearSelection();
         this.tfSearch.requestFocus();
     }
+
     @FXML
     private void miUpdate(Event event) {
         btnUpdateOnAction(event);
     }
+
     @FXML
     private void miSeeUpdateHistory(ActionEvent event) {
     }
+
     @FXML
     private void miDelete(ActionEvent event) {
         btnDeleteOnAction(event);
     }
+
     @FXML
     private void miAddNew(ActionEvent event) {
         btnAddBrandOnAction(event);
     }
+
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
         showDetails();

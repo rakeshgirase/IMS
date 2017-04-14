@@ -1,9 +1,11 @@
 package com.exuberant.ims.custom;
+
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Callback;
+
 public class TableCallBack
         implements Callback<TableColumn<Object, Object>, TableCell<Object, Object>> {
     Callback callback = new Callback() {
@@ -27,6 +29,7 @@ public class TableCallBack
             return cell;
         }
     };
+
     public TableCell<Object, Object> call(TableColumn<Object, Object> param) {
         return null;
     }

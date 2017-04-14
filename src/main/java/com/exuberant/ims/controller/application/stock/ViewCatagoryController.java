@@ -30,6 +30,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 public class ViewCatagoryController
         implements Initializable {
     @FXML
@@ -83,15 +84,19 @@ public class ViewCatagoryController
     private Button btnRefresh;
     @FXML
     private TextField tfSearch;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.usrId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void tblCatagoryOnClick(MouseEvent event) {
         if (event.getClickCount() == 2) {
@@ -100,6 +105,7 @@ public class ViewCatagoryController
             System.out.println("CLICKED");
         }
     }
+
     @FXML
     private void btnAddOnAction(ActionEvent event) {
         AddCatagoryController addCatagoryController = new AddCatagoryController();
@@ -126,6 +132,7 @@ public class ViewCatagoryController
             e.printStackTrace();
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         if (this.tblCatagory.getSelectionModel().getSelectedItem() != null) {
@@ -134,6 +141,7 @@ public class ViewCatagoryController
             System.out.println("EMPTY SELECTION");
         }
     }
+
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
         ListCatagory selectedCatagory = (ListCatagory) this.tblCatagory.getSelectionModel().getSelectedItem();
@@ -151,6 +159,7 @@ public class ViewCatagoryController
             showDetails();
         }
     }
+
     public void showDetails() {
         this.tblCatagory.setItems(this.catagory.catagoryDetails);
         this.tablClmBox.setCellValueFactory(new PropertyValueFactory("id"));
@@ -164,6 +173,7 @@ public class ViewCatagoryController
         this.catagoryGetway.view(this.catagory);
         this.tablClmBox.setCellFactory(this.cellFactories.cellFactoryCheckBox);
     }
+
     @FXML
     public void tfSearchOnType(Event event) {
         this.catagory.catagoryDetails.clear();
@@ -178,6 +188,7 @@ public class ViewCatagoryController
         this.clmCatagoryDate.setCellValueFactory(new PropertyValueFactory("date"));
         this.catagoryGetway.searchView(this.catagory);
     }
+
     private void viewDetails() {
         if (!this.tblCatagory.getSelectionModel().isEmpty()) {
             ListCatagory selectedCatagory = (ListCatagory) this.tblCatagory.getSelectionModel().getSelectedItem();
@@ -215,27 +226,33 @@ public class ViewCatagoryController
             System.out.println("empty Selection");
         }
     }
+
     @FXML
     private void miSearchOnAction(ActionEvent event) {
         this.tblCatagory.getSelectionModel().clearSelection();
         this.tfSearch.requestFocus();
     }
+
     @FXML
     private void miUpdateOnAction(ActionEvent event) {
         btnUpdateOnAction(event);
     }
+
     @FXML
     private void miAddNewOnAction(ActionEvent event) {
         btnAddOnAction(event);
     }
+
     @FXML
     private void miDeleteOnAction(ActionEvent event) {
         btnDeleteOnAction(event);
     }
+
     @FXML
     private void miViewOnAction(ActionEvent event) {
         btnUpdateOnAction(event);
     }
+
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
         this.catagory.catagoryDetails.clear();

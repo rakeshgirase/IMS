@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class StockController
         implements Initializable {
     @FXML
@@ -47,6 +48,7 @@ public class StockController
     public void setUserId(UserNameMedia userId) {
         this.userId = userId.getId();
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         ToggleGroup toggleGroup = new ToggleGroup();
         this.btnStock.setSelected(true);
@@ -58,6 +60,7 @@ public class StockController
         this.btnRma.setToggleGroup(toggleGroup);
         this.btnRepoerts.setToggleGroup(toggleGroup);
     }
+
     @FXML
     public void btnStockOnAction(ActionEvent event)
             throws IOException {
@@ -77,6 +80,7 @@ public class StockController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnSupplyerOnAction(ActionEvent event) throws IOException {
         this.lblHeader.setText("Supplier");
@@ -93,6 +97,7 @@ public class StockController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnBrandsOnAction(ActionEvent event) throws IOException {
         this.lblHeader.setText("Brand");
@@ -109,6 +114,7 @@ public class StockController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnCatagoryOnAction(ActionEvent event) throws IOException {
         this.lblHeader.setText("Catagories");
@@ -125,6 +131,7 @@ public class StockController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnUnitOnAction(ActionEvent event) throws IOException {
         this.lblHeader.setText("Unit");
@@ -141,6 +148,7 @@ public class StockController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnRmaOnAction(ActionEvent event) throws IOException {
         this.lblHeader.setText("RMA");
@@ -157,9 +165,11 @@ public class StockController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnRepoertsOnAction(ActionEvent event) {
     }
+
     public void settingPermission() {
 
     }

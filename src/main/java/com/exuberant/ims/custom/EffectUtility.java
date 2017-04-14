@@ -1,6 +1,8 @@
 package com.exuberant.ims.custom;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
 /**
  * Created by INTEL on 4/2/2017.
  */

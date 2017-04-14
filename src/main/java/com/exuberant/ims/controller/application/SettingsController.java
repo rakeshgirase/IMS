@@ -18,6 +18,7 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class SettingsController
         implements Initializable {
     @FXML
@@ -36,15 +37,19 @@ public class SettingsController
     @FXML
     private Label lblCurrentStatus;
     private Long userID;
+
     public UserNameMedia getUsrMedia() {
         return this.usrMedia;
     }
+
     public void setUsrMedia(UserNameMedia usrMedia) {
         this.userID = usrMedia.getId();
         this.usrMedia = usrMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     public void miMyASccountOnClick(ActionEvent event)
             throws IOException {
@@ -63,6 +68,7 @@ public class SettingsController
         this.spSettingContent.getChildren().clear();
         this.spSettingContent.getChildren().add(acPane);
     }
+
     @FXML
     private void miOrganizeOnAction(ActionEvent event) throws IOException {
         System.out.println(this.userID);
@@ -80,9 +86,11 @@ public class SettingsController
         AnchorPane orgAp = (AnchorPane) fXMLLoader.getRoot();
         this.spSettingContent.getChildren().add(orgAp);
     }
+
     @FXML
     private void miBackupOnAction(ActionEvent event) {
     }
+
     public void settingPermission() {
 
     }

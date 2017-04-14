@@ -29,6 +29,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class AddBrandController
         implements Initializable {
     public Button btnAddSupplyer;
@@ -59,15 +60,19 @@ public class AddBrandController
     private TextField tfBrandName;
     @FXML
     private TextArea taDiscription;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.userId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void btnAddBrandOnAction(ActionEvent event) {
         System.out.println(this.userId);
@@ -79,9 +84,11 @@ public class AddBrandController
             this.brandBLL.save(this.brand);
         }
     }
+
     @FXML
     private void cbSupplyerOnAction(ActionEvent event) {
     }
+
     @FXML
     private void cbSupplyerOnClick(MouseEvent event) {
         this.cbSupplyer.getItems().clear();
@@ -96,6 +103,7 @@ public class AddBrandController
             Logger.getLogger(AddBrandController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         System.out.println();
@@ -111,11 +119,13 @@ public class AddBrandController
             this.brandBLL.update(this.brand);
         }
     }
+
     @FXML
     private void btnCloseOnAction(ActionEvent event) {
         Stage stage = (Stage) this.btnClose.getScene().getWindow();
         stage.close();
     }
+
     public boolean isNotNull() {
         System.out.println(this.cbSupplyer.getPromptText());
         System.out.println(this.tfBrandName.getText());
@@ -135,6 +145,7 @@ public class AddBrandController
         }
         return isNotNull;
     }
+
     public void showDetails() {
         this.brand.id = this.brandId;
         this.brandsGetway.selectedView(this.brand);
@@ -142,6 +153,7 @@ public class AddBrandController
         this.taDiscription.setText(this.brand.brandComment);
         this.cbSupplyer.setPromptText(this.brand.supplierName);
     }
+
     public void btnAddSupplyerOnAction(ActionEvent actionEvent) {
         AddSupplyerController addSupplyerController = new AddSupplyerController();
         UserNameMedia media = new UserNameMedia();

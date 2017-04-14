@@ -41,6 +41,7 @@ import java.net.URL;
 import java.sql.Blob;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 public class ViewEmployeController
         implements Initializable {
     @FXML
@@ -112,14 +113,17 @@ public class ViewEmployeController
     private TableColumn<Object, Object> clmEmployeName;
     @FXML
     private Label lblCreator;
+
     public UserNameMedia getNameMedia() {
         return this.nameMedia;
     }
+
     public void setNameMedia(UserNameMedia nameMedia) {
         this.users = nameMedia.getUsers();
         this.name = nameMedia.getUsers().getUserName();
         this.nameMedia = nameMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         this.cTf.clearTextFieldByButton(this.tfFullName, this.btnClrFulNametf);
         this.cTf.clearTextFieldByButton(this.tfEmailAddress, this.btnClrEmailtf);
@@ -129,9 +133,11 @@ public class ViewEmployeController
         this.cTf.clearTextFieldByButton(this.tfSalary, this.btnClrSalarytf);
         this.cTf.numaricTextfield(this.tfSalary);
     }
+
     @FXML
     private void tfSearchOnAction(ActionEvent event) {
     }
+
     @FXML
     private void btnAttachImageOnAction(ActionEvent event)
             throws IOException {
@@ -147,6 +153,7 @@ public class ViewEmployeController
             this.imagePath = this.file.getAbsolutePath();
         }
     }
+
     @FXML
     private void tblViewOnClick(KeyEvent event) {
         if (event.getCode().equals(KeyCode.UP)) {
@@ -155,9 +162,11 @@ public class ViewEmployeController
             setselectedView();
         }
     }
+
     public void tblEmloyeOnClick(Event event) {
         setselectedView();
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) throws FileNotFoundException {
         this.users.setUserName(this.tfUserName.getText());
@@ -176,6 +185,7 @@ public class ViewEmployeController
         this.users.setCreatorId(this.users.getId());
         this.userGateway.update(this.users);
     }
+
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -191,6 +201,7 @@ public class ViewEmployeController
         this.tblEmoyeeList.getItems().clear();
         showDetails();
     }
+
     @FXML
     private void cbOnAction(ActionEvent event) {
         if (this.cbStatus.isSelected()) {
@@ -199,9 +210,11 @@ public class ViewEmployeController
             this.cbStatus.setText("Deactive");
         }
     }
+
     @FXML
     private void hlChangePasswordOnAction(ActionEvent event) {
     }
+
     @FXML
     private void hlViewPermissionOnAction(ActionEvent event)
             throws IOException {
@@ -227,6 +240,7 @@ public class ViewEmployeController
         nStage.initStyle(StageStyle.TRANSPARENT);
         nStage.show();
     }
+
     @FXML
     private void hlViewUpdateHistory(ActionEvent event) throws IOException {
         String emp = "Employee";
@@ -234,6 +248,7 @@ public class ViewEmployeController
         history.viewText(emp, this.tfUserName.getText(), this.name);
         System.out.println("view");
     }
+
     public void setselectedView() {
         clearAll();
         ListEmployee employeeList = (ListEmployee) this.tblEmoyeeList.getSelectionModel().getSelectedItem();
@@ -272,12 +287,14 @@ public class ViewEmployeController
             }
         }
     }
+
     public void showDetails() {
         this.tblEmoyeeList.setItems(this.userGateway.getAll());
         this.clmEmployeId.setCellValueFactory(new PropertyValueFactory("employeeId"));
         this.clmEmployeName.setCellValueFactory(new PropertyValueFactory("employeeName"));
         this.userGateway.view(this.users);
     }
+
     public void checqPermission() {
 
     }

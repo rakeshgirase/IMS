@@ -1,8 +1,10 @@
 package com.exuberant.ims.getway;
+
 import com.exuberant.ims.dal.Brand;
 import com.exuberant.ims.gateway.HibernateRepository;
 
 import java.util.List;
+
 public class BrandsGetway {
 
     public void save(Brand brand) {
@@ -13,8 +15,10 @@ public class BrandsGetway {
         List<Brand> brands = HibernateRepository.getRepository().getAll(Brand.class);
         brands.iterator().next();
     }
+
     public void selectedView(Brand brand) {
     }
+
     public void searchView(Brand brand) {
     }
 
@@ -24,6 +28,7 @@ public class BrandsGetway {
 
     public void update(Brand brand) {
     }
+
     public boolean isNotUsed(Brand brand) {
         boolean inNotUse = false;
         return inNotUse;

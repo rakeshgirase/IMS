@@ -20,7 +20,7 @@ public class Users {
     private String imagePath;
     private String date;
     private Long creatorId;
- //   private Image image;
+    //   private Image image;
 
     public Long getId() {
         return id;

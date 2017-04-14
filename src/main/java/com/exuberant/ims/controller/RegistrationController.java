@@ -27,6 +27,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class RegistrationController
         implements Initializable {
     Users users = new Users();
@@ -56,6 +57,7 @@ public class RegistrationController
     private PreparedStatement pst;
     private Connection con;
     private ResultSet rs;
+
     public void initialize(URL url, ResourceBundle rb) {
         CustomPf cPF = new CustomPf();
         CustomTf cTF = new CustomTf();
@@ -68,6 +70,7 @@ public class RegistrationController
                 .or(this.pfReUserPassword.textProperty().isEmpty()));
         this.btnSignUp.disableProperty().bind(boolenBinding);
     }
+
     @FXML
     private void hlLogin(ActionEvent event) throws IOException {
         URL resource = URLService.getFileAsResoure("Login.fxml");
@@ -81,6 +84,7 @@ public class RegistrationController
         Stage hlLoginStage = (Stage) this.hlLogin.getScene().getWindow();
         hlLoginStage.close();
     }
+
     @FXML
     private void btnRegistration(ActionEvent event) {
         if (isValidCondition()) {
@@ -103,6 +107,7 @@ public class RegistrationController
             }
         }
     }
+
     private boolean isValidCondition() {
         boolean registration = false;
         if ((nullChecq()) && (passMatch())) {
@@ -114,6 +119,7 @@ public class RegistrationController
         }
         return registration;
     }
+
     private boolean nullChecq() {
         boolean nullChecq = false;
         if ((this.tfUserName.getText().trim().isEmpty()) ||
@@ -128,6 +134,7 @@ public class RegistrationController
         }
         return nullChecq;
     }
+
     private boolean passMatch() {
         boolean passMatch = false;
         String password = this.pfUserPassword.getText();
@@ -141,6 +148,7 @@ public class RegistrationController
         }
         return passMatch;
     }
+
     @FXML
     private void pfKeyTyped(KeyEvent event) {
         if (this.pfUserPassword.getText().matches(this.pfReUserPassword.getText())) {

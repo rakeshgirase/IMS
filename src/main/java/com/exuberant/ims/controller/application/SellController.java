@@ -17,6 +17,7 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class SellController
         implements Initializable {
     @FXML
@@ -33,10 +34,12 @@ public class SellController
     private Label lblPathInfo;
     @FXML
     private StackPane spMainContent;
+
     public void setNameMedia(UserNameMedia nameMedia) {
         this.userId = nameMedia.getId();
         this.nameMedia = nameMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         ToggleGroup group = new ToggleGroup();
         this.tbtnSell.setSelected(true);
@@ -44,6 +47,7 @@ public class SellController
         this.tbtnSell.setToggleGroup(group);
         this.tbtnReports.setToggleGroup(group);
     }
+
     @FXML
     public void tbtnSellOnAction(ActionEvent event) throws IOException {
         this.lblPathInfo.setText("Sells");
@@ -59,6 +63,7 @@ public class SellController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(fXMLLoader.getRoot());
     }
+
     @FXML
     private void tbtnCustomerOnAction(ActionEvent event) throws IOException {
         this.lblPathInfo.setText("Customers");
@@ -74,6 +79,7 @@ public class SellController
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(fXMLLoader.getRoot());
     }
+
     @FXML
     private void tbtnReportsOnAction(ActionEvent event)
             throws IOException {

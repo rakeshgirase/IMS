@@ -1,4 +1,5 @@
 package com.exuberant.ims.controller;
+
 import com.exuberant.ims.controller.application.EmployeController;
 import com.exuberant.ims.controller.application.SellController;
 import com.exuberant.ims.controller.application.SettingsController;
@@ -30,6 +31,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class ApplicationController implements Initializable {
     String usrName;
     Long id;
@@ -115,9 +117,11 @@ public class ApplicationController implements Initializable {
     @FXML
     private Label lblUserId;
     private UserNameMedia usrNameMedia;
+
     public UserNameMedia getUserNameMedia() {
         return this.usrNameMedia;
     }
+
     public void setUsrNameMedia(UserNameMedia usrNameMedia) {
         this.lblUserId.setText(String.valueOf(usrNameMedia.getId()));
         this.lblUsrName.setText(usrNameMedia.getUsers().getUserName());
@@ -125,12 +129,14 @@ public class ApplicationController implements Initializable {
         this.usrName = usrNameMedia.getUsers().getUserName();
         this.usrNameMedia = usrNameMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         this.imgMenuBtn.setImage(this.menuImage);
         Image usrImg = new Image(URLService.getFileAsStream("image/rifat.jpg"));
         this.imgUsrTop.setFill(new ImagePattern(usrImg));
         this.circleImgUsr.setFill(new ImagePattern(usrImg));
     }
+
     @FXML
     private void sideMenuToogleBtnOnCLick(ActionEvent event) throws IOException {
         if (this.sideMenuToogleBtn.isSelected()) {
@@ -147,6 +153,7 @@ public class ApplicationController implements Initializable {
             this.acDashBord.getChildren().add(this.leftSideBarScroolPan);
         }
     }
+
     @FXML
     private void btnLogOut(ActionEvent event) throws IOException {
         this.acContent.getChildren().clear();
@@ -156,6 +163,7 @@ public class ApplicationController implements Initializable {
         this.acHead.getChildren().clear();
         this.acHead.setMaxHeight(0.0D);
     }
+
     @FXML
     private void acMain(KeyEvent event) {
         if (event.getCode() == KeyCode.F11) {
@@ -163,6 +171,7 @@ public class ApplicationController implements Initializable {
             stage.setFullScreen(true);
         }
     }
+
     @FXML
     public void btnHomeOnClick(ActionEvent event) {
         homeActive();
@@ -178,13 +187,14 @@ public class ApplicationController implements Initializable {
         System.out.println(this.lblUsrName.getText());
         System.out.println(this.lblUserId.getText());
     }
+
     @FXML
     private void btnStoreOnClick(ActionEvent event) throws IOException {
         sotreActive();
         StockController sc = new StockController();
         UserNameMedia nm = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        URL resource = URLService.getFileAsResoure("application/Stock.fxml");
+        URL resource = URLService.getFileAsResoure("application/Product.fxml");
         fXMLLoader.load(resource.openStream());
         nm.setId(this.id);
         StockController stockController = (StockController) fXMLLoader.getController();
@@ -196,6 +206,7 @@ public class ApplicationController implements Initializable {
         this.acContent.getChildren().clear();
         this.acContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnEmplopyeOnClick(ActionEvent event) throws IOException {
         employeeActive();
@@ -213,6 +224,7 @@ public class ApplicationController implements Initializable {
         this.acContent.getChildren().clear();
         this.acContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnSettingsOnClick(ActionEvent event) throws IOException {
         settingsActive();
@@ -231,6 +243,7 @@ public class ApplicationController implements Initializable {
         this.acContent.getChildren().clear();
         this.acContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnAboutOnClick(ActionEvent event) {
         try {
@@ -245,6 +258,7 @@ public class ApplicationController implements Initializable {
             Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void btnSellOnClick(ActionEvent event) {
         sellActive();
@@ -266,15 +280,19 @@ public class ApplicationController implements Initializable {
             Logger.getLogger(ApplicationController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void hlUpdateAccount(ActionEvent event) {
     }
+
     @FXML
     private void mbtnOnClick(ActionEvent event) {
     }
+
     @FXML
     private void acMainOnMouseMove(MouseEvent event) {
     }
+
     public void permission() {
 
     }
@@ -293,6 +311,7 @@ public class ApplicationController implements Initializable {
         this.btnSettings.setStyle(this.defultStyle);
         this.btnAbout.setStyle(this.defultStyle);
     }
+
     private void sotreActive() {
         this.imgHomeBtn.setImage(this.home);
         this.imgStoreBtn.setImage(this.stockRed);
@@ -307,6 +326,7 @@ public class ApplicationController implements Initializable {
         this.btnSettings.setStyle(this.defultStyle);
         this.btnAbout.setStyle(this.defultStyle);
     }
+
     private void sellActive() {
         this.imgHomeBtn.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
@@ -321,6 +341,7 @@ public class ApplicationController implements Initializable {
         this.btnSettings.setStyle(this.defultStyle);
         this.btnAbout.setStyle(this.defultStyle);
     }
+
     private void employeeActive() {
         this.imgHomeBtn.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
@@ -335,6 +356,7 @@ public class ApplicationController implements Initializable {
         this.btnSettings.setStyle(this.defultStyle);
         this.btnAbout.setStyle(this.defultStyle);
     }
+
     private void settingsActive() {
         this.imgHomeBtn.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
@@ -349,6 +371,7 @@ public class ApplicationController implements Initializable {
         this.btnSettings.setStyle(this.activeStyle);
         this.btnAbout.setStyle(this.defultStyle);
     }
+
     private void aboutActive() {
         this.imgHomeBtn.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
@@ -363,6 +386,7 @@ public class ApplicationController implements Initializable {
         this.btnSettings.setStyle(this.defultStyle);
         this.btnAbout.setStyle(this.activeStyle);
     }
+
     public void viewDetails() {
         this.users.setId(this.id);
         //this.image = this.users.image;

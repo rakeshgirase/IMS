@@ -30,6 +30,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class ViewCustomerController
         implements Initializable {
     Customer customer = new Customer();
@@ -67,8 +68,10 @@ public class ViewCustomerController
         this.users = nameMedia.getUsers();
         this.nameMedia = nameMedia;
     }
+
     public void initialize(URL location, ResourceBundle resources) {
     }
+
     @FXML
     private void tfSearchOnKeyReleased(Event event) {
         SortedList<ListCustomer> sortList = new SortedList(this.customer.customerList);
@@ -82,6 +85,7 @@ public class ViewCustomerController
         this.tblClmAddBy.setCellValueFactory(new PropertyValueFactory("addBy"));
         this.customerGetway.searchView(this.customer);
     }
+
     @FXML
     private void btnAddOnAction(ActionEvent event) {
         AddCustomerController acc = new AddCustomerController();
@@ -108,6 +112,7 @@ public class ViewCustomerController
             Logger.getLogger(ViewCustomerController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         if (this.tblCustomer.getSelectionModel().getSelectedItem() != null) {
@@ -116,6 +121,7 @@ public class ViewCustomerController
             System.out.println("EMPTY SELECTION");
         }
     }
+
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
         if (this.tblCustomer.getSelectionModel().getSelectedItem() != null) {
@@ -137,6 +143,7 @@ public class ViewCustomerController
             System.out.println("EMPTY SELECTION");
         }
     }
+
     public void viewDetails() {
         this.tblCustomer.setItems(this.customer.customerList);
         this.tblClmName.setCellValueFactory(new PropertyValueFactory("customerName"));
@@ -147,6 +154,7 @@ public class ViewCustomerController
         this.tblClmAddBy.setCellValueFactory(new PropertyValueFactory("addBy"));
         this.customerGetway.view(this.customer);
     }
+
     public void selectedView() {
         ListCustomer listCustomer = (ListCustomer) this.tblCustomer.getSelectionModel().getSelectedItem();
         String item = listCustomer.getId();
@@ -178,6 +186,7 @@ public class ViewCustomerController
             }
         }
     }
+
     @FXML
     private void tblCustomerOnClick(MouseEvent event) {
         if (event.getClickCount() == 2) {
@@ -186,6 +195,7 @@ public class ViewCustomerController
             System.out.println("CLICK");
         }
     }
+
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
         this.tfSearch.clear();

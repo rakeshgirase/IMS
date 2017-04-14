@@ -1,6 +1,8 @@
 package com.exuberant.ims.custom;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+
 public class CustomPf {
     public void clearPassFieldByButton(final PasswordField value, final Button btn) {
         btn.setVisible(false);

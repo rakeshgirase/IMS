@@ -1,4 +1,5 @@
 package com.exuberant.ims.database;
+
 import com.exuberant.ims.util.PropertyService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class ServerController
         implements Initializable {
     Properties properties = new Properties();
@@ -45,16 +47,20 @@ public class ServerController
     private TextField tfDBName;
     @FXML
     private TextField tfUserName;
+
     public void initialize(URL url, ResourceBundle rb) {
         getDataFromFile();
     }
+
     @FXML
     private void btnConnectOnAction(ActionEvent event) {
         mkDbProperties();
     }
+
     @FXML
     private void btnResetOnAction(ActionEvent event) {
     }
+
     public void getDataFromFile() {
         this.tfHost.setText(PropertyService.getInstance().getProperty("host"));
         this.tfDBName.setText(PropertyService.getInstance().getProperty("db"));
@@ -62,6 +68,7 @@ public class ServerController
         this.pfPassword.setText(PropertyService.getInstance().getProperty("password"));
         this.thPort.setText(PropertyService.getInstance().getProperty("port"));
     }
+
     public void mkDbProperties() {
         try {
             this.properties.setProperty("host", this.tfHost.getText().trim());
@@ -96,10 +103,11 @@ public class ServerController
     }
 
     public void loadPropertiesFile() {
-            this.url = PropertyService.getInstance().getProperty("url");
-            this.user = this.properties.getProperty("user");
-            this.pass = this.properties.getProperty("password");
+        this.url = PropertyService.getInstance().getProperty("url");
+        this.user = this.properties.getProperty("user");
+        this.pass = this.properties.getProperty("password");
     }
+
     private boolean dbConnect() {
         loadPropertiesFile();
         try {

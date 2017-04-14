@@ -1,13 +1,16 @@
 package com.exuberant.ims.database;
+
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 public class SQLightConnection {
     Connection con;
     ResultSet rs;
     PreparedStatement pst;
     String table = "CREATE TABLE if not exists mysqlInfo (ID INT PRIMARY KEY     NOT NULL, hostName          VARCHAR(30) ,  portName          VARCHAR(30) ,  userName        VARCHAR(30) ,  password         VARCHAR(30) )";
     String demoValue = "insert into mysqlInof values(?,?,?,?,?)";
+
     public Connection sqliteConnection() {
         try {
             Class.forName("org.sqlite.JDBC");

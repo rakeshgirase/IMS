@@ -1,4 +1,5 @@
 package com.exuberant.ims.controller.application.employee;
+
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class EmployeePermissionController
         implements Initializable {
 
@@ -67,15 +69,19 @@ public class EmployeePermissionController
     private CheckBox cbOrgManage;
     @FXML
     private CheckBox cbMenageRMA;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.id = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         int addProduct = this.cbAddProduct.isSelected() ? 1 : 0;
@@ -97,18 +103,22 @@ public class EmployeePermissionController
         int ChangeOwnPass = this.cbChangePassword.isSelected() ? 1 : 0;
         int menageRMA = this.cbMenageRMA.isSelected() ? 1 : 0;
     }
+
     @FXML
     private void btnCloseOnClick(ActionEvent event) {
         Stage stage = (Stage) this.btnClose.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     private void cbStockOnAction(ActionEvent event) {
         stockManeCbOperation();
     }
+
     @FXML
     private void cbSellManegementOnAction(ActionEvent event) {
     }
+
     @FXML
     private void cbEmployeeManegementOnAction(ActionEvent event) {
         if (this.cbEmployeeManegement.isSelected()) {
@@ -121,14 +131,18 @@ public class EmployeePermissionController
             this.cbUpdateEmployee.setSelected(true);
         }
     }
+
     @FXML
     private void cbUserOnAction(ActionEvent event) {
     }
+
     public void checqPermission() {
     }
+
     @FXML
     private void cbSotckMangeOnClick(MouseEvent event) {
     }
+
     private void stockManeCbOperation() {
         if (this.cbStockManegement.isSelected()) {
             this.cbAddProduct.setSelected(true);

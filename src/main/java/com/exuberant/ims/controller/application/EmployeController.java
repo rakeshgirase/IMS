@@ -1,6 +1,8 @@
 package com.exuberant.ims.controller.application;
+
 import com.exuberant.ims.controller.application.employee.AddEmployeController;
 import com.exuberant.ims.controller.application.employee.ViewEmployeController;
+import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,10 +15,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import com.exuberant.ims.media.UserNameMedia;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class EmployeController
         implements Initializable {
     @FXML
@@ -34,16 +37,20 @@ public class EmployeController
     private Label lblView;
     @FXML
     private ImageView ivEmployeIcon;
+
     public UserNameMedia getNameMedia() {
         return this.nameMedia;
     }
+
     public void setNameMedia(UserNameMedia nameMedia) {
         this.userId = nameMedia.getId();
         this.nameMedia = nameMedia;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         this.ivEmployeIcon.setImage(this.image);
     }
+
     @FXML
     public void btnViewEmployeeOnAction(ActionEvent event) throws IOException {
         this.lblView.setText("Employee");
@@ -65,6 +72,7 @@ public class EmployeController
         this.spEmployeContent.getChildren().clear();
         this.spEmployeContent.getChildren().add(acPane);
     }
+
     @FXML
     private void btnAddEmployeeOnClick(ActionEvent event) throws IOException {
         this.lblView.setText("Add Employee");

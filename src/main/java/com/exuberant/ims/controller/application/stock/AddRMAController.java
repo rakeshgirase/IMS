@@ -1,4 +1,5 @@
 package com.exuberant.ims.controller.application.stock;
+
 import com.exuberant.ims.bll.RmaBLL;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.RMA;
@@ -17,6 +18,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
 public class AddRMAController
         implements Initializable {
     @FXML
@@ -40,18 +42,22 @@ public class AddRMAController
     private TextField tfRMADayes;
     @FXML
     private TextArea taRMAComment;
+
     public UserNameMedia getMedia() {
         return this.media;
     }
+
     public void setMedia(UserNameMedia media) {
         this.usrId = media.getId();
         this.media = media;
     }
+
     public void initialize(URL url, ResourceBundle rb) {
         BooleanBinding binding = this.tfRMAName.textProperty().isEmpty().or(this.tfRMADayes.textProperty().isEmpty());
         this.btnSave.disableProperty().bind(binding);
         this.ctf.numaricTextfield(this.tfRMADayes);
     }
+
     @FXML
     private void btnSave(ActionEvent event) {
         this.rma.id = this.rmaId;
@@ -61,12 +67,14 @@ public class AddRMAController
         this.rma.creatorId = this.usrId;
         this.rmaBLL.save(this.rma);
     }
+
     @FXML
     private void tfRMADays(KeyEvent event) {
         if (!this.tfRMADayes.getText().matches("[0-9]*")) {
             this.tfRMADayes.clear();
         }
     }
+
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
         this.rma.id = this.rmaId;
@@ -75,11 +83,13 @@ public class AddRMAController
         this.rma.rmaComment = this.taRMAComment.getText();
         this.rmaBLL.update(this.rma);
     }
+
     @FXML
     private void btnCloseOnAction(ActionEvent event) {
         Stage stage = (Stage) this.btnClose.getScene().getWindow();
         stage.close();
     }
+
     public void showDetails() {
         this.rma.id = this.rmaId;
         this.rmaGetway.selectedView(this.rma);
