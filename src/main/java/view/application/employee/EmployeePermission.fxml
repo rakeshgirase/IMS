@@ -8,8 +8,8 @@
        fx:controller="com.exuberant.ims.controller.application.employee.EmployeePermissionController">
 
         <AnchorPane id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="563.0" prefWidth="618.0"
-                    style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: gray; -fx-border-style: solid; -fx-border: 2;"
-                    stylesheets="../../../style/MainStyle.css">
+                    style="-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: gray; -fx-border-view.style: solid; -fx-border: 2;"
+                    stylesheets="@../../style/MainStyle.css">
             <effect>
                 <DropShadow height="28.59" radius="14.934999999999999" width="33.15"/>
             </effect>
@@ -151,6 +151,6 @@
 
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="612.0" layoutY="2.0" mnemonicParsing="false" onAction="#btnCloseOnClick"
-                prefHeight="37.0" prefWidth="38.0" stylesheets="../../../style/btnOnText.css"/>
+                prefHeight="37.0" prefWidth="38.0" stylesheets="../../style/btnOnText.css"/>
 
 </Group>

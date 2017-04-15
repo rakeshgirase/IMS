@@ -62,7 +62,7 @@ public class ViewEmployeController
     UserGateway userGateway = new UserGateway();
 
     String db = PropertyService.getInstance().getProperty("db");
-    Image usrImg = new Image(URLService.getFileAsStream("image/rifat.jpg"));
+    Image usrImg = new Image(URLService.getFileAsStream("image/dummy.jpg"));
     private File file;
     private BufferedImage bufferedImage;
     private String imagePath;

@@ -218,7 +218,6 @@ public class AddProductController
     private void cbUnitOnClick(MouseEvent event) {
         this.cbUnit.getItems().clear();
         List<Unit> units = HibernateRepository.getRepository().getAll(Unit.class);
-        units.forEach(unit -> this.cbUnit.getItems().add(unit.unitName));
     }
 
     @FXML

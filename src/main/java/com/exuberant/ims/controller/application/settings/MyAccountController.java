@@ -133,7 +133,7 @@ public class MyAccountController
         this.tfEmailAddress.setText(this.users.getEmailAddress());
         this.taAddress.setText(this.users.getAddress());
         //this.image = this.users.image;
-        this.retImage.setFill(new ImagePattern(this.image));
+//        this.retImage.setFill(new ImagePattern(this.image));
     }
 
     public void accountPermission() {

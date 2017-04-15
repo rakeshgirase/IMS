@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="342.0" prefWidth="491.0"
-            stylesheets="../style/MainStyle.css" xmlns="http://javafx.com/javafx/8"
+            stylesheets="style/MainStyle.css" xmlns="http://javafx.com/javafx/8"
             fx:controller="com.exuberant.ims.controller.HistoryController">
     <VBox layoutX="167.0" layoutY="38.0" prefHeight="328.0" prefWidth="484.0" AnchorPane.bottomAnchor="0.0"
           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

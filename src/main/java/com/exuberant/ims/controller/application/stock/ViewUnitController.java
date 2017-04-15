@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 
 public class ViewUnitController
         implements Initializable {
-    Unit unit = new Unit();
+    Unit unit = Unit.GRAMS;
     UnitGetway unitGetway = new UnitGetway();
     UnitBLL unitBLL = new UnitBLL();
     private Long userId;
@@ -138,7 +138,6 @@ public class ViewUnitController
             alert.initStyle(StageStyle.UNDECORATED);
             Optional<ButtonType> result = alert.showAndWait();
             if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-                this.unit.id = this.unitId;
                 this.unitBLL.delete(this.unit);
                 tfSearchOnKeyResele(event);
             }
@@ -173,7 +172,6 @@ public class ViewUnitController
     }
 
     public void showDetails() {
-        this.tblViewUnit.setItems(this.unit.unitDetails);
         this.clmUnitId.setCellValueFactory(new PropertyValueFactory("unitId"));
         this.clmUnitName.setCellValueFactory(new PropertyValueFactory("unitName"));
         this.clmUnitDescription.setCellValueFactory(new PropertyValueFactory("unitDescription"));
@@ -222,9 +220,7 @@ public class ViewUnitController
 
     @FXML
     public void tfSearchOnKeyResele(Event event) {
-        this.unit.unitDetails.clear();
-        this.unit.unitName = this.tfSearch.getText().trim();
-        this.tblViewUnit.setItems(this.unit.unitDetails);
+        this.unit = Unit.valueOf(this.tfSearch.getText().trim());
         this.clmUnitId.setCellValueFactory(new PropertyValueFactory("unitId"));
         this.clmUnitName.setCellValueFactory(new PropertyValueFactory("unitName"));
         this.clmUnitDescription.setCellValueFactory(new PropertyValueFactory("unitDescription"));
@@ -235,7 +231,6 @@ public class ViewUnitController
 
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
-        this.unit.unitDetails.clear();
         showDetails();
     }
 }

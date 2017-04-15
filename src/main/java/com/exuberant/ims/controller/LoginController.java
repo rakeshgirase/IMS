@@ -85,7 +85,7 @@ public class LoginController
         apControl.viewDetails();
         adminPanelStage.setScene(adminPanelScene);
         adminPanelStage.getIcons().add(new Image(URLService.getFileAsStream("image/icon.png")));
-        adminPanelStage.setTitle("TITLE LOGIN");
+        adminPanelStage.setTitle(PropertyService.getInstance().getProperty("organizationName"));
         adminPanelStage.show();
         Stage stage = (Stage) this.btnLogin.getScene().getWindow();
         stage.close();

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
@@ -7,115 +8,89 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" fx:id="acMain" onKeyPressed="#acMain"
-            onMouseMoved="#acMainOnMouseMove"
-            prefHeight="593.0" prefWidth="767.0" stylesheets="../style/Application.css"
-            xmlns="http://javafx.com/javafx/8.0.40" fx:controller="com.exuberant.ims.controller.ApplicationController">
-    <StackPane layoutY="-9.0" prefHeight="593.0" prefWidth="767.0" AnchorPane.bottomAnchor="0.0"
-               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane id="AnchorPane" fx:id="acMain" onKeyPressed="#acMain" onMouseMoved="#acMainOnMouseMove" prefHeight="593.0" prefWidth="767.0" stylesheets="@style/Application.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exuberant.ims.controller.ApplicationController">
+    <StackPane layoutY="-9.0" prefHeight="593.0" prefWidth="767.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 
-            <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
-                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <BorderPane prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                 <left>
                     <AnchorPane fx:id="acDashBord">
-                        <ScrollPane fx:id="leftSideBarScroolPan" prefHeight="678.0" prefViewportHeight="678.0"
-                                    prefViewportWidth="128.0" prefWidth="128.0" translateX="1.0"
-                                    translateY="1.0" translateZ="1.0" AnchorPane.bottomAnchor="0.0"
-                                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-                                    AnchorPane.topAnchor="0.0">
+                        <ScrollPane fx:id="leftSideBarScroolPan" prefHeight="678.0" prefViewportHeight="678.0" prefViewportWidth="128.0" prefWidth="128.0" translateX="1.0" translateY="1.0" translateZ="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <BorderPane.margin>
-                                <Insets/>
+                                <Insets />
                             </BorderPane.margin>
                             <AnchorPane BorderPane.alignment="CENTER">
-                                <Text fill="#cc3535" layoutX="8.0" layoutY="31.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="DashBord">
+                                <Text fill="#cc3535" layoutX="8.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DashBord">
                                     <font>
-                                        <Font name="System Bold Italic" size="21.0"/>
+                                        <Font name="System Bold Italic" size="21.0" />
                                     </font>
                                 </Text>
-                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0"
-                                           layoutY="124.0" pickOnBounds="true" preserveRatio="true">
-                                    <Image url="@icon/btnBreak.png"/>
+                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@icon/btnBreak.png" />
                                 </ImageView>
-                                <Button fx:id="btnHome" contentDisplay="TOP" layoutY="42.0"
-                                        mnemonicParsing="false" onAction="#btnHomeOnClick"
-                                        prefHeight="78.0" prefWidth="127.0" text="Home">
+                                <Button fx:id="btnHome" contentDisplay="TOP" layoutY="42.0" mnemonicParsing="false" onAction="#btnHomeOnClick" prefHeight="78.0" prefWidth="127.0" text="Home">
                                     <graphic>
-                                        <ImageView fx:id="imgHomeBtn" fitHeight="40.0" fitWidth="40.0"
-                                                   pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icon/home.png"/>
+                                        <ImageView fx:id="imgHomeBtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icon/home.png" />
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0"
-                                           layoutY="215.0" pickOnBounds="true" preserveRatio="true">
-                                    <Image url="@icon/btnBreak.png"/>
+                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@icon/btnBreak.png" />
                                 </ImageView>
-                                <Button fx:id="btnStore" contentDisplay="TOP" layoutY="133.0"
-                                        mnemonicParsing="false" onAction="#btnStoreOnClick"
-                                        prefHeight="78.0" prefWidth="127.0" text="Store">
+                                <Button fx:id="btnCurrentStock" contentDisplay="TOP" layoutY="42.0" mnemonicParsing="false" onAction="#btnCurrentStockOnClick" prefHeight="78.0" prefWidth="127.0" text="Current Stock">
                                     <graphic>
-                                        <ImageView fx:id="imgStoreBtn" fitHeight="40.0" fitWidth="40.0"
-                                                   pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icon/stock.png"/>
+                                        <ImageView fx:id="imgCurrentStock" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icon/home.png" />
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <Button fx:id="btnEmplopye" contentDisplay="TOP" layoutY="316.0"
-                                        mnemonicParsing="false" onAction="#btnEmplopyeOnClick"
-                                        prefHeight="78.0" prefWidth="127.0" text="Employe">
+                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0" layoutY="215.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@icon/btnBreak.png" />
+                                </ImageView>
+                                <Button fx:id="btnStore" contentDisplay="TOP" layoutY="133.0" mnemonicParsing="false" onAction="#btnStoreOnClick" prefHeight="78.0" prefWidth="127.0" text="Store">
                                     <graphic>
-                                        <ImageView fx:id="imgEmployeBtn" fitHeight="40.0"
-                                                   fitWidth="40.0" pickOnBounds="true"
-                                                   preserveRatio="true">
-                                            <Image url="@icon/employee.png"/>
+                                        <ImageView fx:id="imgStoreBtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icon/stock.png" />
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0"
-                                           layoutY="309.0" pickOnBounds="true" preserveRatio="true">
-                                    <Image url="@icon/btnBreak.png"/>
-                                </ImageView>
-                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0"
-                                           layoutY="398.0" pickOnBounds="true" preserveRatio="true">
-                                    <Image url="@icon/btnBreak.png"/>
-                                </ImageView>
-                                <Button fx:id="btnSell" contentDisplay="TOP" layoutY="225.0"
-                                        mnemonicParsing="false" onAction="#btnSellOnClick"
-                                        prefHeight="78.0" prefWidth="127.0" text="Sell">
+                                <Button fx:id="btnEmplopye" contentDisplay="TOP" layoutY="316.0" mnemonicParsing="false" onAction="#btnEmplopyeOnClick" prefHeight="78.0" prefWidth="127.0" text="Employe">
                                     <graphic>
-                                        <ImageView fx:id="imgSellBtn" fitHeight="40.0" fitWidth="40.0"
-                                                   pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icon/sell2.png"/>
+                                        <ImageView fx:id="imgEmployeBtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icon/employee.png" />
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0"
-                                           layoutY="578.0" pickOnBounds="true" preserveRatio="true">
-                                    <Image url="@icon/btnBreak.png"/>
+                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@icon/btnBreak.png" />
                                 </ImageView>
-                                <Button fx:id="btnSettings" contentDisplay="TOP" layoutY="405.0"
-                                        mnemonicParsing="false" onAction="#btnSettingsOnClick"
-                                        prefHeight="78.0" prefWidth="127.0" text="Settings">
+                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@icon/btnBreak.png" />
+                                </ImageView>
+                                <Button fx:id="btnSell" contentDisplay="TOP" layoutY="225.0" mnemonicParsing="false" onAction="#btnSellOnClick" prefHeight="78.0" prefWidth="127.0" text="Sell">
                                     <graphic>
-                                        <ImageView fx:id="imgSettingsBtn" fitHeight="40.0"
-                                                   fitWidth="40.0" pickOnBounds="true"
-                                                   preserveRatio="true">
-                                            <Image url="@icon/settings.png"/>
+                                        <ImageView fx:id="imgSellBtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icon/sell2.png" />
                                         </ImageView>
                                     </graphic>
                                 </Button>
-                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0"
-                                           layoutY="489.0" pickOnBounds="true" preserveRatio="true">
-                                    <Image url="@icon/btnBreak.png"/>
+                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0" layoutY="578.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@icon/btnBreak.png" />
                                 </ImageView>
-                                <Button fx:id="btnAbout" contentDisplay="TOP" layoutY="496.0"
-                                        mnemonicParsing="false" onAction="#btnAboutOnClick"
-                                        prefHeight="78.0" prefWidth="127.0" text="About">
+                                <Button fx:id="btnSettings" contentDisplay="TOP" layoutY="405.0" mnemonicParsing="false" onAction="#btnSettingsOnClick" prefHeight="78.0" prefWidth="127.0" text="Settings">
                                     <graphic>
-                                        <ImageView fx:id="imgAboutBtn" fitHeight="40.0" fitWidth="40.0"
-                                                   pickOnBounds="true" preserveRatio="true">
-                                            <Image url="@icon/about.png"/>
+                                        <ImageView fx:id="imgSettingsBtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icon/settings.png" />
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <ImageView fitHeight="5.0" fitWidth="114.0" layoutX="45.0" layoutY="489.0" pickOnBounds="true" preserveRatio="true">
+                                    <Image url="@icon/btnBreak.png" />
+                                </ImageView>
+                                <Button fx:id="btnAbout" contentDisplay="TOP" layoutY="496.0" mnemonicParsing="false" onAction="#btnAboutOnClick" prefHeight="78.0" prefWidth="127.0" text="About">
+                                    <graphic>
+                                        <ImageView fx:id="imgAboutBtn" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <Image url="@icon/about.png" />
                                         </ImageView>
                                     </graphic>
                                 </Button>
@@ -124,87 +99,33 @@
                     </AnchorPane>
                 </left>
                 <center>
-                    <BorderPane fx:id="appContent" prefHeight="200.0" prefWidth="200.0"
-                                BorderPane.alignment="CENTER">
+                    <BorderPane fx:id="appContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                         <top>
-                            <AnchorPane fx:id="acHead" prefHeight="42.0" prefWidth="753.0"
-                                        BorderPane.alignment="CENTER">
-                                <GridPane layoutX="14.0" layoutY="-15.0" prefHeight="60.0" prefWidth="751.0"
-                                          AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                                          AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <AnchorPane fx:id="acHead" prefHeight="42.0" prefWidth="753.0" BorderPane.alignment="CENTER">
+                                <GridPane layoutX="14.0" layoutY="-15.0" prefHeight="60.0" prefWidth="751.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                     <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0"
-                                                           prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                        <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     </columnConstraints>
                                     <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     </rowConstraints>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0"
-                                          GridPane.columnIndex="2">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="200.0" GridPane.columnIndex="2">
 
                                             <AnchorPane prefHeight="48.0" prefWidth="160.0">
 
-                                                    <MenuButton fx:id="mbtnUsrInfoBox" layoutY="4.0"
-                                                                mnemonicParsing="false"
-                                                                onAction="#mbtnOnClick" prefHeight="36.0"
-                                                                prefWidth="120.0"
-                                                                AnchorPane.bottomAnchor="4.0"
-                                                                AnchorPane.leftAnchor="0.0"
-                                                                AnchorPane.rightAnchor="0.0"
-                                                                AnchorPane.topAnchor="4.0">
+                                                    <MenuButton fx:id="mbtnUsrInfoBox" layoutY="4.0" mnemonicParsing="false" onAction="#mbtnOnClick" prefHeight="36.0" prefWidth="120.0" AnchorPane.bottomAnchor="4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="4.0">
                                                         <items>
-                                                            <MenuItem fx:id="miPopOver"
-                                                                      mnemonicParsing="false">
+                                                            <MenuItem fx:id="miPopOver" mnemonicParsing="false">
                                                                 <graphic>
-                                                                    <AnchorPane prefHeight="225.0"
-                                                                                prefWidth="190.0">
-
-                                                                            <Circle fx:id="circleImgUsr"
-                                                                                    fill="DODGERBLUE"
-                                                                                    layoutX="100.0"
-                                                                                    layoutY="49.0"
-                                                                                    radius="46.0"
-                                                                                    stroke="BLACK"
-                                                                                    strokeType="INSIDE"/>
-                                                                            <Label fx:id="lblUsrNamePopOver"
-                                                                                   alignment="CENTER"
-                                                                                   layoutY="107.0"
-                                                                                   prefHeight="15.0"
-                                                                                   prefWidth="196.0"
-                                                                                   text="UserName"/>
-                                                                            <Label fx:id="lblFullName"
-                                                                                   alignment="CENTER"
-                                                                                   layoutX="2.0"
-                                                                                   layoutY="129.0"
-                                                                                   prefHeight="15.0"
-                                                                                   prefWidth="196.0"
-                                                                                   text="Full Name"/>
-                                                                            <Label fx:id="lblRoleAs"
-                                                                                   alignment="CENTER"
-                                                                                   layoutX="3.0"
-                                                                                   layoutY="148.0"
-                                                                                   prefHeight="15.0"
-                                                                                   prefWidth="196.0"
-                                                                                   text="Role"/>
-                                                                            <Hyperlink
-                                                                                    fx:id="hlEditUpdateAccount"
-                                                                                    alignment="CENTER"
-                                                                                    layoutX="3.0"
-                                                                                    layoutY="163.0"
-                                                                                    onAction="#hlUpdateAccount"
-                                                                                    prefHeight="23.0"
-                                                                                    prefWidth="194.0"
-                                                                                    text="Edit/Update"/>
-                                                                            <Button fx:id="btnLogOut"
-                                                                                    layoutX="3.0"
-                                                                                    layoutY="184.0"
-                                                                                    mnemonicParsing="false"
-                                                                                    onAction="#btnLogOut"
-                                                                                    prefHeight="40.0"
-                                                                                    prefWidth="196.0"
-                                                                                    text="logOut"/>
+                                                                    <AnchorPane prefHeight="225.0" prefWidth="190.0">
+                                                                            <Circle fx:id="circleImgUsr" fill="DODGERBLUE" layoutX="100.0" layoutY="49.0" radius="46.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                            <Label fx:id="lblUsrNamePopOver" alignment="CENTER" layoutY="107.0" prefHeight="15.0" prefWidth="196.0" text="UserName" />
+                                                                            <Label fx:id="lblFullName" alignment="CENTER" layoutX="2.0" layoutY="129.0" prefHeight="15.0" prefWidth="196.0" text="Full Name" />
+                                                                            <Label fx:id="lblRoleAs" alignment="CENTER" layoutX="3.0" layoutY="148.0" prefHeight="15.0" prefWidth="196.0" text="Role" />
+                                                                            <Hyperlink fx:id="hlEditUpdateAccount" alignment="CENTER" layoutX="3.0" layoutY="163.0" onAction="#hlUpdateAccount" prefHeight="23.0" prefWidth="194.0" text="Edit/Update" />
+                                                                            <Button fx:id="btnLogOut" layoutX="3.0" layoutY="184.0" mnemonicParsing="false" onAction="#btnLogOut" prefHeight="40.0" prefWidth="196.0" text="logOut" />
 
                                                                     </AnchorPane>
                                                                 </graphic>
@@ -212,19 +133,12 @@
                                                         </items>
                                                         <graphic>
                                                             <AnchorPane prefHeight="20.0" prefWidth="120.0">
-
-                                                                    <Circle fx:id="imgUsrTop"
-                                                                            fill="DODGERBLUE" layoutX="26.0"
-                                                                            layoutY="24.0" radius="16.0"
-                                                                            stroke="BLACK"
-                                                                            strokeType="INSIDE"/>
-                                                                    <Label fx:id="lblUsrName" layoutX="52.0"
-                                                                           layoutY="17.0" text="Rifat"/>
-
+                                                                    <Circle fx:id="imgUsrTop" fill="DODGERBLUE" layoutX="26.0" layoutY="24.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+                                                                    <Label fx:id="lblUsrName" layoutX="52.0" layoutY="17.0" text="Username" />
                                                             </AnchorPane>
                                                         </graphic>
                                                         <padding>
-                                                            <Insets left="-15.0" top="-10.0"/>
+                                                            <Insets left="-15.0" top="-10.0" />
                                                         </padding>
                                                     </MenuButton>
 
@@ -233,41 +147,34 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
 
-                                            <ToggleButton fx:id="sideMenuToogleBtn" mnemonicParsing="false"
-                                                          onAction="#sideMenuToogleBtnOnCLick">
+                                            <ToggleButton fx:id="sideMenuToogleBtn" mnemonicParsing="false" onAction="#sideMenuToogleBtnOnCLick">
                                                 <graphic>
-                                                    <ImageView fx:id="imgMenuBtn" fitHeight="52.0"
-                                                               fitWidth="25.0" pickOnBounds="true"
-                                                               preserveRatio="true">
-                                                        <Image url="@icon/menu.png"/>
+                                                    <ImageView fx:id="imgMenuBtn" fitHeight="52.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                        <Image url="@icon/menu.png" />
                                                     </ImageView>
                                                 </graphic>
                                                 <cursor>
-                                                    <Cursor fx:constant="HAND"/>
+                                                    <Cursor fx:constant="HAND" />
                                                 </cursor>
                                                 <HBox.margin>
-                                                    <Insets left="5.0" top="5.0"/>
+                                                    <Insets left="5.0" top="5.0" />
                                                 </HBox.margin>
                                             </ToggleButton>
-                                            <Label fx:id="lblUserId" text="Label" textFill="#eeeded"
-                                                   visible="false"/>
+                                            <Label fx:id="lblUserId" text="Label" textFill="#eeeded" visible="false" />
 
                                     </HBox>
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0"
-                                                GridPane.columnIndex="1">
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
 
-                                            <Label layoutX="62.0" layoutY="23.0" text="My Logo Goes Hear"
-                                                   textFill="#fff7f7"/>
+                                            <Label layoutX="62.0" layoutY="23.0" text="My Logo Goes Hear" textFill="#fff7f7" />
 
                                     </AnchorPane>
                                 </GridPane>
                             </AnchorPane>
                         </top>
                         <center>
-                            <StackPane fx:id="acContent" prefHeight="150.0" prefWidth="200.0"
-                                       BorderPane.alignment="CENTER">
+                            <StackPane fx:id="acContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
 
-                                    <AnchorPane prefHeight="200.0" prefWidth="200.0"/>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" />
 
                             </StackPane>
                         </center>

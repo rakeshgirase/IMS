@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <StackPane xmlns:fx="http://javafx.com/fxml/1" fx:id="spProductContent" prefHeight="580.0" prefWidth="1004.0"
-           stylesheets="../../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
+           stylesheets="@../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
            fx:controller="com.exuberant.ims.controller.application.stock.CurrentStoreController">
 
         <AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="834.0">

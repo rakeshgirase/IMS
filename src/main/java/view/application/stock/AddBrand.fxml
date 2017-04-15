@@ -34,7 +34,7 @@
 
                                 <Button fx:id="btnAddSupplyer" layoutX="14.0" mnemonicParsing="false"
                                         onAction="#btnAddSupplyerOnAction" prefHeight="33.0" prefWidth="32.0"
-                                        stylesheets="../../../style/AddButton.css"/>
+                                        stylesheets="../../style/AddButton.css"/>
 
                         </Pane>
 
@@ -64,11 +64,11 @@
                 </Label>
 
             <stylesheets>
-                <URL value="../../../style/MainStyle.css"/>
-                <URL value="@../../../style/PopUp.css"/>
+                <URL value="@../../style/MainStyle.css"/>
+                <URL value="@../../style/PopUp.css"/>
             </stylesheets>
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="451.0" layoutY="-4.0" mnemonicParsing="false" onAction="#btnCloseOnAction"
-                prefHeight="36.0" prefWidth="38.0" stylesheets="../../../style/btnOnText.css"/>
+                prefHeight="36.0" prefWidth="38.0" stylesheets="../../style/btnOnText.css"/>
 
 </Group>

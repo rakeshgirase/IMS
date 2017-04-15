@@ -4,6 +4,7 @@ import com.exuberant.ims.controller.application.EmployeController;
 import com.exuberant.ims.controller.application.SellController;
 import com.exuberant.ims.controller.application.SettingsController;
 import com.exuberant.ims.controller.application.StockController;
+import com.exuberant.ims.controller.application.stock.AddProductController;
 import com.exuberant.ims.dal.Users;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -81,6 +82,8 @@ public class ApplicationController implements Initializable {
     @FXML
     private ImageView imgHomeBtn;
     @FXML
+    private ImageView imgCurrentStock;
+    @FXML
     private Button btnStore;
     @FXML
     private ImageView imgStoreBtn;
@@ -132,7 +135,7 @@ public class ApplicationController implements Initializable {
 
     public void initialize(URL url, ResourceBundle rb) {
         this.imgMenuBtn.setImage(this.menuImage);
-        Image usrImg = new Image(URLService.getFileAsStream("image/rifat.jpg"));
+        Image usrImg = new Image(URLService.getFileAsStream("image/dummy.jpg"));
         this.imgUsrTop.setFill(new ImagePattern(usrImg));
         this.circleImgUsr.setFill(new ImagePattern(usrImg));
     }
@@ -194,17 +197,17 @@ public class ApplicationController implements Initializable {
         StockController sc = new StockController();
         UserNameMedia nm = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        URL resource = URLService.getFileAsResoure("application/Product.fxml");
+        URL resource = URLService.getFileAsResoure("application/stock/AddProduct.fxml");
         fXMLLoader.load(resource.openStream());
         nm.setId(this.id);
-        StockController stockController = (StockController) fXMLLoader.getController();
-        stockController.bpStore.getStylesheets().add("style/MainStyle.css");
-        stockController.setUserId(this.usrNameMedia);
-        stockController.btnStockOnAction(event);
-        stockController.settingPermission();
-        AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
+        AddProductController addProductControllerr = fXMLLoader.getController();
+        /*addProductControllerr.bpStore.getStylesheets().add("view.style/MainStyle.css");
+        addProductControllerr.sesetUserId(this.usrNameMedia);
+        addProductControllerr.btnStockOnAction(event);
+        addProductControllerr.settingPermission();*/
+        //AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.acContent.getChildren().clear();
-        this.acContent.getChildren().add(acPane);
+        //this.acContent.getChildren().add(acPane);
     }
 
     @FXML
@@ -217,7 +220,7 @@ public class ApplicationController implements Initializable {
         fXMLLoader.load(resource);
         nm.setId(this.id);
         EmployeController employeController = (EmployeController) fXMLLoader.getController();
-        employeController.bpContent.getStylesheets().add("style/MainStyle.css");
+        employeController.bpContent.getStylesheets().add("view/style/MainStyle.css");
         employeController.setNameMedia(this.usrNameMedia);
         employeController.btnViewEmployeeOnAction(event);
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
@@ -235,7 +238,7 @@ public class ApplicationController implements Initializable {
         settingLoader.load(resource.openStream());
         usrMedia.setId(this.id);
         SettingsController settingControl = (SettingsController) settingLoader.getController();
-        settingControl.bpSettings.getStylesheets().add("style/MainStyle.css");
+        settingControl.bpSettings.getStylesheets().add("view/style/MainStyle.css");
         settingControl.setUsrMedia(usrMedia);
         settingControl.miMyASccountOnClick(event);
         settingControl.settingPermission();
@@ -271,7 +274,7 @@ public class ApplicationController implements Initializable {
             nm.setId(this.id);
             SellController sellController = (SellController) fXMLLoader.getController();
             sellController.setNameMedia(this.usrNameMedia);
-            sellController.acMainSells.getStylesheets().add("style/MainStyle.css");
+            sellController.acMainSells.getStylesheets().add("view/style/MainStyle.css");
             sellController.tbtnSellOnAction(event);
             AnchorPane anchorPane = (AnchorPane) fXMLLoader.getRoot();
             this.acContent.getChildren().clear();
@@ -299,6 +302,23 @@ public class ApplicationController implements Initializable {
 
     private void homeActive() {
         this.imgHomeBtn.setImage(this.homeRed);
+        this.imgCurrentStock.setImage(this.home);
+        this.imgStoreBtn.setImage(this.stock);
+        this.imgSellBtn.setImage(this.sell);
+        this.imgEmployeBtn.setImage(this.employee);
+        this.imgSettingsBtn.setImage(this.setting);
+        this.imgAboutBtn.setImage(this.about);
+        this.btnHome.setStyle(this.activeStyle);
+        this.btnStore.setStyle(this.defultStyle);
+        this.btnSell.setStyle(this.defultStyle);
+        this.btnEmplopye.setStyle(this.defultStyle);
+        this.btnSettings.setStyle(this.defultStyle);
+        this.btnAbout.setStyle(this.defultStyle);
+    }
+
+    private void currentStockActive() {
+        this.imgHomeBtn.setImage(this.home);
+        this.imgCurrentStock.setImage(this.homeRed);
         this.imgStoreBtn.setImage(this.stock);
         this.imgSellBtn.setImage(this.sell);
         this.imgEmployeBtn.setImage(this.employee);
@@ -314,6 +334,7 @@ public class ApplicationController implements Initializable {
 
     private void sotreActive() {
         this.imgHomeBtn.setImage(this.home);
+        this.imgCurrentStock.setImage(this.home);
         this.imgStoreBtn.setImage(this.stockRed);
         this.imgSellBtn.setImage(this.sell);
         this.imgEmployeBtn.setImage(this.employee);
@@ -329,6 +350,7 @@ public class ApplicationController implements Initializable {
 
     private void sellActive() {
         this.imgHomeBtn.setImage(this.home);
+        this.imgCurrentStock.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
         this.imgSellBtn.setImage(this.sellRed);
         this.imgEmployeBtn.setImage(this.employee);
@@ -344,6 +366,7 @@ public class ApplicationController implements Initializable {
 
     private void employeeActive() {
         this.imgHomeBtn.setImage(this.home);
+        this.imgCurrentStock.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
         this.imgSellBtn.setImage(this.sell);
         this.imgEmployeBtn.setImage(this.employeeRed);
@@ -359,6 +382,7 @@ public class ApplicationController implements Initializable {
 
     private void settingsActive() {
         this.imgHomeBtn.setImage(this.home);
+        this.imgCurrentStock.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
         this.imgSellBtn.setImage(this.sell);
         this.imgEmployeBtn.setImage(this.employee);
@@ -374,6 +398,7 @@ public class ApplicationController implements Initializable {
 
     private void aboutActive() {
         this.imgHomeBtn.setImage(this.home);
+        this.imgCurrentStock.setImage(this.home);
         this.imgStoreBtn.setImage(this.stock);
         this.imgSellBtn.setImage(this.sell);
         this.imgEmployeBtn.setImage(this.employee);
@@ -391,8 +416,24 @@ public class ApplicationController implements Initializable {
         this.users.setId(this.id);
         //this.image = this.users.image;
         //this.circleImgUsr.setFill(new ImagePattern(this.image));
-//        this.imgUsrTop.setFill(new ImagePattern(this.image));
+        //this.imgUsrTop.setFill(new ImagePattern(this.image));
         this.lblFullName.setText(this.users.getFullName());
         this.lblUsrNamePopOver.setText(this.users.getUserName());
+    }
+
+    public void btnCurrentStockOnClick(ActionEvent actionEvent) throws IOException {
+        currentStockActive();
+        this.acContent.getChildren().clear();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        try {
+            URL resource = URLService.getFileAsResoure("application/stock/AddCurrentStock.fxml");
+            fxmlLoader.load(resource.openStream());
+        } catch (IOException localIOException) {
+        }
+        //this.acContent.getChildren().add(FXMLLoader.load(resource));
+        AnchorPane root = (AnchorPane) fxmlLoader.getRoot();
+        this.acContent.getChildren().clear();
+        this.acContent.getChildren().add(root);
     }
 }

@@ -27,7 +27,7 @@ public class AddUnitController
     public Button btnUpdate;
     @FXML
     public Label lblContent;
-    Unit unit = new Unit();
+    Unit unit = Unit.GRAMS;
     UnitGetway unitGetway = new UnitGetway();
     UnitBLL unitBLL = new UnitBLL();
     CustomTf ctf = new CustomTf();
@@ -59,18 +59,10 @@ public class AddUnitController
 
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
-        this.unit.unitName = this.tfUnitName.getText().trim();
-        this.unit.unitDescription = this.taDescription.getText().trim();
-        this.unit.creatorId = this.usrId;
-        this.unitBLL.save(this.unit);
     }
 
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
-        this.unit.id = this.unitId;
-        this.unit.unitName = this.tfUnitName.getText().trim();
-        this.unit.unitDescription = this.taDescription.getText().trim();
-        this.unitGetway.update(this.unit);
     }
 
     @FXML
@@ -80,9 +72,5 @@ public class AddUnitController
     }
 
     public void showDetails() {
-        this.unit.id = this.unitId;
-        this.unitGetway.selectedView(this.unit);
-        this.tfUnitName.setText(this.unit.unitName);
-        this.taDescription.setText(this.unit.unitDescription);
     }
 }

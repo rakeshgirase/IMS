@@ -10,13 +10,17 @@ public class Product {
     private static final java.math.BigDecimal HUNDRED = new BigDecimal(100);
     @EmbeddedId
     private ProductId id;
-    private Long quantity;
+    private BigDecimal quantity;
     private BigDecimal costOfSelling;
     private BigDecimal mrp;
     private BigDecimal discount;
     private BigDecimal actualCost;
     private Boolean calculateActualCost;
-    private Weight weight;
+
+
+    public void setCalculateActualCost(Boolean calculateActualCost) {
+        this.calculateActualCost = calculateActualCost;
+    }
 
     public ProductId getId() {
         return id;
@@ -26,11 +30,11 @@ public class Product {
         this.id = id;
     }
 
-    public Long getQuantity() {
+    public BigDecimal getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Long quantity) {
+    public void setQuantity(BigDecimal quantity) {
         this.quantity = quantity;
     }
 
@@ -70,12 +74,53 @@ public class Product {
         setCalculateActualCost(false);
     }
 
-    public void setCalculateActualCost(Boolean calculateActualCost) {
-        this.calculateActualCost = calculateActualCost;
+    public Weight getWeight() {
+        return id.getWeight();
+    }
+
+    public BigDecimal getTotalCostOfSelling() {
+        return costOfSelling.multiply(quantity);
+    }
+
+    public BigDecimal getTotalMrp() {
+        return mrp.multiply(quantity);
+    }
+
+    public BigDecimal getTotalActualCost() {
+        return actualCost.multiply(quantity);
+    }
+
+    public Weight getTotalWeight() {
+        return id.getWeight().multiply(quantity);
     }
 }
 
 class ProductId {
     private String name;
     private PackageType packageType;
+    private Weight weight;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public PackageType getPackageType() {
+        return packageType;
+    }
+
+    public void setPackageType(PackageType packageType) {
+        this.packageType = packageType;
+    }
+
+    public Weight getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Weight weight) {
+        this.weight = weight;
+    }
 }
