@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="482.0" prefWidth="736.0"
-            stylesheets="@../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
+            stylesheets="@../../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
             fx:controller="com.exuberant.ims.controller.application.stock.ViewRMAController">
 
         <BorderPane layoutX="268.0" layoutY="101.0" prefHeight="482.0" prefWidth="736.0" AnchorPane.bottomAnchor="0.0"

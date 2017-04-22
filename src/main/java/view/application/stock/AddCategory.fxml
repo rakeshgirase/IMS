@@ -29,14 +29,14 @@
 
                                 <Button fx:id="btnAddSupplyer" layoutX="14.0" mnemonicParsing="false"
                                         onAction="#btnAddSupplyerOnAction" prefHeight="30.0" prefWidth="34.0"
-                                        stylesheets="../../style/AddButton.css"/>
+                                        stylesheets="../../../style/AddButton.css"/>
 
                         </Pane>
                         <Pane GridPane.columnIndex="3" GridPane.rowIndex="3">
 
                                 <Button fx:id="btnAddBrand" layoutX="14.0" layoutY="-1.0" mnemonicParsing="false"
                                         onAction="#btnAddBrandOnAction" prefHeight="30.0" prefWidth="33.0"
-                                        stylesheets="../../style/AddButton.css"/>
+                                        stylesheets="../../../style/AddButton.css"/>
 
                         </Pane>
                         <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update"
@@ -70,11 +70,11 @@
                 </Label>
 
             <stylesheets>
-                <URL value="@../../style/MainStyle.css"/>
-                <URL value="@../../style/PopUp.css"/>
+                <URL value="@../../../style/MainStyle.css"/>
+                <URL value="@../../../style/PopUp.css"/>
             </stylesheets>
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="457.0" layoutY="-5.0" mnemonicParsing="false" onAction="#btnCloseOnAction"
-                prefHeight="30.0" prefWidth="33.0" stylesheets="../../style/btnOnText.css"/>
+                prefHeight="30.0" prefWidth="33.0" stylesheets="../../../style/btnOnText.css"/>
 
 </Group>

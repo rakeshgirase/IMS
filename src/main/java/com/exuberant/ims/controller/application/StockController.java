@@ -74,7 +74,7 @@ public class StockController
         CurrentStoreController currentStoreController = (CurrentStoreController) fXMLLoader.getController();
         currentStoreController.setMedia(media);
         currentStoreController.viewDetails();
-        currentStoreController.apCombobox.getStylesheets().add("view/style/StoreCombobox.css");
+        currentStoreController.apCombobox.getStylesheets().add("style/StoreCombobox.css");
         currentStoreController.settingPermission();
         StackPane acPane = (StackPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();

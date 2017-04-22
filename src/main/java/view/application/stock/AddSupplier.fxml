@@ -63,11 +63,11 @@
                 </Label>
 
             <stylesheets>
-                <URL value="@../../style/PopUp.css"/>
-                <URL value="@../../style/MainStyle.css"/>
+                <URL value="@../../../style/PopUp.css"/>
+                <URL value="@../../../style/MainStyle.css"/>
             </stylesheets>
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="517.0" layoutY="-5.0" mnemonicParsing="false" onAction="#btnCloseOnAction"
-                prefHeight="36.0" prefWidth="31.0" stylesheets="../../style/btnOnText.css"/>
+                prefHeight="36.0" prefWidth="31.0" stylesheets="../../../style/btnOnText.css"/>
 
 </Group>

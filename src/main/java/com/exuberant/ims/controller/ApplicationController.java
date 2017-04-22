@@ -201,7 +201,7 @@ public class ApplicationController implements Initializable {
         fXMLLoader.load(resource.openStream());
         nm.setId(this.id);
         AddProductController addProductControllerr = fXMLLoader.getController();
-        /*addProductControllerr.bpStore.getStylesheets().add("view.style/MainStyle.css");
+        /*addProductControllerr.bpStore.getStylesheets().add("style/MainStyle.css");
         addProductControllerr.sesetUserId(this.usrNameMedia);
         addProductControllerr.btnStockOnAction(event);
         addProductControllerr.settingPermission();*/
@@ -220,7 +220,7 @@ public class ApplicationController implements Initializable {
         fXMLLoader.load(resource);
         nm.setId(this.id);
         EmployeController employeController = (EmployeController) fXMLLoader.getController();
-        employeController.bpContent.getStylesheets().add("view/style/MainStyle.css");
+        employeController.bpContent.getStylesheets().add("style/MainStyle.css");
         employeController.setNameMedia(this.usrNameMedia);
         employeController.btnViewEmployeeOnAction(event);
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
@@ -238,7 +238,7 @@ public class ApplicationController implements Initializable {
         settingLoader.load(resource.openStream());
         usrMedia.setId(this.id);
         SettingsController settingControl = (SettingsController) settingLoader.getController();
-        settingControl.bpSettings.getStylesheets().add("view/style/MainStyle.css");
+        settingControl.bpSettings.getStylesheets().add("style/MainStyle.css");
         settingControl.setUsrMedia(usrMedia);
         settingControl.miMyASccountOnClick(event);
         settingControl.settingPermission();
@@ -274,7 +274,7 @@ public class ApplicationController implements Initializable {
             nm.setId(this.id);
             SellController sellController = (SellController) fXMLLoader.getController();
             sellController.setNameMedia(this.usrNameMedia);
-            sellController.acMainSells.getStylesheets().add("view/style/MainStyle.css");
+            sellController.acMainSells.getStylesheets().add("style/MainStyle.css");
             sellController.tbtnSellOnAction(event);
             AnchorPane anchorPane = (AnchorPane) fXMLLoader.getRoot();
             this.acContent.getChildren().clear();
@@ -430,6 +430,7 @@ public class ApplicationController implements Initializable {
             URL resource = URLService.getFileAsResoure("application/stock/AddCurrentStock.fxml");
             fxmlLoader.load(resource.openStream());
         } catch (IOException localIOException) {
+            System.err.println("Exception occurred....");
         }
         //this.acContent.getChildren().add(FXMLLoader.load(resource));
         AnchorPane root = (AnchorPane) fxmlLoader.getRoot();

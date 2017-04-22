@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="424.0" prefWidth="596.0"
-            stylesheets="../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
+            stylesheets="../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
             fx:controller="com.exuberant.ims.controller.dbConnection.ConnectToMySqlController">
 
         <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"

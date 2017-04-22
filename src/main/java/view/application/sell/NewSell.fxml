@@ -7,9 +7,9 @@
        fx:controller="com.exuberant.ims.controller.application.sell.NewSellController">
 
         <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="642.0" prefWidth="874.0"
-                    stylesheets="../../style/PopUp.css">
+                    stylesheets="../../../style/PopUp.css">
 
-                <BorderPane prefHeight="500.0" prefWidth="700.0" stylesheets="@../../style/MainStyle.css"
+                <BorderPane prefHeight="500.0" prefWidth="700.0" stylesheets="@../../../style/MainStyle.css"
                             AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
                             AnchorPane.topAnchor="0.0">
                     <center>
@@ -154,7 +154,7 @@
                                                 <Button fx:id="btnAddCustomer" layoutX="14.0" layoutY="-1.0"
                                                         mnemonicParsing="false" onAction="#btnAddCustomerOnAction"
                                                         prefHeight="34.0" prefWidth="32.0"
-                                                        stylesheets="../../style/AddButton.css"/>
+                                                        stylesheets="../../../style/AddButton.css"/>
 
                                         </Pane>
                                         <Label text="Purses On" GridPane.columnIndex="4" GridPane.rowIndex="8"/>
@@ -187,6 +187,6 @@
 
         </AnchorPane>
         <Button fx:id="btnClose" layoutX="860.0" layoutY="-6.0" mnemonicParsing="false" onAction="#btnCloseOnAction"
-                prefHeight="34.0" prefWidth="32.0" stylesheets="../../style/btnOnText.css"/>
+                prefHeight="34.0" prefWidth="32.0" stylesheets="../../../style/btnOnText.css"/>
 
 </Group>

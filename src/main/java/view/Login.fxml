@@ -4,7 +4,7 @@
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane fx:id="apMother" prefHeight="620.0" prefWidth="989.0" stylesheets="@style/MainStyle.css"
+<AnchorPane fx:id="apMother" prefHeight="620.0" prefWidth="989.0" stylesheets="@../style/MainStyle.css"
             xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.exuberant.ims.controller.LoginController">
     <HBox alignment="CENTER" prefHeight="535.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0"
@@ -50,10 +50,10 @@
                                                promptText="Password" text="Pass" GridPane.columnSpan="2"
                                                GridPane.rowIndex="1"/>
                                 <Button fx:id="btnUserNameTfClear" mnemonicParsing="false" prefHeight="31.0"
-                                        prefWidth="29.0" stylesheets="@style/btnOnText.css"
+                                        prefWidth="29.0" stylesheets="@../style/btnOnText.css"
                                         GridPane.columnSpan="2" GridPane.halignment="RIGHT"/>
                                 <Button fx:id="btnPassFieldClear" mnemonicParsing="false" prefHeight="31.0"
-                                        prefWidth="29.0" stylesheets="@style/btnOnText.css"
+                                        prefWidth="29.0" stylesheets="@../style/btnOnText.css"
                                         GridPane.columnSpan="2" GridPane.halignment="RIGHT"
                                         GridPane.rowIndex="1"/>
 

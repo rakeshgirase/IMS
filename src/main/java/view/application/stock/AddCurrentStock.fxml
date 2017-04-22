@@ -4,7 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="726.0" stylesheets="@../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exuberant.ims.controller.application.stock.ViewUnitController">
+<AnchorPane id="AnchorPane" prefHeight="503.0" prefWidth="726.0" stylesheets="../../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.exuberant.ims.controller.application.stock.ViewUnitController">
 
     <BorderPane layoutX="254.0" layoutY="111.0" prefHeight="503.0" prefWidth="726.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <center>
