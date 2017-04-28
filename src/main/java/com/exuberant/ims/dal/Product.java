@@ -10,13 +10,22 @@ public class Product {
     private static final java.math.BigDecimal HUNDRED = new BigDecimal(100);
     @EmbeddedId
     private ProductId id;
+    private String description;
     private BigDecimal quantity;
     private BigDecimal costOfSelling;
     private BigDecimal mrp;
     private BigDecimal discount;
     private BigDecimal actualCost;
-    private Boolean calculateActualCost;
+    private boolean calculateActualCost = true;
 
+    public Product(String description, BigDecimal quantity, BigDecimal costOfSelling, BigDecimal mrp, BigDecimal discount, BigDecimal actualCost) {
+        this.description = description;
+        this.quantity = quantity;
+        this.costOfSelling = costOfSelling;
+        this.mrp = mrp;
+        this.discount = discount;
+        this.actualCost = actualCost;
+    }
 
     public void setCalculateActualCost(Boolean calculateActualCost) {
         this.calculateActualCost = calculateActualCost;
@@ -93,34 +102,13 @@ public class Product {
     public Weight getTotalWeight() {
         return id.getWeight().multiply(quantity);
     }
-}
 
-class ProductId {
-    private String name;
-    private PackageType packageType;
-    private Weight weight;
-
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public PackageType getPackageType() {
-        return packageType;
-    }
-
-    public void setPackageType(PackageType packageType) {
-        this.packageType = packageType;
-    }
-
-    public Weight getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Weight weight) {
-        this.weight = weight;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
+

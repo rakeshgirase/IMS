@@ -68,7 +68,7 @@ public class StockController
         CurrentStoreController asc = new CurrentStoreController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
-        URL resource = URLService.getFileAsResoure("application/stock/CurrentStore.fxml");
+        URL resource = URLService.getFileAsResoure("application/stock/CurrentStock.fxml");
         fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         CurrentStoreController currentStoreController = (CurrentStoreController) fXMLLoader.getController();
@@ -135,15 +135,15 @@ public class StockController
     @FXML
     private void btnUnitOnAction(ActionEvent event) throws IOException {
         this.lblHeader.setText("Unit");
-        ViewUnitController vuc = new ViewUnitController();
+        CurrentStockController vuc = new CurrentStockController();
         UserNameMedia media = new UserNameMedia();
         FXMLLoader fXMLLoader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("application/stock/ViewUnit.fxml");
         fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
-        ViewUnitController viewUnitController = (ViewUnitController) fXMLLoader.getController();
-        viewUnitController.setMedia(media);
-        viewUnitController.showDetails();
+        CurrentStockController currentStockController = (CurrentStockController) fXMLLoader.getController();
+        currentStockController.setMedia(media);
+        currentStockController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(acPane);

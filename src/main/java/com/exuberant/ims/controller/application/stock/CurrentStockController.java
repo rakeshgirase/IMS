@@ -1,11 +1,12 @@
 package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.UnitBLL;
-import com.exuberant.ims.dal.Unit;
+import com.exuberant.ims.dal.*;
 import com.exuberant.ims.getway.UnitGetway;
-import com.exuberant.ims.list.ListUnit;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,11 +24,14 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class ViewUnitController
+public class CurrentStockController
         implements Initializable {
     Unit unit = Unit.GRAMS;
     UnitGetway unitGetway = new UnitGetway();
@@ -39,17 +43,19 @@ public class ViewUnitController
     @FXML
     private TextField tfSearch;
     @FXML
-    private TableView<ListUnit> tblViewUnit;
+    private TableView<ProductGui> tblCurrentStock;
     @FXML
     private TableColumn<Object, Object> clmUnitId;
     @FXML
-    private TableColumn<Object, Object> clmUnitName;
+    private TableColumn clmDescription;
     @FXML
-    private TableColumn<Object, Object> clmUnitDescription;
+    private TableColumn<Stock, BigDecimal> clmMrp;
     @FXML
-    private TableColumn<Object, Object> clmUnitCreator;
+    private TableColumn<Object, Object> clmCostOfSelling;
     @FXML
-    private TableColumn<Object, Object> clmUnitCreateDate;
+    private TableColumn<Object, Object> clmQuantity;
+    @FXML
+    private TableColumn<Object, Object> clmWeight;
     @FXML
     private Button btnAddNew;
     @FXML
@@ -79,15 +85,25 @@ public class ViewUnitController
     }
 
     public void initialize(URL url, ResourceBundle rb) {
+        clmDescription.setCellValueFactory(new PropertyValueFactory("description"));
+        clmMrp.setCellValueFactory(new PropertyValueFactory("mrp"));
+        clmCostOfSelling.setCellValueFactory(new PropertyValueFactory("costOfSelling"));
+        clmQuantity.setCellValueFactory(new PropertyValueFactory("quantity"));
+        clmWeight.setCellValueFactory(new PropertyValueFactory("weight"));
+        tblCurrentStock.setItems(fetchCurrentStock());
+    }
+
+    private ObservableList<ProductGui> fetchCurrentStock() {
+        Product p1 = new Product("Desc 1", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
+        Product p2 = new Product("Desc 2", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
+        Product p3 = new Product("Desc 3", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
+        Collection<ProductGui> products = Arrays.asList(new ProductGui(p1),new ProductGui(p2),new ProductGui(p3));
+        return FXCollections.observableArrayList(products);
     }
 
     @FXML
-    private void tblViewUnitOnClick(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-            viewDetails();
-        } else {
-            System.out.println(event.getClickCount());
-        }
+    private void tblViewStockOnClick(MouseEvent event) {
+        viewDetails();
     }
 
     @FXML
@@ -118,7 +134,7 @@ public class ViewUnitController
 
     @FXML
     private void btnUpdateOnAction(ActionEvent event) {
-        if (this.tblViewUnit.getSelectionModel().getSelectedItem() != null) {
+        if (this.tblCurrentStock.getSelectionModel().getSelectedItem() != null) {
             viewDetails();
         } else {
             System.out.println("EMPTY SELECTION");
@@ -127,10 +143,9 @@ public class ViewUnitController
 
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
-        if (!this.tblViewUnit.getSelectionModel().isEmpty()) {
-            ListUnit selectedUnit = (ListUnit) this.tblViewUnit.getSelectionModel().getSelectedItem();
-            String unitName = selectedUnit.getUnitName();
-            this.unitId = selectedUnit.getUnitId();
+        if (!this.tblCurrentStock.getSelectionModel().isEmpty()) {
+            ProductGui selectedProduct = (ProductGui) this.tblCurrentStock.getSelectionModel().getSelectedItem();
+            String unitName = selectedProduct.getDescription();
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Login Now");
             alert.setHeaderText("Confirm");
@@ -173,20 +188,18 @@ public class ViewUnitController
 
     public void showDetails() {
         this.clmUnitId.setCellValueFactory(new PropertyValueFactory("unitId"));
-        this.clmUnitName.setCellValueFactory(new PropertyValueFactory("unitName"));
-        this.clmUnitDescription.setCellValueFactory(new PropertyValueFactory("unitDescription"));
-        this.clmUnitCreator.setCellValueFactory(new PropertyValueFactory("creatorName"));
-        this.clmUnitCreateDate.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
+//        this.clmDescription.setCellValueFactory(new PropertyValueFactory("unitName"));
+        this.clmMrp.setCellValueFactory(new PropertyValueFactory("unitDescription"));
+        this.clmCostOfSelling.setCellValueFactory(new PropertyValueFactory("creatorName"));
+        this.clmQuantity.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
         this.unitGetway.view(this.unit);
     }
 
     private void viewDetails() {
-        if (!this.tblViewUnit.getSelectionModel().isEmpty()) {
-            ListUnit selectedUnit = (ListUnit) this.tblViewUnit.getSelectionModel().getSelectedItem();
-            System.out.println("ID is");
-            System.out.println(selectedUnit.getUnitId());
-            String items = selectedUnit.getUnitId();
-            if (!items.equals(null)) {
+        if (!this.tblCurrentStock.getSelectionModel().isEmpty()) {
+            ProductGui selectedProduct = (ProductGui) this.tblCurrentStock.getSelectionModel().getSelectedItem();
+            ProductId productId = null;
+            if (productId!=null) {
                 AddUnitController addUnitController = new AddUnitController();
                 UserNameMedia media = new UserNameMedia();
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -202,7 +215,6 @@ public class ViewUnitController
                     unitController.lblContent.setText("UNIT DETAILS");
                     unitController.btnUpdate.setVisible(true);
                     unitController.btnSave.setVisible(true);
-                    unitController.unitId = selectedUnit.getUnitId();
                     unitController.showDetails();
                     Stage nStage = new Stage();
                     nStage.setScene(scene);
@@ -222,10 +234,10 @@ public class ViewUnitController
     public void tfSearchOnKeyResele(Event event) {
         this.unit = Unit.valueOf(this.tfSearch.getText().trim());
         this.clmUnitId.setCellValueFactory(new PropertyValueFactory("unitId"));
-        this.clmUnitName.setCellValueFactory(new PropertyValueFactory("unitName"));
-        this.clmUnitDescription.setCellValueFactory(new PropertyValueFactory("unitDescription"));
-        this.clmUnitCreator.setCellValueFactory(new PropertyValueFactory("creatorName"));
-        this.clmUnitCreateDate.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
+        //this.clmDescription.setCellValueFactory(new PropertyValueFactory("unitName"));
+        this.clmMrp.setCellValueFactory(new PropertyValueFactory("unitDescription"));
+        this.clmCostOfSelling.setCellValueFactory(new PropertyValueFactory("creatorName"));
+        this.clmQuantity.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
         this.unitGetway.searchView(this.unit);
     }
 

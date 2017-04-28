@@ -430,7 +430,8 @@ public class ApplicationController implements Initializable {
             URL resource = URLService.getFileAsResoure("application/stock/AddCurrentStock.fxml");
             fxmlLoader.load(resource.openStream());
         } catch (IOException localIOException) {
-            System.err.println("Exception occurred....");
+            localIOException.printStackTrace();
+            System.err.println("Exception occurred...." + localIOException.getMessage());
         }
         //this.acContent.getChildren().add(FXMLLoader.load(resource));
         AnchorPane root = (AnchorPane) fxmlLoader.getRoot();

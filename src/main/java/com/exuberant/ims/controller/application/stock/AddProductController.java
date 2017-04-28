@@ -441,7 +441,7 @@ public class AddProductController
         try {
             CurrentStoreController asc = new CurrentStoreController();
             FXMLLoader fXMLLoader = new FXMLLoader();
-            URL resource = URLService.getFileAsResoure("application/stock/CurrentStore.fxml");
+            URL resource = URLService.getFileAsResoure("application/stock/CurrentStock.fxml");
             fXMLLoader.load(resource.openStream());
             CurrentStoreController currentStoreController = (CurrentStoreController) fXMLLoader.getController();
             currentStoreController.viewDetails();

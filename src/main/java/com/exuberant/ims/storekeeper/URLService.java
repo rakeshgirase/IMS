@@ -14,6 +14,7 @@ public class URLService {
 
     public static URL getFileAsResoure(String path) {
         try {
+            System.out.println("Loading: " + path);
             return new File("src/main/java/view/" + path).toURI().toURL();
         } catch (MalformedURLException e) {
             String message = "Failed to load file: " + path;
