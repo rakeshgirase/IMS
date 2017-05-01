@@ -2,6 +2,7 @@ package com.exuberant.ims.dal;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 
 @Entity
@@ -10,16 +11,16 @@ public class Product {
     private static final java.math.BigDecimal HUNDRED = new BigDecimal(100);
     @EmbeddedId
     private ProductId id;
-    private String description;
-    private BigDecimal quantity;
     private BigDecimal costOfSelling;
     private BigDecimal mrp;
     private BigDecimal discount;
     private BigDecimal actualCost;
+    private BigDecimal quantity;
+    @Transient
     private boolean calculateActualCost = true;
 
     public Product(String description, BigDecimal quantity, BigDecimal costOfSelling, BigDecimal mrp, BigDecimal discount, BigDecimal actualCost) {
-        this.description = description;
+        this.id = new ProductId(description, PackageType.PACK, new Weight(new BigDecimal(500), Unit.GRAMS));
         this.quantity = quantity;
         this.costOfSelling = costOfSelling;
         this.mrp = mrp;
@@ -103,12 +104,19 @@ public class Product {
         return id.getWeight().multiply(quantity);
     }
 
-    public String getDescription() {
-        return description;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return id != null ? id.equals(product.id) : product.id == null;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 }
 

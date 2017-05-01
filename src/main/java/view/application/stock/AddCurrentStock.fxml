@@ -37,13 +37,17 @@
         </center>
         <bottom>
             <HBox alignment="CENTER_RIGHT" prefHeight="72.0" prefWidth="666.0" spacing="20.0" BorderPane.alignment="CENTER">
-                <TextField fx:id="firstNameField" promptText="First Name"
-                           prefWidth="90"/>
-                <TextField fx:id="lastNameField" promptText="Last Name"
-                           prefWidth="90"/>
-                <TextField fx:id="emailField" promptText="email"
-                           prefWidth="150"/>
-                <Button fx:id="btnAddNew" mnemonicParsing="false" onAction="#btnAddItemOnAction" text="Add New" />
+                <TextField fx:id="prodcutNameTextField" promptText="Product Name"
+                           prefWidth="212"/>
+                <TextField fx:id="mrpTextField" promptText="MRP"
+                           prefWidth="200"/>
+                <TextField fx:id="costOfSellingTextField" promptText="Cost Of Selling"
+                           prefWidth="157"/>
+                <TextField fx:id="quantityTextField" promptText="Quantity"
+                           prefWidth="156"/>
+                <TextField fx:id="weightTextField" promptText="Weight"
+                           prefWidth="156"/>
+                <Button fx:id="btnAddNew" mnemonicParsing="false" onAction="#btnStock" text="Add New" />
                 <Button fx:id="btnUpdate" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="Update" />
                 <Button fx:id="btnDelete" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="Delete" />
 

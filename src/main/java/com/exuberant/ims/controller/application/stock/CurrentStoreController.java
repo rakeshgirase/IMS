@@ -4,6 +4,7 @@ import com.exuberant.ims.bll.CurrentProductBLL;
 import com.exuberant.ims.controller.application.sell.NewSellController;
 import com.exuberant.ims.controller.application.sell.ViewCustomerController;
 import com.exuberant.ims.dal.CurrentProduct;
+import com.exuberant.ims.dal.ProductGui;
 import com.exuberant.ims.getway.CurrentProductGetway;
 import com.exuberant.ims.list.ListProduct;
 import com.exuberant.ims.media.UserNameMedia;
@@ -76,27 +77,27 @@ public class CurrentStoreController implements Initializable {
     @FXML
     private TableColumn<Object, Object> tblClmProductName;
     @FXML
-    private TableColumn<Object, Object> tblClmProductquantity;
+    private TableColumn<Object, Object> tblClmProductQuantity;
     @FXML
     private TableColumn<Object, Object> tblClmProductUnit;
     @FXML
     private TableColumn<Object, Object> tblClmProductRMA;
     @FXML
-    private TableColumn<Object, Object> tblClmProductSupplyer;
+    private TableColumn<Object, Object> tblClmProductSupplier;
     @FXML
     private TableColumn<Object, Object> tblClmProductBrand;
     @FXML
-    private TableColumn<Object, Object> tblClmProductCatagory;
+    private TableColumn<Object, Object> tblClmProductCategory;
     @FXML
     private TableColumn<Object, Object> tblClmProductPursesPrice;
     @FXML
     private TableColumn<Object, Object> tblClmProductSellPrice;
     @FXML
-    private TableColumn<Object, Object> tblClmProductdate;
+    private TableColumn<Object, Object> tblClmProductDate;
     @FXML
     private TableColumn<Object, Object> tblClmProductAddBy;
     @FXML
-    private TableColumn<Object, Object> tblClmProductdescription;
+    private TableColumn<Object, Object> tblClmProductDescription;
     @FXML
     private MenuItem miSellSelected;
     @FXML
@@ -210,20 +211,21 @@ public class CurrentStoreController implements Initializable {
 
     public void viewDetails() {
         System.out.println("CLCKED");
+
         //this.tblViewCurrentStore.setItems(this.productCurrent.getcurrentProductList);
         this.tblClmProductId.setCellValueFactory(new PropertyValueFactory("productId"));
         this.tblClmProductName.setCellValueFactory(new PropertyValueFactory("productName"));
-        this.tblClmProductquantity.setCellValueFactory(new PropertyValueFactory("quantity"));
-        this.tblClmProductdescription.setCellValueFactory(new PropertyValueFactory("description"));
-        this.tblClmProductSupplyer.setCellValueFactory(new PropertyValueFactory("suppliedBy"));
+        this.tblClmProductQuantity.setCellValueFactory(new PropertyValueFactory("quantity"));
+        this.tblClmProductDescription.setCellValueFactory(new PropertyValueFactory("description"));
+        this.tblClmProductSupplier.setCellValueFactory(new PropertyValueFactory("suppliedBy"));
         this.tblClmProductBrand.setCellValueFactory(new PropertyValueFactory("brand"));
-        this.tblClmProductCatagory.setCellValueFactory(new PropertyValueFactory("catagory"));
+        this.tblClmProductCategory.setCellValueFactory(new PropertyValueFactory("catagory"));
         this.tblClmProductUnit.setCellValueFactory(new PropertyValueFactory("unit"));
         this.tblClmProductPursesPrice.setCellValueFactory(new PropertyValueFactory("pursesPrice"));
         this.tblClmProductSellPrice.setCellValueFactory(new PropertyValueFactory("sellPrice"));
         this.tblClmProductRMA.setCellValueFactory(new PropertyValueFactory("rma"));
         this.tblClmProductAddBy.setCellValueFactory(new PropertyValueFactory("user"));
-        this.tblClmProductdate.setCellValueFactory(new PropertyValueFactory("date"));
+        this.tblClmProductDate.setCellValueFactory(new PropertyValueFactory("date"));
         this.currentProductGetway.viewFistTen(this.productCurrent);
     }
 
@@ -338,17 +340,17 @@ public class CurrentStoreController implements Initializable {
         this.tblViewCurrentStore.setItems(observableList(currentProducts));*/
         this.tblClmProductId.setCellValueFactory(new PropertyValueFactory("productId"));
         this.tblClmProductName.setCellValueFactory(new PropertyValueFactory("productName"));
-        this.tblClmProductquantity.setCellValueFactory(new PropertyValueFactory("quantity"));
-        this.tblClmProductdescription.setCellValueFactory(new PropertyValueFactory("description"));
-        this.tblClmProductSupplyer.setCellValueFactory(new PropertyValueFactory("suppliedBy"));
+        this.tblClmProductQuantity.setCellValueFactory(new PropertyValueFactory("quantity"));
+        this.tblClmProductDescription.setCellValueFactory(new PropertyValueFactory("description"));
+        this.tblClmProductSupplier.setCellValueFactory(new PropertyValueFactory("suppliedBy"));
         this.tblClmProductBrand.setCellValueFactory(new PropertyValueFactory("brand"));
-        this.tblClmProductCatagory.setCellValueFactory(new PropertyValueFactory("catagory"));
+        this.tblClmProductCategory.setCellValueFactory(new PropertyValueFactory("catagory"));
         this.tblClmProductUnit.setCellValueFactory(new PropertyValueFactory("unit"));
         this.tblClmProductPursesPrice.setCellValueFactory(new PropertyValueFactory("pursesPrice"));
         this.tblClmProductSellPrice.setCellValueFactory(new PropertyValueFactory("sellPrice"));
         this.tblClmProductRMA.setCellValueFactory(new PropertyValueFactory("rma"));
         this.tblClmProductAddBy.setCellValueFactory(new PropertyValueFactory("user"));
-        this.tblClmProductdate.setCellValueFactory(new PropertyValueFactory("date"));
+        this.tblClmProductDate.setCellValueFactory(new PropertyValueFactory("date"));
         this.currentProductGetway.view(this.productCurrent);
     }
 
@@ -365,5 +367,25 @@ public class CurrentStoreController implements Initializable {
         } else {
             System.out.println("Noting");
         }
+    }
+
+    public void doEditCancel(TableColumn.CellEditEvent<ProductGui, String> objectObjectCellEditEvent) {
+        System.err.println("doEditCancel");
+    }
+
+    public void doCommit(TableColumn.CellEditEvent<ProductGui, String> objectObjectCellEditEvent) {
+        System.err.println("doCommit");
+    }
+
+    public void doEdit(TableColumn.CellEditEvent<ProductGui, String> objectObjectCellEditEvent) {
+        System.err.println("doEdit");
+    }
+
+    public void doEditTable(MouseEvent mouseEvent) {
+        System.err.println("doEditTable");
+    }
+
+    public void btnRefreshOnAction(ActionEvent actionEvent) {
+
     }
 }

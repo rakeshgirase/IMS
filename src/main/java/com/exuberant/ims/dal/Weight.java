@@ -1,6 +1,7 @@
 package com.exuberant.ims.dal;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
@@ -8,6 +9,7 @@ import java.math.BigDecimal;
 public class Weight {
 
     @Id
+    @GeneratedValue
     private Long id;
     private BigDecimal weight;
     private Unit unit = Unit.GRAMS;
@@ -21,7 +23,34 @@ public class Weight {
         this.weight = weight;
     }
 
+    public Weight() {
+    }
+
     public Weight multiply(BigDecimal quantity) {
         return new Weight(weight.multiply(quantity), this.unit);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public BigDecimal getWeight() {
+        return weight;
+    }
+
+    public void setWeight(BigDecimal weight) {
+        this.weight = weight;
+    }
+
+    public Unit getUnit() {
+        return unit;
+    }
+
+    public void setUnit(Unit unit) {
+        this.unit = unit;
     }
 }

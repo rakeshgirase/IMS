@@ -125,7 +125,6 @@ public class StockController
         fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         ViewCatagoryController viewCatagoryController = (ViewCatagoryController) fXMLLoader.getController();
-        viewCatagoryController.setMedia(media);
         viewCatagoryController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();
@@ -142,7 +141,6 @@ public class StockController
         fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         CurrentStockController currentStockController = (CurrentStockController) fXMLLoader.getController();
-        currentStockController.setMedia(media);
         currentStockController.showDetails();
         AnchorPane acPane = (AnchorPane) fXMLLoader.getRoot();
         this.spMainContent.getChildren().clear();

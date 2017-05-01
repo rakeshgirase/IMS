@@ -1,8 +1,7 @@
 package com.exuberant.ims.controller.application.stock;
 
-import com.exuberant.ims.bll.UnitBLL;
 import com.exuberant.ims.dal.*;
-import com.exuberant.ims.getway.UnitGetway;
+import com.exuberant.ims.getway.ProductGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.collections.FXCollections;
@@ -27,15 +26,13 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CurrentStockController
         implements Initializable {
     Unit unit = Unit.GRAMS;
-    UnitGetway unitGetway = new UnitGetway();
-    UnitBLL unitBLL = new UnitBLL();
+    ProductGateway productGateway = new ProductGateway();
     private Long userId;
     private String creatorId;
     private String unitId;
@@ -74,22 +71,25 @@ public class CurrentStockController
     private MenuItem miView;
     @FXML
     private Button btnRefresh;
+    @FXML
+    public TextField prodcutNameTextField;
+    @FXML
+    public TextField mrpTextField;
+    @FXML
+    public TextField costOfSellingTextField;
+    @FXML
+    public TextField quantityTextField;
+    @FXML
+    public TextField weightTextField;
 
-    public UserNameMedia getMedia() {
-        return this.media;
-    }
-
-    public void setMedia(UserNameMedia media) {
-        this.userId = media.getId();
-        this.media = media;
-    }
+    private ObservableList<ProductGui> data;
 
     public void initialize(URL url, ResourceBundle rb) {
         clmDescription.setCellValueFactory(new PropertyValueFactory("description"));
         clmMrp.setCellValueFactory(new PropertyValueFactory("mrp"));
         clmCostOfSelling.setCellValueFactory(new PropertyValueFactory("costOfSelling"));
         clmQuantity.setCellValueFactory(new PropertyValueFactory("quantity"));
-        clmWeight.setCellValueFactory(new PropertyValueFactory("weight"));
+        clmWeight.setCellValueFactory(new PropertyValueFactory("weightTextField"));
         tblCurrentStock.setItems(fetchCurrentStock());
     }
 
@@ -97,8 +97,8 @@ public class CurrentStockController
         Product p1 = new Product("Desc 1", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
         Product p2 = new Product("Desc 2", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
         Product p3 = new Product("Desc 3", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
-        Collection<ProductGui> products = Arrays.asList(new ProductGui(p1),new ProductGui(p2),new ProductGui(p3));
-        return FXCollections.observableArrayList(products);
+        data = FXCollections.observableArrayList(Arrays.asList(new ProductGui(p1),new ProductGui(p2),new ProductGui(p3)));
+        return data;
     }
 
     @FXML
@@ -153,7 +153,6 @@ public class CurrentStockController
             alert.initStyle(StageStyle.UNDECORATED);
             Optional<ButtonType> result = alert.showAndWait();
             if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-                this.unitBLL.delete(this.unit);
                 tfSearchOnKeyResele(event);
             }
         } else {
@@ -192,7 +191,6 @@ public class CurrentStockController
         this.clmMrp.setCellValueFactory(new PropertyValueFactory("unitDescription"));
         this.clmCostOfSelling.setCellValueFactory(new PropertyValueFactory("creatorName"));
         this.clmQuantity.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
-        this.unitGetway.view(this.unit);
     }
 
     private void viewDetails() {
@@ -238,11 +236,21 @@ public class CurrentStockController
         this.clmMrp.setCellValueFactory(new PropertyValueFactory("unitDescription"));
         this.clmCostOfSelling.setCellValueFactory(new PropertyValueFactory("creatorName"));
         this.clmQuantity.setCellValueFactory(new PropertyValueFactory("dateOfCreation"));
-        this.unitGetway.searchView(this.unit);
     }
 
     @FXML
     private void btnRefreshOnAction(ActionEvent event) {
         showDetails();
+    }
+
+    public void btnStock() {
+        Product newProduct = new Product(prodcutNameTextField.getText(), new BigDecimal(quantityTextField.getText()), new BigDecimal(costOfSellingTextField.getText()), new BigDecimal(mrpTextField.getText()), new BigDecimal(0.0), null);
+        data.add(new ProductGui(newProduct));
+        prodcutNameTextField.clear();
+        mrpTextField.clear();
+        costOfSellingTextField.clear();
+        quantityTextField.clear();
+        weightTextField.clear();
+        productGateway.save(newProduct);
     }
 }

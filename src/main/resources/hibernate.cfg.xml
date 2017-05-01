@@ -20,8 +20,9 @@
         <property name="connection.pool_size">1</property>
         <property name="current_session_context_class">thread</property>
 
-
         <mapping class="com.exuberant.ims.dal.Users"/>
-
+        <mapping class="com.exuberant.ims.dal.Product"/>
+        <mapping class="com.exuberant.ims.dal.Weight"/>
+        <mapping class="com.exuberant.ims.dal.ProductId"/>
     </session-factory>
 </hibernate-configuration>

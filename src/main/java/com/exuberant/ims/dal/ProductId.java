@@ -1,16 +1,29 @@
 package com.exuberant.ims.dal;
 
-public class ProductId {
-    private String name;
+import javax.persistence.Transient;
+import java.io.Serializable;
+
+public class ProductId implements Serializable{
+    private String description;
     private PackageType packageType;
+    @Transient
     private Weight weight;
 
-    public String getName() {
-        return name;
+    public ProductId(String description, PackageType packageType, Weight weight) {
+        this.description = description;
+        this.packageType = packageType;
+        this.weight = weight;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public ProductId() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public PackageType getPackageType() {
