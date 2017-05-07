@@ -1,16 +1,17 @@
 package com.exuberant.ims.dal;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 public class Product {
 
     private static final java.math.BigDecimal HUNDRED = new BigDecimal(100);
-    @EmbeddedId
-    private ProductId id;
+    @Id
+    @GeneratedValue
+    private Long id;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private CoreProduct coreProduct;
     private BigDecimal costOfSelling;
     private BigDecimal mrp;
     private BigDecimal discount;
@@ -19,8 +20,8 @@ public class Product {
     @Transient
     private boolean calculateActualCost = true;
 
-    public Product(String description, BigDecimal quantity, BigDecimal costOfSelling, BigDecimal mrp, BigDecimal discount, BigDecimal actualCost) {
-        this.id = new ProductId(description, PackageType.PACK, new Weight(new BigDecimal(500), Unit.GRAMS));
+    public Product(String description, BigDecimal quantity, BigDecimal costOfSelling, BigDecimal mrp, BigDecimal discount, BigDecimal actualCost, String weight) {
+        this.coreProduct = new CoreProduct(description, PackageType.PACK, weight);
         this.quantity = quantity;
         this.costOfSelling = costOfSelling;
         this.mrp = mrp;
@@ -28,16 +29,19 @@ public class Product {
         this.actualCost = actualCost;
     }
 
+    public Product() {
+    }
+
     public void setCalculateActualCost(Boolean calculateActualCost) {
         this.calculateActualCost = calculateActualCost;
     }
 
-    public ProductId getId() {
-        return id;
+    public CoreProduct getCoreProduct() {
+        return coreProduct;
     }
 
-    public void setId(ProductId id) {
-        this.id = id;
+    public void setCoreProduct(CoreProduct coreProduct) {
+        this.coreProduct = coreProduct;
     }
 
     public BigDecimal getQuantity() {
@@ -84,8 +88,8 @@ public class Product {
         setCalculateActualCost(false);
     }
 
-    public Weight getWeight() {
-        return id.getWeight();
+    public String getWeight() {
+        return coreProduct.getWeight();
     }
 
     public BigDecimal getTotalCostOfSelling() {
@@ -100,8 +104,8 @@ public class Product {
         return actualCost.multiply(quantity);
     }
 
-    public Weight getTotalWeight() {
-        return id.getWeight().multiply(quantity);
+    public String getTotalWeight() {
+        return "TOTAL WEIGHT";
     }
 
     @Override
@@ -111,12 +115,12 @@ public class Product {
 
         Product product = (Product) o;
 
-        return id != null ? id.equals(product.id) : product.id == null;
+        return coreProduct != null ? coreProduct.equals(product.coreProduct) : product.coreProduct == null;
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return coreProduct != null ? coreProduct.hashCode() : 0;
     }
 }
 

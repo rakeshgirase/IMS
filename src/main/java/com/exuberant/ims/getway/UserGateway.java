@@ -1,6 +1,6 @@
 package com.exuberant.ims.getway;
 
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.gateway.HibernateRepository;
 import com.exuberant.ims.list.ListEmployee;
 import javafx.collections.ObservableList;
@@ -10,45 +10,37 @@ import javafx.stage.StageStyle;
 
 public class UserGateway {
 
-    public void save(Users users) {
-        if (isUniqName(users)) {
-            System.out.println("Creating Users" + users);
-            HibernateRepository.getRepository().save(users);
-            System.out.println("Created Users: " + users);
-
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Success :");
-            alert.setHeaderText("Success");
-            alert.setContentText("Users " + users.getUserName() + " Added successfully");
-            alert.initStyle(StageStyle.UNDECORATED);
-            alert.showAndWait();
+    public void save(User user) {
+        if (isUniqName(user)) {
+            HibernateRepository.getRepository().save(user);
         }
     }
 
-    public void view(Users users) {
+    public void view(User user) {
 
     }
 
-    public void selectedView(Users users) {
+    public void selectedView(User user) {
     }
 
-    public void update(Users users) {
-        HibernateRepository.getRepository().update(users);
+    public void update(User user) {
+        HibernateRepository.getRepository().update(user);
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Success :");
         alert.setHeaderText("Updated !!");
-        alert.setContentText("Users " + users.getUserName() + " Updated Successfully");
+        alert.setContentText("User " + user.getUserName() + " Updated Successfully");
         alert.initStyle(StageStyle.UNDECORATED);
         alert.showAndWait();
 
     }
 
-    public void delete(Users users) {
-        HibernateRepository.getRepository().delete(users);
+    public void delete(User user) {
+        HibernateRepository.getRepository().delete(user);
     }
 
-    public boolean isUniqName(Users users) {
+    public boolean isUniqName(User user) {
         boolean isUniqName = true;
+        //TODO: Implement Logic To Validate the User created
         return isUniqName;
     }
 

@@ -18,8 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class SellController
-        implements Initializable {
+public class SellController implements Initializable {
     @FXML
     public AnchorPane acMainSells;
     UserNameMedia nameMedia;
@@ -34,11 +33,6 @@ public class SellController
     private Label lblPathInfo;
     @FXML
     private StackPane spMainContent;
-
-    public void setNameMedia(UserNameMedia nameMedia) {
-        this.userId = nameMedia.getId();
-        this.nameMedia = nameMedia;
-    }
 
     public void initialize(URL url, ResourceBundle rb) {
         ToggleGroup group = new ToggleGroup();
@@ -58,7 +52,6 @@ public class SellController
         fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         ViewSellController controller = (ViewSellController) fXMLLoader.getController();
-        controller.setNameMedia(this.nameMedia);
         controller.viewDetails();
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(fXMLLoader.getRoot());

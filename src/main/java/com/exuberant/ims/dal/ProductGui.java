@@ -17,7 +17,7 @@ public class ProductGui {
     private SimpleStringProperty  actualCost;
 
     public ProductGui(Product product) {
-        this.description = new SimpleStringProperty(product.getId().getDescription());
+        this.description = new SimpleStringProperty(product.getCoreProduct().getDescription());
         this.quantity = new SimpleStringProperty(product.getQuantity().toString());
         this.costOfSelling = new SimpleStringProperty(product.getCostOfSelling().toString());
         this.mrp = new SimpleStringProperty(product.getMrp().toString());

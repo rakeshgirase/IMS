@@ -3,9 +3,11 @@ package com.exuberant.ims.dal;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-public class Users {
+@Table(name = "USERS")
+public class User {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,6 +23,16 @@ public class Users {
     private String date;
     private Long creatorId;
     //   private Image image;
+
+
+    public User(String userName, String fullName, String password) {
+        this.userName = userName;
+        this.fullName = fullName;
+        this.password = password;
+    }
+
+    public User() {
+    }
 
     public Long getId() {
         return id;
@@ -120,7 +132,7 @@ public class Users {
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "User{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", fullName='" + fullName + '\'' +

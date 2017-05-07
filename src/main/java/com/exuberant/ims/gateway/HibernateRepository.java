@@ -18,7 +18,7 @@ public class HibernateRepository implements Repository{
     @Override
     public <E> E save(E e) {
         Transactionable transactionable = HibernateTransactionable.getHibernateTransactionable();
-        transactionable.runWithSession(session -> session.save(e));
+        transactionable.runInTransaction(session -> session.save(e));
         return e;
     }
 
@@ -37,19 +37,18 @@ public class HibernateRepository implements Repository{
     @Override
     public <E> void delete(E e) {
         Transactionable transactionable = HibernateTransactionable.getHibernateTransactionable();
-        transactionable.runWithSession(session -> session.delete(e));
+        transactionable.runInTransaction(session -> session.delete(e));
     }
 
     @Override
     public <E> void update(E e) {
         Transactionable transactionable = HibernateTransactionable.getHibernateTransactionable();
-        transactionable.runWithSession(session -> session.update(e));
+        transactionable.runInTransaction(session -> session.update(e));
     }
 
     @Override
     public <E> void saveOrUpdate(E e) {
         Transactionable transactionable = HibernateTransactionable.getHibernateTransactionable();
-        transactionable.runWithSession(session -> session.saveOrUpdate(e));
+        transactionable.runInTransaction(session -> session.saveOrUpdate(e));
     }
-
 }

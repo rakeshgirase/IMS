@@ -63,11 +63,6 @@ public class ViewSellController
     @FXML
     private Button btnRefresh;
 
-    public void setNameMedia(UserNameMedia nameMedia) {
-        this.userId = nameMedia.getId();
-        this.nameMedia = nameMedia;
-    }
-
     public void initialize(URL location, ResourceBundle resources) {
     }
 
@@ -200,5 +195,8 @@ public class ViewSellController
         this.tfSearch.clear();
         this.customer.customerList.clear();
         viewDetails();
+    }
+
+    public void btnSellOrderOnAction(ActionEvent actionEvent) {
     }
 }

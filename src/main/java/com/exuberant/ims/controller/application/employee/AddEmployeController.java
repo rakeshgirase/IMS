@@ -1,7 +1,7 @@
 package com.exuberant.ims.controller.application.employee;
 
 import com.exuberant.ims.custom.CustomTf;
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.getway.UserGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
@@ -64,7 +64,7 @@ public class AddEmployeController
     private BufferedImage bufferedImage;
     private Image image;
     private String imagePath;
-    private Users users;
+    private User user;
     private UserNameMedia nameMedia;
 
     public UserNameMedia getNameMedia() {
@@ -72,7 +72,7 @@ public class AddEmployeController
     }
 
     public void setNameMedia(UserNameMedia nameMedia) {
-        this.users = nameMedia.getUsers();
+        this.user = nameMedia.getUser();
         this.nameMedia = nameMedia;
     }
 
@@ -108,16 +108,16 @@ public class AddEmployeController
 
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
-        this.users.setUserName(this.tfUserName.getText());
-        this.users.setFullName(this.tfFullName.getText());
-        this.users.setEmailAddress(this.tfEmail.getText());
-        this.users.setContactNumber(this.tfPhone.getText());
-        this.users.setSalary(this.tfSalary.getText());
-        this.users.setAddress(this.taAddress.getText());
-        this.users.setPassword(this.tfPassword.getText());
-        this.users.setImagePath(this.imagePath);
-        this.users.setCreatorId(this.users.getId());
-        this.userGateway.save(this.users);
+        this.user.setUserName(this.tfUserName.getText());
+        this.user.setFullName(this.tfFullName.getText());
+        this.user.setEmailAddress(this.tfEmail.getText());
+        this.user.setContactNumber(this.tfPhone.getText());
+        this.user.setSalary(this.tfSalary.getText());
+        this.user.setAddress(this.taAddress.getText());
+        this.user.setPassword(this.tfPassword.getText());
+        this.user.setImagePath(this.imagePath);
+        this.user.setCreatorId(this.user.getId());
+        this.userGateway.save(this.user);
         basicPermission();
     }
 

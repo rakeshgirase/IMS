@@ -2,7 +2,7 @@ package com.exuberant.ims.controller;
 
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.getway.UserGateway;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.beans.binding.BooleanBinding;
@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 
 public class RegistrationController
         implements Initializable {
-    Users users = new Users();
+    User user = new User();
     UserGateway userGateway = new UserGateway();
 
     @FXML
@@ -88,10 +88,10 @@ public class RegistrationController
     @FXML
     private void btnRegistration(ActionEvent event) {
         if (isValidCondition()) {
-            this.users.setUserName(this.tfUserName.getText());
-            this.users.setFullName(this.tfUserName.getText());
-            this.users.setPassword(this.pfUserPassword.getText());
-            this.userGateway.save(this.users);
+            this.user.setUserName(this.tfUserName.getText());
+            this.user.setFullName(this.tfUserName.getText());
+            this.user.setPassword(this.pfUserPassword.getText());
+            this.userGateway.save(this.user);
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Login Now");
             alert.setHeaderText("Login now");
@@ -126,10 +126,10 @@ public class RegistrationController
                 (this.tfFullName.getText().trim().isEmpty()) ||
                 (this.pfUserPassword.getText().isEmpty()) ||
                 (this.pfReUserPassword.getText().isEmpty())) {
-            System.out.println("Empty users Name");
+            System.out.println("Empty user Name");
             nullChecq = false;
         } else {
-            System.out.println("Users Name not Empty");
+            System.out.println("User Name not Empty");
             nullChecq = true;
         }
         return nullChecq;

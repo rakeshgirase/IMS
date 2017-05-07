@@ -5,7 +5,7 @@ import com.exuberant.ims.controller.application.SellController;
 import com.exuberant.ims.controller.application.SettingsController;
 import com.exuberant.ims.controller.application.StockController;
 import com.exuberant.ims.controller.application.stock.AddProductController;
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.animation.TranslateTransition;
@@ -37,7 +37,7 @@ public class ApplicationController implements Initializable {
     String usrName;
     Long id;
 
-    Users users = new Users();
+    User user = new User();
     Image menuImage = new Image(URLService.getFileAsStream("icon/menu.png"));
     Image menuImageRed = new Image(URLService.getFileAsStream("icon/menuRed.png"));
     Image image;
@@ -127,9 +127,9 @@ public class ApplicationController implements Initializable {
 
     public void setUsrNameMedia(UserNameMedia usrNameMedia) {
         this.lblUserId.setText(String.valueOf(usrNameMedia.getId()));
-        this.lblUsrName.setText(usrNameMedia.getUsers().getUserName());
+        this.lblUsrName.setText(usrNameMedia.getUser().getUserName());
         this.id = usrNameMedia.getId();
-        this.usrName = usrNameMedia.getUsers().getUserName();
+        this.usrName = usrNameMedia.getUser().getUserName();
         this.usrNameMedia = usrNameMedia;
     }
 
@@ -273,7 +273,6 @@ public class ApplicationController implements Initializable {
             fXMLLoader.load(resource.openStream());
             nm.setId(this.id);
             SellController sellController = (SellController) fXMLLoader.getController();
-            sellController.setNameMedia(this.usrNameMedia);
             sellController.acMainSells.getStylesheets().add("style/MainStyle.css");
             sellController.tbtnSellOnAction(event);
             AnchorPane anchorPane = (AnchorPane) fXMLLoader.getRoot();
@@ -413,12 +412,12 @@ public class ApplicationController implements Initializable {
     }
 
     public void viewDetails() {
-        this.users.setId(this.id);
-        //this.image = this.users.image;
+        this.user.setId(this.id);
+        //this.image = this.user.image;
         //this.circleImgUsr.setFill(new ImagePattern(this.image));
         //this.imgUsrTop.setFill(new ImagePattern(this.image));
-        this.lblFullName.setText(this.users.getFullName());
-        this.lblUsrNamePopOver.setText(this.users.getUserName());
+        this.lblFullName.setText(this.user.getFullName());
+        this.lblUsrNamePopOver.setText(this.user.getUserName());
     }
 
     public void btnCurrentStockOnClick(ActionEvent actionEvent) throws IOException {

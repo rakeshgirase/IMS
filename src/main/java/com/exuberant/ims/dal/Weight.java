@@ -53,4 +53,13 @@ public class Weight {
     public void setUnit(Unit unit) {
         this.unit = unit;
     }
+
+    @Override
+    public String toString() {
+        return "Weight{" +
+                "id=" + id +
+                ", weight=" + weight +
+                ", unit=" + unit +
+                '}';
+    }
 }

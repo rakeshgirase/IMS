@@ -1,6 +1,6 @@
 package com.exuberant.ims.controller.application.settings;
 
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.getway.UserGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -37,7 +37,7 @@ import java.util.ResourceBundle;
 
 public class MyAccountController
         implements Initializable {
-    Users users = new Users();
+    User user = new User();
     UserGateway userGateway = new UserGateway();
 
     @FXML
@@ -86,14 +86,14 @@ public class MyAccountController
 
     @FXML
     private void btnSaveOnAction(ActionEvent event) {
-        this.users.setUserName(this.tfUserName.getText());
-        this.users.setFullName(this.tfFullName.getText());
-        this.users.setEmailAddress(this.tfEmailAddress.getText());
-        this.users.setAddress(this.taAddress.getText());
-        this.users.setContactNumber(this.tfContractNumber.getText());
-        this.users.setImagePath(this.imgPath);
-        //this.users.image = this.image;
-        this.userGateway.update(this.users);
+        this.user.setUserName(this.tfUserName.getText());
+        this.user.setFullName(this.tfFullName.getText());
+        this.user.setEmailAddress(this.tfEmailAddress.getText());
+        this.user.setAddress(this.taAddress.getText());
+        this.user.setContactNumber(this.tfContractNumber.getText());
+        this.user.setImagePath(this.imgPath);
+        //this.user.image = this.image;
+        this.userGateway.update(this.user);
     }
 
     @FXML
@@ -125,14 +125,14 @@ public class MyAccountController
     }
 
     public void showDetails() {
-        this.users.setId(this.userID);
-        this.userGateway.selectedView(this.users);
-        this.tfUserName.setText(this.users.getUserName());
-        this.tfFullName.setText(this.users.getFullName());
-        this.tfContractNumber.setText(this.users.getContactNumber());
-        this.tfEmailAddress.setText(this.users.getEmailAddress());
-        this.taAddress.setText(this.users.getAddress());
-        //this.image = this.users.image;
+        this.user.setId(this.userID);
+        this.userGateway.selectedView(this.user);
+        this.tfUserName.setText(this.user.getUserName());
+        this.tfFullName.setText(this.user.getFullName());
+        this.tfContractNumber.setText(this.user.getContactNumber());
+        this.tfEmailAddress.setText(this.user.getEmailAddress());
+        this.taAddress.setText(this.user.getAddress());
+        //this.image = this.user.image;
 //        this.retImage.setFill(new ImagePattern(this.image));
     }
 

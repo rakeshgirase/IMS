@@ -2,8 +2,7 @@ package com.exuberant.ims.controller;
 
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
-import com.exuberant.ims.dal.Users;
-import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
 import javafx.beans.binding.BooleanBinding;
@@ -28,11 +27,10 @@ import java.util.logging.Logger;
 
 public class LoginController
         implements Initializable {
-    Users users = new Users();
+    User user = new User();
     CustomTf cTF = new CustomTf();
     CustomPf cPF = new CustomPf();
 
-    String db = PropertyService.getInstance().getProperty("db");
     @FXML
     private TextField tfUserName;
     @FXML
@@ -67,8 +65,6 @@ public class LoginController
     @FXML
     private void btnLogin(ActionEvent event)
             throws IOException {
-        UserNameMedia media = new UserNameMedia();
-        ApplicationController apController = new ApplicationController();
         FXMLLoader loader = new FXMLLoader();
         URL resource = URLService.getFileAsResoure("Application.fxml");
         loader.setLocation(resource);
@@ -78,8 +74,6 @@ public class LoginController
         Stage adminPanelStage = new Stage();
         adminPanelStage.setMaximized(true);
         ApplicationController apControl = (ApplicationController) loader.getController();
-        UserNameMedia usrNameMedia = new UserNameMedia(1L, users);
-        apControl.setUsrNameMedia(usrNameMedia);
         apControl.btnHomeOnClick(event);
         apControl.permission();
         apControl.viewDetails();

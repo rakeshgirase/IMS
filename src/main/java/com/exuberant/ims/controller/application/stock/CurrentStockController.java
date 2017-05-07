@@ -25,18 +25,14 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
-public class CurrentStockController
-        implements Initializable {
+public class CurrentStockController implements Initializable {
     Unit unit = Unit.GRAMS;
     ProductGateway productGateway = new ProductGateway();
-    private Long userId;
-    private String creatorId;
-    private String unitId;
-    private UserNameMedia media;
     @FXML
     private TextField tfSearch;
     @FXML
@@ -89,15 +85,13 @@ public class CurrentStockController
         clmMrp.setCellValueFactory(new PropertyValueFactory("mrp"));
         clmCostOfSelling.setCellValueFactory(new PropertyValueFactory("costOfSelling"));
         clmQuantity.setCellValueFactory(new PropertyValueFactory("quantity"));
-        clmWeight.setCellValueFactory(new PropertyValueFactory("weightTextField"));
+        clmWeight.setCellValueFactory(new PropertyValueFactory("weight"));
         tblCurrentStock.setItems(fetchCurrentStock());
     }
 
     private ObservableList<ProductGui> fetchCurrentStock() {
-        Product p1 = new Product("Desc 1", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
-        Product p2 = new Product("Desc 2", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
-        Product p3 = new Product("Desc 3", new BigDecimal(1.0), new BigDecimal(10.0), new BigDecimal(50.0), new BigDecimal(2.0), new BigDecimal(15.0));
-        data = FXCollections.observableArrayList(Arrays.asList(new ProductGui(p1),new ProductGui(p2),new ProductGui(p3)));
+        List<Product> products = productGateway.getAll();
+        data = FXCollections.observableArrayList(products.stream().map(ProductGui::new).collect(Collectors.toList()));
         return data;
     }
 
@@ -118,7 +112,6 @@ public class CurrentStockController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddUnitController unitController = (AddUnitController) fxmlLoader.getController();
-            media.setId(this.userId);
             unitController.setNameMedia(media);
             unitController.lblContent.setText("ADD UNIT");
             unitController.btnUpdate.setVisible(false);
@@ -196,8 +189,8 @@ public class CurrentStockController
     private void viewDetails() {
         if (!this.tblCurrentStock.getSelectionModel().isEmpty()) {
             ProductGui selectedProduct = (ProductGui) this.tblCurrentStock.getSelectionModel().getSelectedItem();
-            ProductId productId = null;
-            if (productId!=null) {
+            CoreProduct coreProduct = null;
+            if (coreProduct != null) {
                 AddUnitController addUnitController = new AddUnitController();
                 UserNameMedia media = new UserNameMedia();
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -208,7 +201,6 @@ public class CurrentStockController
                     Scene scene = new Scene(parent);
                     scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
                     AddUnitController unitController = (AddUnitController) fxmlLoader.getController();
-                    media.setId(this.userId);
                     unitController.setNameMedia(media);
                     unitController.lblContent.setText("UNIT DETAILS");
                     unitController.btnUpdate.setVisible(true);
@@ -244,7 +236,7 @@ public class CurrentStockController
     }
 
     public void btnStock() {
-        Product newProduct = new Product(prodcutNameTextField.getText(), new BigDecimal(quantityTextField.getText()), new BigDecimal(costOfSellingTextField.getText()), new BigDecimal(mrpTextField.getText()), new BigDecimal(0.0), null);
+        Product newProduct = new Product(prodcutNameTextField.getText(), new BigDecimal(quantityTextField.getText()), new BigDecimal(costOfSellingTextField.getText()), new BigDecimal(mrpTextField.getText()), new BigDecimal(0.0), null, weightTextField.getText());
         data.add(new ProductGui(newProduct));
         prodcutNameTextField.clear();
         mrpTextField.clear();

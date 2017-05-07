@@ -1,10 +1,10 @@
 package com.exuberant.ims.media;
 
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 
 public class UserNameMedia {
     Long id;
-    Users users;
+    User user;
 
     public UserNameMedia() {
     }
@@ -13,9 +13,9 @@ public class UserNameMedia {
         this.id = Id;
     }
 
-    public UserNameMedia(Long id, Users users) {
+    public UserNameMedia(Long id, User user) {
         this.id = id;
-        this.users = users;
+        this.user = user;
     }
 
     public Long getId() {
@@ -26,11 +26,11 @@ public class UserNameMedia {
         this.id = id;
     }
 
-    public Users getUsers() {
-        return users;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsers(Users users) {
-        this.users = users;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

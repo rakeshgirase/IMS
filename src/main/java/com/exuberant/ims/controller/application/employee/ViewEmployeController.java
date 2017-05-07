@@ -3,7 +3,7 @@ package com.exuberant.ims.controller.application.employee;
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.custom.History;
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.getway.UserGateway;
 import com.exuberant.ims.list.ListEmployee;
 import com.exuberant.ims.media.UserNameMedia;
@@ -58,7 +58,7 @@ public class ViewEmployeController
     public Button btnClrCreatortf;
     CustomPf cPf = new CustomPf();
     CustomTf cTf = new CustomTf();
-    Users users = new Users();
+    User user = new User();
     UserGateway userGateway = new UserGateway();
 
     String db = PropertyService.getInstance().getProperty("db");
@@ -119,8 +119,8 @@ public class ViewEmployeController
     }
 
     public void setNameMedia(UserNameMedia nameMedia) {
-        this.users = nameMedia.getUsers();
-        this.name = nameMedia.getUsers().getUserName();
+        this.user = nameMedia.getUser();
+        this.name = nameMedia.getUser().getUserName();
         this.nameMedia = nameMedia;
     }
 
@@ -169,21 +169,21 @@ public class ViewEmployeController
 
     @FXML
     private void btnUpdateOnAction(ActionEvent event) throws FileNotFoundException {
-        this.users.setUserName(this.tfUserName.getText());
-        this.users.setFullName(this.tfFullName.getText());
-        this.users.setEmailAddress(this.tfEmailAddress.getText());
-        this.users.setAddress(this.taAddress.getText());
-        this.users.setContactNumber(this.tfPhoneNumber.getText());
-        this.users.setSalary(this.tfSalary.getText());
-        this.users.setAddress(this.taAddress.getText());
-        //this.users.image = this.usrImg;
+        this.user.setUserName(this.tfUserName.getText());
+        this.user.setFullName(this.tfFullName.getText());
+        this.user.setEmailAddress(this.tfEmailAddress.getText());
+        this.user.setAddress(this.taAddress.getText());
+        this.user.setContactNumber(this.tfPhoneNumber.getText());
+        this.user.setSalary(this.tfSalary.getText());
+        this.user.setAddress(this.taAddress.getText());
+        //this.user.image = this.usrImg;
         if (this.cbStatus.isSelected()) {
-            this.users.setStatus("1");
+            this.user.setStatus("1");
         } else {
-            this.users.setStatus("0");
+            this.user.setStatus("0");
         }
-        this.users.setCreatorId(this.users.getId());
-        this.userGateway.update(this.users);
+        this.user.setCreatorId(this.user.getId());
+        this.userGateway.update(this.user);
     }
 
     @FXML
@@ -195,8 +195,8 @@ public class ViewEmployeController
         alert.initStyle(StageStyle.UNDECORATED);
         Optional<ButtonType> result = alert.showAndWait();
         if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-            this.userGateway.selectedView(this.users);
-            this.userGateway.delete(this.users);
+            this.userGateway.selectedView(this.user);
+            this.userGateway.delete(this.user);
         }
         this.tblEmoyeeList.getItems().clear();
         showDetails();
@@ -218,8 +218,8 @@ public class ViewEmployeController
     @FXML
     private void hlViewPermissionOnAction(ActionEvent event)
             throws IOException {
-        this.userGateway.selectedView(this.users);
-        this.id = this.users.getId();
+        this.userGateway.selectedView(this.user);
+        this.id = this.user.getId();
         EmployeePermissionController pcc = new EmployeePermissionController();
         UserNameMedia usrID = new UserNameMedia();
         FXMLLoader loader = new FXMLLoader();
@@ -253,28 +253,28 @@ public class ViewEmployeController
         clearAll();
         ListEmployee employeeList = (ListEmployee) this.tblEmoyeeList.getSelectionModel().getSelectedItem();
         if (employeeList != null) {
-            this.users.setId(employeeList.getEmployeeId());
-            this.userGateway.selectedView(this.users);
-            this.id = this.users.getId();
-            this.tfUserName.setText(this.users.getUserName());
-            this.tfFullName.setText(this.users.getFullName());
-            this.tfPhoneNumber.setText(this.users.getContactNumber());
-            this.tfEmailAddress.setText(this.users.getEmailAddress());
-            this.tfSalary.setText(this.users.getSalary());
-            this.tfDateofJoin.setText(this.users.getDate());
-            this.creatorId = this.users.getCreatorId();
-            this.taAddress.setText(this.users.getAddress());
-            //this.image = this.users.image;
+            this.user.setId(employeeList.getEmployeeId());
+            this.userGateway.selectedView(this.user);
+            this.id = this.user.getId();
+            this.tfUserName.setText(this.user.getUserName());
+            this.tfFullName.setText(this.user.getFullName());
+            this.tfPhoneNumber.setText(this.user.getContactNumber());
+            this.tfEmailAddress.setText(this.user.getEmailAddress());
+            this.tfSalary.setText(this.user.getSalary());
+            this.tfDateofJoin.setText(this.user.getDate());
+            this.creatorId = this.user.getCreatorId();
+            this.taAddress.setText(this.user.getAddress());
+            //this.image = this.user.image;
             this.recUsrImage.setFill(new ImagePattern(this.image));
             this.tfCreatedBy.setText(this.lblCreator.getText());
-            if (this.users.getStatus().matches("1")) {
+            if (this.user.getStatus().matches("1")) {
                 this.cbStatus.setSelected(true);
                 this.cbStatus.setText("Active");
-            } else if (this.users.getStatus().matches("0")) {
+            } else if (this.user.getStatus().matches("0")) {
                 this.cbStatus.setSelected(false);
                 this.cbStatus.setText("Deactive");
             }
-            if (this.users.getStatus().matches("1")) {
+            if (this.user.getStatus().matches("1")) {
                 this.btnUpdate.setVisible(false);
                 this.btnDelete.setVisible(false);
                 this.hlChangePassword.setVisible(false);
@@ -292,7 +292,7 @@ public class ViewEmployeController
         this.tblEmoyeeList.setItems(this.userGateway.getAll());
         this.clmEmployeId.setCellValueFactory(new PropertyValueFactory("employeeId"));
         this.clmEmployeName.setCellValueFactory(new PropertyValueFactory("employeeName"));
-        this.userGateway.view(this.users);
+        this.userGateway.view(this.user);
     }
 
     public void checqPermission() {

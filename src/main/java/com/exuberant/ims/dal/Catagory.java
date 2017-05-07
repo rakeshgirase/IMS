@@ -13,7 +13,7 @@ public class Catagory {
     public String catagoryDescription;
     public String brandId;
     public String date;
-    public Users users;
+    public User user;
     public String creatorName;
     public String brandName;
     public String supplyerId;

@@ -1,7 +1,7 @@
 package com.exuberant.ims.controller.application.settings;
 
 import com.exuberant.ims.custom.CustomPf;
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class ChangePasswordController
         implements Initializable {
-    Users users = new Users();
+    User user = new User();
     CustomPf customPf = new CustomPf();
 
     @FXML
@@ -51,7 +51,7 @@ public class ChangePasswordController
     }
 
     public void setNameMedia(UserNameMedia nameMedia) {
-        this.users = nameMedia.getUsers();
+        this.user = nameMedia.getUser();
         this.nameMedia = nameMedia;
     }
 

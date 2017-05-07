@@ -3,7 +3,7 @@ package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.CatagoryBLL;
 import com.exuberant.ims.dal.Brand;
 import com.exuberant.ims.dal.Catagory;
-import com.exuberant.ims.dal.Users;
+import com.exuberant.ims.dal.User;
 import com.exuberant.ims.gateway.HibernateRepository;
 import com.exuberant.ims.getway.CatagoryGetway;
 import com.exuberant.ims.media.UserNameMedia;
@@ -47,7 +47,7 @@ public class AddCatagoryController
     CatagoryBLL catagoryBLL = new CatagoryBLL();
 
     ResultSet rs;
-    private Users users;
+    private User user;
     private String brandId;
     private String brnadName;
     private UserNameMedia media;
@@ -69,7 +69,7 @@ public class AddCatagoryController
     }
 
     public void setMedia(UserNameMedia media) {
-        this.users = media.getUsers();
+        this.user = media.getUser();
         this.media = media;
     }
 
@@ -83,7 +83,7 @@ public class AddCatagoryController
             this.catagory.supplyerName = ((String) this.cbSupplyerName.getSelectionModel().getSelectedItem());
             this.catagory.catagoryName = this.tfCatagoryName.getText().trim();
             this.catagory.catagoryDescription = this.taCatagoryDescription.getText().trim();
-            this.catagory.users = this.users;
+            this.catagory.user = this.user;
             this.catagoryBLL.save(this.catagory);
         }
     }
@@ -101,7 +101,7 @@ public class AddCatagoryController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddSupplyerController supplyerController = (AddSupplyerController) fxmlLoader.getController();
-            media.setUsers(this.users);
+            media.setUser(this.user);
             supplyerController.setMedia(media);
             supplyerController.lblCaption.setText("Add Supplier");
             supplyerController.btnUpdate.setVisible(false);
@@ -129,7 +129,7 @@ public class AddCatagoryController
             Scene scene = new Scene(parent);
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddBrandController supplyerController = (AddBrandController) fxmlLoader.getController();
-            media.setUsers(this.users);
+            media.setUser(this.user);
             supplyerController.setMedia(media);
             supplyerController.lblHeader.setText("Add Brand");
             supplyerController.btnUpdate.setVisible(false);

@@ -64,7 +64,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
 
-                    <TextField fx:id="tfSearch" onKeyReleased="#tfSearchOnKeyResele" promptText="Search Unit" />
+                    <TextField fx:id="tfSearch" onKeyReleased="#tfSearchOnKeyResele" promptText="Search Stock" />
 
                 </GridPane>
                 <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#btnRefreshOnAction" prefHeight="31.0" prefWidth="34.0" />
