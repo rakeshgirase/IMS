@@ -2,7 +2,7 @@ package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.BrandBLL;
 import com.exuberant.ims.dal.Brand;
-import com.exuberant.ims.getway.BrandsGetway;
+import com.exuberant.ims.gateway.BrandsGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
 import com.exuberant.ims.util.PropertyService;
@@ -43,7 +43,7 @@ public class AddBrandController
     @FXML
     public Button btnAddBrand;
     Brand brand = new Brand();
-    BrandsGetway brandsGetway = new BrandsGetway();
+    BrandsGateway brandsGateway = new BrandsGateway();
     BrandBLL brandBLL = new BrandBLL();
     Connection con;
     PreparedStatement pst;
@@ -148,7 +148,7 @@ public class AddBrandController
 
     public void showDetails() {
         this.brand.id = this.brandId;
-        this.brandsGetway.selectedView(this.brand);
+        this.brandsGateway.selectedView(this.brand);
         this.tfBrandName.setText(this.brand.brandName);
         this.taDiscription.setText(this.brand.brandComment);
         this.cbSupplyer.setPromptText(this.brand.supplierName);

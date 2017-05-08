@@ -1,14 +1,14 @@
 package com.exuberant.ims.bll;
 
 import com.exuberant.ims.dal.CurrentProduct;
-import com.exuberant.ims.getway.CurrentProductGetway;
+import com.exuberant.ims.gateway.CurrentProductGateway;
 
 public class CurrentProductBLL {
-    CurrentProductGetway currentProductGetway = new CurrentProductGetway();
+    CurrentProductGateway currentProductGateway = new CurrentProductGateway();
 
     public void save(CurrentProduct currentProduct) {
         if (isUniqName(currentProduct)) {
-            this.currentProductGetway.save(currentProduct);
+            this.currentProductGateway.save(currentProduct);
         }
     }
 
@@ -16,9 +16,9 @@ public class CurrentProductBLL {
         if ((isNotNull(currentProduct)) &&
                 (isUpdate(currentProduct))) {
             if (checkUpdateCondition(currentProduct)) {
-                this.currentProductGetway.update(currentProduct);
+                this.currentProductGateway.update(currentProduct);
             } else if (isUniqName(currentProduct)) {
-                this.currentProductGetway.update(currentProduct);
+                this.currentProductGateway.update(currentProduct);
             }
         }
     }
@@ -44,8 +44,8 @@ public class CurrentProductBLL {
     }
 
     public Object delete(CurrentProduct currentProduct) {
-        if (this.currentProductGetway.isSold(currentProduct)) {
-            this.currentProductGetway.delete(currentProduct);
+        if (this.currentProductGateway.isSold(currentProduct)) {
+            this.currentProductGateway.delete(currentProduct);
         }
         return currentProduct;
     }

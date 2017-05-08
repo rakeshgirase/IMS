@@ -1,17 +1,17 @@
 package com.exuberant.ims.bll;
 
 import com.exuberant.ims.dal.Supplier;
-import com.exuberant.ims.getway.SupplyerGetway;
+import com.exuberant.ims.gateway.SupplyerGateway;
 
 public class SupplyerBLL {
-    SupplyerGetway supplyerGetway = new SupplyerGetway();
+    SupplyerGateway supplyerGateway = new SupplyerGateway();
 
     public void save() {
     }
 
     public Object delete(Supplier supplier) {
-        if (this.supplyerGetway.isNotUse(supplier)) {
-            this.supplyerGetway.delete(supplier);
+        if (this.supplyerGateway.isNotUse(supplier)) {
+            this.supplyerGateway.delete(supplier);
         }
         return supplier;
     }

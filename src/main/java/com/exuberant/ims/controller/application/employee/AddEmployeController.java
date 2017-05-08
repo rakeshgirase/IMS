@@ -2,7 +2,7 @@ package com.exuberant.ims.controller.application.employee;
 
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.User;
-import com.exuberant.ims.getway.UserGateway;
+import com.exuberant.ims.gateway.UserGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.embed.swing.SwingFXUtils;

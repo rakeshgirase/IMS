@@ -1,9 +1,9 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 import com.exuberant.ims.dal.RMA;
-import com.exuberant.ims.gateway.HibernateRepository;
+import com.exuberant.ims.persistence.HibernateRepository;
 
-public class RmaGetway {
+public class RmaGateway {
 
     public void save(RMA rma) {
         HibernateRepository.getRepository().save(rma);

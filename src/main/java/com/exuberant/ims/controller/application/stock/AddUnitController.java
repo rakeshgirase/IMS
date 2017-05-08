@@ -3,7 +3,7 @@ package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.UnitBLL;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.Unit;
-import com.exuberant.ims.getway.UnitGetway;
+import com.exuberant.ims.gateway.UnitGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -28,7 +28,7 @@ public class AddUnitController
     @FXML
     public Label lblContent;
     Unit unit = Unit.GRAMS;
-    UnitGetway unitGetway = new UnitGetway();
+    UnitGateway unitGateway = new UnitGateway();
     UnitBLL unitBLL = new UnitBLL();
     CustomTf ctf = new CustomTf();
     @FXML

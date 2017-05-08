@@ -1,18 +1,18 @@
 package com.exuberant.ims.bll;
 
 import com.exuberant.ims.dal.Unit;
-import com.exuberant.ims.getway.UnitGetway;
+import com.exuberant.ims.gateway.UnitGateway;
 
 public class UnitBLL {
-    UnitGetway unitGetway = new UnitGetway();
+    UnitGateway unitGateway = new UnitGateway();
 
     public Object save(Unit unit) {
-        this.unitGetway.save(unit);
+        this.unitGateway.save(unit);
         return unit;
     }
 
     public Object delete(Unit unit) {
-        this.unitGetway.delete(unit);
+        this.unitGateway.delete(unit);
         return unit;
     }
 }

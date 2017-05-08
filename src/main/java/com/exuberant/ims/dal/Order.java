@@ -11,6 +11,7 @@ public class Order {
     @Id
     private Long id;
     private Party party;
+    private OrderType orderType;
     @OneToMany
     private Collection<Product> products;
     private BigDecimal adjustment;

@@ -5,7 +5,7 @@ import com.exuberant.ims.controller.application.sell.NewSellController;
 import com.exuberant.ims.controller.application.sell.ViewCustomerController;
 import com.exuberant.ims.dal.CurrentProduct;
 import com.exuberant.ims.dal.ProductGui;
-import com.exuberant.ims.getway.CurrentProductGetway;
+import com.exuberant.ims.gateway.CurrentProductGateway;
 import com.exuberant.ims.list.ListProduct;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -41,7 +41,7 @@ public class CurrentStoreController implements Initializable {
     @FXML
     public javafx.scene.layout.AnchorPane apCombobox;
     CurrentProduct productCurrent = new CurrentProduct();
-    CurrentProductGetway currentProductGetway = new CurrentProductGetway();
+    CurrentProductGateway currentProductGateway = new CurrentProductGateway();
     CurrentProductBLL currentProductBLL = new CurrentProductBLL();
     String db = PropertyService.getInstance().getProperty("db");
     String suplyerId;
@@ -119,7 +119,7 @@ public class CurrentStoreController implements Initializable {
     private void tfSearchOnKeyRelese(KeyEvent event) {
         this.productCurrent.setProductId(this.tfSearch.getText());
         this.productCurrent.setProductName(this.tfSearch.getText());
-        this.currentProductGetway.searchView(this.productCurrent);
+        this.currentProductGateway.searchView(this.productCurrent);
     }
 
     @FXML
@@ -210,8 +210,6 @@ public class CurrentStoreController implements Initializable {
     }
 
     public void viewDetails() {
-        System.out.println("CLCKED");
-
         //this.tblViewCurrentStore.setItems(this.productCurrent.getcurrentProductList);
         this.tblClmProductId.setCellValueFactory(new PropertyValueFactory("productId"));
         this.tblClmProductName.setCellValueFactory(new PropertyValueFactory("productName"));
@@ -226,7 +224,7 @@ public class CurrentStoreController implements Initializable {
         this.tblClmProductRMA.setCellValueFactory(new PropertyValueFactory("rma"));
         this.tblClmProductAddBy.setCellValueFactory(new PropertyValueFactory("user"));
         this.tblClmProductDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.currentProductGetway.viewFistTen(this.productCurrent);
+        this.currentProductGateway.viewFistTen(this.productCurrent);
     }
 
     private void viewSelected() {
@@ -276,7 +274,6 @@ public class CurrentStoreController implements Initializable {
                 newSellController.tfProductId.setText(item);
                 newSellController.tfProductIdOnAction(event);
                 media.setId(this.usrId);
-                newSellController.setNameMedia(media);
                 newSellController.genarateSellID();
                 Stage stage = new Stage();
                 stage.setScene(scene);
@@ -294,7 +291,7 @@ public class CurrentStoreController implements Initializable {
         if (this.cbSoteViewSupplyer.getSelectionModel().getSelectedItem() != null) {
             this.suplyerName = ((String) this.cbSoteViewSupplyer.getSelectionModel().getSelectedItem());
             this.productCurrent.setSupplierName(this.suplyerName);
-            this.currentProductGetway.searchBySupplyer(this.productCurrent);
+            this.currentProductGateway.searchBySupplyer(this.productCurrent);
         }
     }
 
@@ -305,7 +302,7 @@ public class CurrentStoreController implements Initializable {
             this.suplyerName = this.cbSoteViewSupplyer.getPromptText();
             this.productCurrent.setSupplierName(this.suplyerName);
             this.productCurrent.setBrandName(this.brandName);
-            this.currentProductGetway.searchByBrand(this.productCurrent);
+            this.currentProductGateway.searchByBrand(this.productCurrent);
         }
     }
 
@@ -318,7 +315,7 @@ public class CurrentStoreController implements Initializable {
             this.productCurrent.setSupplierName(this.suplyerName);
             this.productCurrent.setBrandName(this.brandName);
             this.productCurrent.setCatagoryName(this.catagoryName);
-            this.currentProductGetway.searchByCatagory(this.productCurrent);
+            this.currentProductGateway.searchByCatagory(this.productCurrent);
         }
     }
 
@@ -351,13 +348,13 @@ public class CurrentStoreController implements Initializable {
         this.tblClmProductRMA.setCellValueFactory(new PropertyValueFactory("rma"));
         this.tblClmProductAddBy.setCellValueFactory(new PropertyValueFactory("user"));
         this.tblClmProductDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.currentProductGetway.view(this.productCurrent);
+        this.currentProductGateway.view(this.productCurrent);
     }
 
     @FXML
     private void cbSoteViewRMAOnAction(ActionEvent event) {
         this.productCurrent.setRmaId(this.rmaID);
-        this.currentProductGetway.searchByRMA(this.productCurrent);
+        this.currentProductGateway.searchByRMA(this.productCurrent);
     }
 
     @FXML

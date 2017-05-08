@@ -1,5 +1,6 @@
 package com.exuberant.ims.storekeeper;
 
+import com.exuberant.ims.gateway.ProductGateway;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,6 +30,8 @@ public class StoreKeeper extends Application {
             primaryStage.setMinHeight(500.0D);
             primaryStage.setMinWidth(850.0D);
             primaryStage.show();
+            //FIXME: Find Better way to load Hibernate beforehand
+            new ProductGateway().getAll();
         } catch (IOException ex) {
             Logger.getLogger(StoreKeeper.class.getName()).log(Level.SEVERE, null, ex);
         }

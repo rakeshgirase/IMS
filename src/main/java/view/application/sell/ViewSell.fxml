@@ -5,7 +5,6 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" id="AnchorPane" prefHeight="541.0" prefWidth="859.0"
             stylesheets="@../../../style/MainStyle.css" xmlns="http://javafx.com/javafx/8.0.40"
             fx:controller="com.exuberant.ims.controller.application.sell.ViewSellController">
-
         <BorderPane layoutX="238.0" layoutY="136.0" prefHeight="521.0" prefWidth="743.0" AnchorPane.bottomAnchor="0.0"
                     AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <top>
@@ -16,7 +15,6 @@
                                    prefWidth="584.0" promptText="Search Sell"/>
                         <Button fx:id="btnRefresh" mnemonicParsing="false" onAction="#btnRefreshOnAction"
                                 prefHeight="31.0" prefWidth="31.0"/>
-
                 </HBox>
             </top>
             <bottom>

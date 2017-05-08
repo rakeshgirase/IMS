@@ -1,4 +1,4 @@
-package com.exuberant.ims.gateway;
+package com.exuberant.ims.persistence;
 
 import java.io.Serializable;
 import java.util.List;

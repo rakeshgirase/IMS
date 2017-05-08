@@ -6,10 +6,10 @@ import com.exuberant.ims.custom.RandomIdGenarator;
 import com.exuberant.ims.dal.CurrentProduct;
 import com.exuberant.ims.dal.Customer;
 import com.exuberant.ims.dal.SellCart;
-import com.exuberant.ims.getway.CurrentProductGetway;
-import com.exuberant.ims.getway.CustomerGetway;
-import com.exuberant.ims.getway.SellCartGerway;
-import com.exuberant.ims.list.ListCustomer;
+import com.exuberant.ims.gateway.CurrentProductGateway;
+import com.exuberant.ims.gateway.CustomerGateway;
+import com.exuberant.ims.gateway.SellCartGateway;
+import com.exuberant.ims.list.CustomerGui;
 import com.exuberant.ims.list.ListPreSell;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -33,32 +33,34 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class NewSellController
         implements Initializable {
     public Button btnAddCustomer;
     @FXML
     public TextField tfProductId;
-    UserNameMedia nameMedia;
     Long userId;
     String customerId;
     int quantity;
     Customer customer = new Customer();
-    CustomerGetway customerGetway = new CustomerGetway();
+    private ObservableList<CustomerGui> data;
+    CustomerGateway customerGateway = new CustomerGateway();
     CurrentProduct currrentProduct = new CurrentProduct();
-    CurrentProductGetway currentProductGetway = new CurrentProductGetway();
+    CurrentProductGateway currentProductGateway = new CurrentProductGateway();
     SellCart sellCart = new SellCart();
-    SellCartGerway sellCartGerway = new SellCartGerway();
+    SellCartGateway sellCartGateway = new SellCartGateway();
     SellCartBLL scbll = new SellCartBLL();
     CustomTf ctf = new CustomTf();
     ObservableList<ListPreSell> preList = FXCollections.observableArrayList();
     @FXML
     private MenuButton mbtnCustomer;
     @FXML
-    private TableView<ListCustomer> tblCustomerSortView;
+    private TableView<CustomerGui> tblCustomerSortView;
     @FXML
     private TableColumn<Object, Object> tblClmCustomerName;
     @FXML
@@ -125,29 +127,26 @@ public class NewSellController
     @FXML
     private Label lblSellId;
 
-    public void setNameMedia(UserNameMedia nameMedia) {
-        this.userId = nameMedia.getId();
-        this.nameMedia = nameMedia;
-    }
-
     public void initialize(URL location, ResourceBundle resources) {
         clearAll();
+        List<Customer> customers = customerGateway.getAll();
+        data = FXCollections.observableArrayList(customers.stream().map(Customer::toGui).collect(Collectors.toList()));
     }
 
     @FXML
     private void tblCustomerOnClick(MouseEvent event) {
-        this.mbtnCustomer.setText(((ListCustomer) this.tblCustomerSortView.getSelectionModel().getSelectedItem()).getCustomerName());
-        this.customerId = ((ListCustomer) this.tblCustomerSortView.getSelectionModel().getSelectedItem()).getId();
+        this.mbtnCustomer.setText(((CustomerGui) this.tblCustomerSortView.getSelectionModel().getSelectedItem()).getCustomerName());
+        this.customerId = ((CustomerGui) this.tblCustomerSortView.getSelectionModel().getSelectedItem()).getId();
         System.out.println(this.customerId);
     }
 
     @FXML
     private void mbtnCustomerOnClicked(MouseEvent event) {
         this.customer.customerName = this.tfCustomerSearch.getText().trim();
-        this.tblCustomerSortView.setItems(this.customer.customerList);
+        this.tblCustomerSortView.setItems(data);
         this.tblClmCustomerName.setCellValueFactory(new PropertyValueFactory("customerName"));
         this.tblClmCustomerPhoneNo.setCellValueFactory(new PropertyValueFactory("customerContNo"));
-        this.customerGetway.searchView(this.customer);
+        this.customerGateway.searchView(this.customer);
     }
 
     @FXML
@@ -159,10 +158,10 @@ public class NewSellController
     @FXML
     private void tfCustomerSearchOnKeyReleased(KeyEvent event) {
         this.customer.customerName = this.tfCustomerSearch.getText().trim();
-        this.tblCustomerSortView.setItems(this.customer.customerList);
+        this.tblCustomerSortView.setItems(data);
         this.tblClmCustomerName.setCellValueFactory(new PropertyValueFactory("customerName"));
         this.tblClmCustomerPhoneNo.setCellValueFactory(new PropertyValueFactory("customerContNo"));
-        this.customerGetway.searchView(this.customer);
+        this.customerGateway.searchView(this.customer);
     }
 
     @FXML
@@ -171,7 +170,7 @@ public class NewSellController
             clearAll();
         } else {
             this.currrentProduct.productId = this.tfProductId.getText().trim();
-            this.currentProductGetway.sView(this.currrentProduct);
+            this.currentProductGateway.sView(this.currrentProduct);
             this.lblUnit.setText(this.currrentProduct.unitName);
             this.lblCurrentQuantity.setText(this.currrentProduct.quantity);
             this.lblPursesPrice.setText(this.currrentProduct.pursesPrice);
@@ -325,7 +324,6 @@ public class NewSellController
             scene.setFill(new Color(0.0D, 0.0D, 0.0D, 0.0D));
             AddCustomerController addCustomerController = (AddCustomerController) fXMLLoader.getController();
             media.setId(this.userId);
-            addCustomerController.setNameMedia(this.nameMedia);
             addCustomerController.lblCustomerContent.setText("ADD CUSTOMER");
             addCustomerController.btnUpdate.setVisible(false);
             Stage stage = new Stage();

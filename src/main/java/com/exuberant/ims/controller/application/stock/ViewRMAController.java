@@ -2,7 +2,7 @@ package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.RmaBLL;
 import com.exuberant.ims.dal.RMA;
-import com.exuberant.ims.getway.RmaGetway;
+import com.exuberant.ims.gateway.RmaGateway;
 import com.exuberant.ims.list.ListRma;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -34,7 +34,7 @@ import java.util.ResourceBundle;
 public class ViewRMAController
         implements Initializable {
     RMA rma = new RMA();
-    RmaGetway rmaGetway = new RmaGetway();
+    RmaGateway rmaGateway = new RmaGateway();
     RmaBLL rmaBLL = new RmaBLL();
     Connection con;
     PreparedStatement pst;
@@ -127,7 +127,7 @@ public class ViewRMAController
         this.clmRMADiscription.setCellValueFactory(new PropertyValueFactory("rmaComment"));
         this.clmRMACreator.setCellValueFactory(new PropertyValueFactory("creatorName"));
         this.clmRMADate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.rmaGetway.view(this.rma);
+        this.rmaGateway.view(this.rma);
     }
 
     @FXML
@@ -172,7 +172,7 @@ public class ViewRMAController
         this.clmRMADiscription.setCellValueFactory(new PropertyValueFactory("rmaComment"));
         this.clmRMACreator.setCellValueFactory(new PropertyValueFactory("creatorName"));
         this.clmRMADate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.rmaGetway.searchView(this.rma);
+        this.rmaGateway.searchView(this.rma);
     }
 
     private void viewDetails() {

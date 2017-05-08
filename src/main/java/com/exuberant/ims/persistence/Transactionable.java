@@ -1,4 +1,4 @@
-package com.exuberant.ims.gateway;
+package com.exuberant.ims.persistence;
 
 
 public interface Transactionable {

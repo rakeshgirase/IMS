@@ -3,7 +3,7 @@ package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.RmaBLL;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.RMA;
-import com.exuberant.ims.getway.RmaGetway;
+import com.exuberant.ims.gateway.RmaGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;
@@ -30,7 +30,7 @@ public class AddRMAController
     public Button btnUpdate;
     CustomTf ctf = new CustomTf();
     RMA rma = new RMA();
-    RmaGetway rmaGetway = new RmaGetway();
+    RmaGateway rmaGateway = new RmaGateway();
     RmaBLL rmaBLL = new RmaBLL();
     private Long usrId;
     private UserNameMedia media;
@@ -92,7 +92,7 @@ public class AddRMAController
 
     public void showDetails() {
         this.rma.id = this.rmaId;
-        this.rmaGetway.selectedView(this.rma);
+        this.rmaGateway.selectedView(this.rma);
         this.tfRMAName.setText(this.rma.rmaName);
         this.tfRMADayes.setText(this.rma.rmaDays);
         this.taRMAComment.setText(this.rma.rmaComment);

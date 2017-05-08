@@ -1,7 +1,7 @@
 package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.dal.*;
-import com.exuberant.ims.getway.ProductGateway;
+import com.exuberant.ims.gateway.ProductGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.collections.FXCollections;

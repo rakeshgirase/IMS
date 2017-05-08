@@ -1,7 +1,7 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 import com.exuberant.ims.dal.Product;
-import com.exuberant.ims.gateway.HibernateRepository;
+import com.exuberant.ims.persistence.HibernateRepository;
 
 import java.util.List;
 

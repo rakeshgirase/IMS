@@ -3,7 +3,7 @@ package com.exuberant.ims.controller;
 import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.dal.User;
-import com.exuberant.ims.getway.UserGateway;
+import com.exuberant.ims.gateway.UserGateway;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.beans.binding.BooleanBinding;
 import javafx.event.ActionEvent;

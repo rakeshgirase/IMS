@@ -1,7 +1,7 @@
 package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.dal.Supplier;
-import com.exuberant.ims.getway.SupplyerGetway;
+import com.exuberant.ims.gateway.SupplyerGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +30,7 @@ public class AddSupplyerController
     @FXML
     public Label lblCaption;
     Supplier oSupplier = new Supplier();
-    SupplyerGetway supplyerGetway = new SupplyerGetway();
+    SupplyerGateway supplyerGateway = new SupplyerGateway();
     private Long userId;
     private UserNameMedia media;
     @FXML
@@ -65,7 +65,7 @@ public class AddSupplyerController
             this.oSupplier.supplierAddress = this.taSupplyerAddress.getText();
             this.oSupplier.supplierDescription = this.taSupplyerDescription.getText();
             this.oSupplier.creatorId = this.userId;
-            this.supplyerGetway.save(this.oSupplier);
+            this.supplyerGateway.save(this.oSupplier);
             clrAll();
         }
     }
@@ -104,7 +104,7 @@ public class AddSupplyerController
             this.oSupplier.supplierContactNumber = this.taContactNumbers.getText().trim();
             this.oSupplier.supplierAddress = this.taSupplyerAddress.getText().trim();
             this.oSupplier.supplierDescription = this.taSupplyerDescription.getText().trim();
-            this.supplyerGetway.update(this.oSupplier);
+            this.supplyerGateway.update(this.oSupplier);
         }
     }
 
@@ -116,7 +116,7 @@ public class AddSupplyerController
 
     public void showDetails() {
         this.oSupplier.id = this.supplyerId;
-        this.supplyerGetway.selectedView(this.oSupplier);
+        this.supplyerGateway.selectedView(this.oSupplier);
         this.tfSupplyerName.setText(this.oSupplier.supplierName);
         this.taContactNumbers.setText(this.oSupplier.supplierContactNumber);
         this.taSupplyerAddress.setText(this.oSupplier.supplierAddress);

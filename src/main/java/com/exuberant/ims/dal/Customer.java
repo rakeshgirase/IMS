@@ -1,8 +1,6 @@
 package com.exuberant.ims.dal;
 
-import com.exuberant.ims.list.ListCustomer;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.exuberant.ims.list.CustomerGui;
 
 import javax.persistence.Entity;
 
@@ -16,5 +14,8 @@ public class Customer {
     public String date;
     public Long userId;
     public String userName;
-    public ObservableList<ListCustomer> customerList = FXCollections.observableArrayList();
+
+    public CustomerGui toGui(){
+        return new CustomerGui(id,customerName, customerConNo,customerAddress, totalBuy, userName, date);
+    }
 }

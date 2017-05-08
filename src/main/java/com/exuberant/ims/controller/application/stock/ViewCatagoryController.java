@@ -3,7 +3,7 @@ package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.CatagoryBLL;
 import com.exuberant.ims.custom.CellFactories;
 import com.exuberant.ims.dal.Catagory;
-import com.exuberant.ims.getway.CatagoryGetway;
+import com.exuberant.ims.gateway.CatagoryGateway;
 import com.exuberant.ims.list.ListCatagory;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -39,7 +39,7 @@ public class ViewCatagoryController
     public TableColumn tablClmBox;
     Catagory catagory = new Catagory();
     CellFactories cellFactories = new CellFactories();
-    CatagoryGetway catagoryGetway = new CatagoryGetway();
+    CatagoryGateway catagoryGateway = new CatagoryGateway();
     CatagoryBLL catagoryBLL = new CatagoryBLL();
     Connection con;
     PreparedStatement pst;
@@ -170,7 +170,7 @@ public class ViewCatagoryController
         this.clmCatagoryDescription.setCellValueFactory(new PropertyValueFactory("catagoryDescription"));
         this.clmCatagoryCreator.setCellValueFactory(new PropertyValueFactory("creatorId"));
         this.clmCatagoryDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.catagoryGetway.view(this.catagory);
+        this.catagoryGateway.view(this.catagory);
         this.tablClmBox.setCellFactory(this.cellFactories.cellFactoryCheckBox);
     }
 
@@ -186,7 +186,7 @@ public class ViewCatagoryController
         this.clmCatagoryDescription.setCellValueFactory(new PropertyValueFactory("catagoryDescription"));
         this.clmCatagoryCreator.setCellValueFactory(new PropertyValueFactory("creatorId"));
         this.clmCatagoryDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.catagoryGetway.searchView(this.catagory);
+        this.catagoryGateway.searchView(this.catagory);
     }
 
     private void viewDetails() {

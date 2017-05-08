@@ -1,8 +1,8 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 import com.exuberant.ims.dal.User;
-import com.exuberant.ims.gateway.HibernateRepository;
 import com.exuberant.ims.list.ListEmployee;
+import com.exuberant.ims.persistence.HibernateRepository;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;

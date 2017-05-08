@@ -1,32 +1,32 @@
 package com.exuberant.ims.bll;
 
 import com.exuberant.ims.dal.Brand;
-import com.exuberant.ims.getway.BrandsGetway;
+import com.exuberant.ims.gateway.BrandsGateway;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
 
 public class BrandBLL {
 
-    BrandsGetway brandsGetway = new BrandsGetway();
+    BrandsGateway brandsGateway = new BrandsGateway();
 
     public void save(Brand brand) {
         if (isUniqName(brand)) {
-            this.brandsGetway.save(brand);
+            this.brandsGateway.save(brand);
         }
     }
 
     public void update(Brand brand) {
         if (isTrueUpdate(brand)) {
-            this.brandsGetway.update(brand);
+            this.brandsGateway.update(brand);
         } else if (isUniqName(brand)) {
-            this.brandsGetway.update(brand);
+            this.brandsGateway.update(brand);
         }
     }
 
     public void delete(Brand brand) {
-        if (this.brandsGetway.isNotUsed(brand)) {
-            this.brandsGetway.delete(brand);
+        if (this.brandsGateway.isNotUsed(brand)) {
+            this.brandsGateway.delete(brand);
         }
     }
 

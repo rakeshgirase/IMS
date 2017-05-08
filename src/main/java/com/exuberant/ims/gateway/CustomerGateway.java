@@ -1,12 +1,14 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 import com.exuberant.ims.dal.Customer;
-import com.exuberant.ims.gateway.HibernateRepository;
+import com.exuberant.ims.persistence.HibernateRepository;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.StageStyle;
 
-public class CustomerGetway {
+import java.util.List;
+
+public class CustomerGateway {
 
     public void save(Customer customer) {
         HibernateRepository.getRepository().save(customer);
@@ -38,5 +40,9 @@ public class CustomerGetway {
     private boolean isNotUsed(Customer customer) {
         boolean isNotUsed = false;
         return isNotUsed;
+    }
+
+    public List<Customer> getAll() {
+        return HibernateRepository.getRepository().getAll(Customer.class);
     }
 }

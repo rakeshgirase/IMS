@@ -1,4 +1,4 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 import com.exuberant.ims.dal.MysqlConnector;
 import com.exuberant.ims.database.SQLightConnection;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MySqlConnectorGetway {
+public class MySqlConnectorGateway {
     SQLightConnection qLightConnection = new SQLightConnection();
     Connection con = this.qLightConnection.sqliteConnection();
     PreparedStatement pst;
@@ -29,7 +29,7 @@ public class MySqlConnectorGetway {
             this.pst.setString(5, connector.password);
             this.pst.executeUpdate();
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlConnectorGetway.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySqlConnectorGateway.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -44,7 +44,7 @@ public class MySqlConnectorGetway {
                 connector.password = this.rs.getString(5);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlConnectorGetway.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySqlConnectorGateway.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

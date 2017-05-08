@@ -5,9 +5,9 @@ import com.exuberant.ims.dal.CurrentProduct;
 import com.exuberant.ims.dal.RMA;
 import com.exuberant.ims.dal.Supplier;
 import com.exuberant.ims.dal.Unit;
-import com.exuberant.ims.gateway.HibernateRepository;
-import com.exuberant.ims.getway.CurrentProductGetway;
+import com.exuberant.ims.gateway.CurrentProductGateway;
 import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.persistence.HibernateRepository;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -50,7 +50,7 @@ public class AddProductController
     public Label lblHeader;
     CurrentProduct currentProduct = new CurrentProduct();
     CurrentProductBLL currentProductBLL = new CurrentProductBLL();
-    CurrentProductGetway currentProductGetway = new CurrentProductGetway();
+    CurrentProductGateway currentProductGateway = new CurrentProductGateway();
 
     @FXML
     private RadioButton rbStatic;
@@ -277,7 +277,7 @@ public class AddProductController
 
     public void viewSelected() {
         this.currentProduct.setId(this.id);
-        this.currentProductGetway.selectedView(this.currentProduct);
+        this.currentProductGateway.selectedView(this.currentProduct);
         this.tfProductId.setText(this.currentProduct.getProductId());
         this.tfProductName.setText(this.currentProduct.getProductName());
         this.tfProductQuantity.setText(this.currentProduct.getQuantity());

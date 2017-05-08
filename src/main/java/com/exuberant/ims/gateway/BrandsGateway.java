@@ -1,11 +1,11 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 import com.exuberant.ims.dal.Brand;
-import com.exuberant.ims.gateway.HibernateRepository;
+import com.exuberant.ims.persistence.HibernateRepository;
 
 import java.util.List;
 
-public class BrandsGetway {
+public class BrandsGateway {
 
     public void save(Brand brand) {
         HibernateRepository.getRepository().save(brand);

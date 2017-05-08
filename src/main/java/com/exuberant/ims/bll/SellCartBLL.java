@@ -1,14 +1,14 @@
 package com.exuberant.ims.bll;
 
 import com.exuberant.ims.dal.SellCart;
-import com.exuberant.ims.getway.SellCartGerway;
+import com.exuberant.ims.gateway.SellCartGateway;
 
 public class SellCartBLL {
-    SellCartGerway sellCartGerway = new SellCartGerway();
+    SellCartGateway sellCartGateway = new SellCartGateway();
 
     public void sell(SellCart sellCart) {
         updateCurrentQuentity(sellCart);
-        this.sellCartGerway.save(sellCart);
+        this.sellCartGateway.save(sellCart);
     }
 
     public void updateCurrentQuentity(SellCart sellCart) {

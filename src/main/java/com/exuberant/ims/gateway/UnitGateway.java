@@ -1,10 +1,10 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 import com.exuberant.ims.dal.Unit;
-import com.exuberant.ims.gateway.HibernateRepository;
+import com.exuberant.ims.persistence.HibernateRepository;
 import com.exuberant.ims.util.PropertyService;
 
-public class UnitGetway {
+public class UnitGateway {
 
     String db = PropertyService.getInstance().getProperty("db");
 

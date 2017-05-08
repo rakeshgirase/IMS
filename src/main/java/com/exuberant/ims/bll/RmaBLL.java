@@ -1,14 +1,14 @@
 package com.exuberant.ims.bll;
 
 import com.exuberant.ims.dal.RMA;
-import com.exuberant.ims.getway.RmaGetway;
+import com.exuberant.ims.gateway.RmaGateway;
 import com.exuberant.ims.util.PropertyService;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class RmaBLL {
-    RmaGetway rmaGetway = new RmaGetway();
+    RmaGateway rmaGateway = new RmaGateway();
     PreparedStatement pst;
     ResultSet rs;
 
@@ -16,21 +16,21 @@ public class RmaBLL {
 
     public void save(RMA rma) {
         if (isUniqName(rma)) {
-            this.rmaGetway.save(rma);
+            this.rmaGateway.save(rma);
         }
     }
 
     public void update(RMA rma) {
         if (sameName(rma)) {
-            this.rmaGetway.update(rma);
+            this.rmaGateway.update(rma);
         } else if (isUniqName(rma)) {
-            this.rmaGetway.update(rma);
+            this.rmaGateway.update(rma);
         }
     }
 
     public Object delete(RMA rma) {
-        if (this.rmaGetway.isNotUse(rma)) {
-            this.rmaGetway.delete(rma);
+        if (this.rmaGateway.isNotUse(rma)) {
+            this.rmaGateway.delete(rma);
         }
         return rma;
     }

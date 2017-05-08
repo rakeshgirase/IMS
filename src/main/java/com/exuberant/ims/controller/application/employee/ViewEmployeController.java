@@ -4,7 +4,7 @@ import com.exuberant.ims.custom.CustomPf;
 import com.exuberant.ims.custom.CustomTf;
 import com.exuberant.ims.custom.History;
 import com.exuberant.ims.dal.User;
-import com.exuberant.ims.getway.UserGateway;
+import com.exuberant.ims.gateway.UserGateway;
 import com.exuberant.ims.list.ListEmployee;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;

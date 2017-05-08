@@ -2,7 +2,7 @@ package com.exuberant.ims.controller.application.stock;
 
 import com.exuberant.ims.bll.BrandBLL;
 import com.exuberant.ims.dal.Brand;
-import com.exuberant.ims.getway.BrandsGetway;
+import com.exuberant.ims.gateway.BrandsGateway;
 import com.exuberant.ims.list.ListBrands;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -35,7 +35,7 @@ import java.util.ResourceBundle;
 public class ViewBrandController
         implements Initializable {
     Brand brand = new Brand();
-    BrandsGetway brandsGetway = new BrandsGetway();
+    BrandsGateway brandsGateway = new BrandsGateway();
     BrandBLL brandBLL = new BrandBLL();
     Connection con;
     PreparedStatement pst;
@@ -122,7 +122,7 @@ public class ViewBrandController
         this.tblCollumDescription.setCellValueFactory(new PropertyValueFactory("brandComment"));
         this.tblCollumCreator.setCellValueFactory(new PropertyValueFactory("creatorId"));
         this.tblClmDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.brandsGetway.searchView(this.brand);
+        this.brandsGateway.searchView(this.brand);
     }
 
     @FXML
@@ -187,7 +187,7 @@ public class ViewBrandController
         this.tblCollumDescription.setCellValueFactory(new PropertyValueFactory("brandComment"));
         this.tblCollumCreator.setCellValueFactory(new PropertyValueFactory("creatorId"));
         this.tblClmDate.setCellValueFactory(new PropertyValueFactory("date"));
-        this.brandsGetway.view(this.brand);
+        this.brandsGateway.view(this.brand);
     }
 
     @FXML

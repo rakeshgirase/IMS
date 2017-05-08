@@ -4,9 +4,9 @@ import com.exuberant.ims.bll.CatagoryBLL;
 import com.exuberant.ims.dal.Brand;
 import com.exuberant.ims.dal.Catagory;
 import com.exuberant.ims.dal.User;
-import com.exuberant.ims.gateway.HibernateRepository;
-import com.exuberant.ims.getway.CatagoryGetway;
+import com.exuberant.ims.gateway.CatagoryGateway;
 import com.exuberant.ims.media.UserNameMedia;
+import com.exuberant.ims.persistence.HibernateRepository;
 import com.exuberant.ims.storekeeper.URLService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +43,7 @@ public class AddCatagoryController
     @FXML
     public Button btnClose;
     Catagory catagory = new Catagory();
-    CatagoryGetway catagoryGetway = new CatagoryGetway();
+    CatagoryGateway catagoryGateway = new CatagoryGateway();
     CatagoryBLL catagoryBLL = new CatagoryBLL();
 
     ResultSet rs;
@@ -203,7 +203,7 @@ public class AddCatagoryController
 
     public void showDetails() {
         this.catagory.id = this.catagoryId;
-        this.catagoryGetway.selectedView(this.catagory);
+        this.catagoryGateway.selectedView(this.catagory);
         this.tfCatagoryName.setText(this.catagory.catagoryName);
         this.taCatagoryDescription.setText(this.catagory.catagoryDescription);
         this.cbBrandName.setPromptText(this.catagory.brandName);

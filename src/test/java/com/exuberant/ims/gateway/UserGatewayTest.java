@@ -1,4 +1,4 @@
-package com.exuberant.ims.getway;
+package com.exuberant.ims.gateway;
 
 
 import com.exuberant.ims.dal.User;

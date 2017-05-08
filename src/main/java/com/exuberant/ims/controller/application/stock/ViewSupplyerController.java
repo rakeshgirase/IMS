@@ -3,7 +3,7 @@ package com.exuberant.ims.controller.application.stock;
 import com.exuberant.ims.bll.SupplyerBLL;
 import com.exuberant.ims.custom.History;
 import com.exuberant.ims.dal.Supplier;
-import com.exuberant.ims.getway.SupplyerGetway;
+import com.exuberant.ims.gateway.SupplyerGateway;
 import com.exuberant.ims.list.ListSupplyer;
 import com.exuberant.ims.media.UserNameMedia;
 import com.exuberant.ims.storekeeper.URLService;
@@ -37,7 +37,7 @@ public class ViewSupplyerController implements Initializable {
     @FXML
     public AnchorPane acContent;
     Supplier supplier = new Supplier();
-    SupplyerGetway supplyerGetway = new SupplyerGetway();
+    SupplyerGateway supplyerGateway = new SupplyerGateway();
     SupplyerBLL supplyerBLL = new SupplyerBLL();
     History history = new History();
     private Long userId;
@@ -107,7 +107,7 @@ public class ViewSupplyerController implements Initializable {
         this.clmSupplyerAddress.setCellValueFactory(new PropertyValueFactory("supplierAddress"));
         this.clmSupplyerDescription.setCellValueFactory(new PropertyValueFactory("supplierDescription"));
         this.clmSupplyerJoining.setCellValueFactory(new PropertyValueFactory("dataOfjoining"));
-        this.supplyerGetway.searchView(this.supplier);
+        this.supplyerGateway.searchView(this.supplier);
     }
 
     public void showDetails() {
@@ -118,7 +118,7 @@ public class ViewSupplyerController implements Initializable {
         this.clmSupplyerAddress.setCellValueFactory(new PropertyValueFactory("supplierAddress"));
         this.clmSupplyerDescription.setCellValueFactory(new PropertyValueFactory("supplierDescription"));
         this.clmSupplyerJoining.setCellValueFactory(new PropertyValueFactory("dataOfjoining"));
-        this.supplyerGetway.view(this.supplier);
+        this.supplyerGateway.view(this.supplier);
     }
 
     @FXML

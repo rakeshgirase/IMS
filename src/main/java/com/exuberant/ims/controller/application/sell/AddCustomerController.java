@@ -2,7 +2,7 @@ package com.exuberant.ims.controller.application.sell;
 
 import com.exuberant.ims.bll.CustomerBLL;
 import com.exuberant.ims.dal.Customer;
-import com.exuberant.ims.getway.CustomerGetway;
+import com.exuberant.ims.gateway.CustomerGateway;
 import com.exuberant.ims.media.UserNameMedia;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +27,7 @@ public class AddCustomerController
     public String customerId;
     UserNameMedia nameMedia;
     Customer customer = new Customer();
-    CustomerGetway customerGetway = new CustomerGetway();
+    CustomerGateway customerGateway = new CustomerGateway();
     CustomerBLL customerBLL = new CustomerBLL();
     @FXML
     private TextField tfCustomerName;
@@ -38,11 +38,6 @@ public class AddCustomerController
     @FXML
     private Button btnClose;
     private Long userId;
-
-    public void setNameMedia(UserNameMedia nameMedia) {
-        this.userId = nameMedia.getId();
-        this.nameMedia = nameMedia;
-    }
 
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -73,7 +68,7 @@ public class AddCustomerController
 
     public void viewDetails() {
         this.customer.id = this.customerId;
-        this.customerGetway.selectedView(this.customer);
+        this.customerGateway.selectedView(this.customer);
         this.tfCustomerName.setText(this.customer.customerName);
         this.taCustomerContact.setText(this.customer.customerConNo);
         this.taCustomerAddress.setText(this.customer.customerAddress);

@@ -1,6 +1,6 @@
 package com.exuberant.ims.list;
 
-public class ListCustomer {
+public class CustomerGui {
     public String id;
     public String customerName;
     public String customerContNo;
@@ -9,7 +9,7 @@ public class ListCustomer {
     public String addBy;
     public String addedDate;
 
-    public ListCustomer(String id, String customerName, String customerContNo, String customerAddress, String totalBuy, String addBy, String addedDate) {
+    public CustomerGui(String id, String customerName, String customerContNo, String customerAddress, String totalBuy, String addBy, String addedDate) {
         this.id = id;
         this.customerName = customerName;
         this.customerContNo = customerContNo;
@@ -17,6 +17,10 @@ public class ListCustomer {
         this.totalBuy = totalBuy;
         this.addBy = addBy;
         this.addedDate = addedDate;
+    }
+
+    public CustomerGui() {
+
     }
 
     public String getId() {
