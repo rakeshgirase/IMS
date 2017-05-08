@@ -13,9 +13,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,7 +23,6 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,24 +76,6 @@ public class ViewSellController
 
     @FXML
     private void btnDeleteOnAction(ActionEvent event) {
-        if (this.tblCustomer.getSelectionModel().getSelectedItem() != null) {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("");
-            alert.setHeaderText("CONFIRM");
-            alert.setContentText("Are You Sure to Delete this item??");
-            alert.initStyle(StageStyle.UNDECORATED);
-            Optional<ButtonType> result = alert.showAndWait();
-            if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-                CustomerGui customerGui = (CustomerGui) this.tblCustomer.getSelectionModel().getSelectedItem();
-                String item = customerGui.getId();
-                this.customer.id = item;
-                this.customerGateway.delete(this.customer);
-                this.tblCustomer.getItems().clear();
-                viewDetails();
-            }
-        } else {
-            System.out.println("EMPTY SELECTION");
-        }
     }
 
 
@@ -145,7 +123,6 @@ public class ViewSellController
     private void btnRefreshOnAction(ActionEvent event) {
         this.tfSearch.clear();
         data.clear();
-        viewDetails();
     }
 
     public void btnSellOrderOnAction(ActionEvent actionEvent) {

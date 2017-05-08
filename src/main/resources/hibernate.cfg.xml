@@ -14,7 +14,7 @@
         <property name="show_sql">true</property>
 
         <property name="format_sql">true</property>
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 
         <!-- JDBC connection pool (use the built-in) -->
         <property name="connection.pool_size">1</property>
@@ -22,7 +22,10 @@
 
         <mapping class="com.exuberant.ims.dal.User"/>
         <mapping class="com.exuberant.ims.dal.Product"/>
-        <mapping class="com.exuberant.ims.dal.Weight"/>
         <mapping class="com.exuberant.ims.dal.CoreProduct"/>
+        <mapping class="com.exuberant.ims.dal.Weight"/>
+        <mapping class="com.exuberant.ims.dal.Party"/>
+        <mapping class="com.exuberant.ims.dal.Contact"/>
+
     </session-factory>
 </hibernate-configuration>

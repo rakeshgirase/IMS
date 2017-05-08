@@ -52,7 +52,6 @@ public class SellController implements Initializable {
         fXMLLoader.load(resource.openStream());
         media.setId(this.userId);
         ViewSellController controller = (ViewSellController) fXMLLoader.getController();
-        controller.viewDetails();
         this.spMainContent.getChildren().clear();
         this.spMainContent.getChildren().add(fXMLLoader.getRoot());
     }

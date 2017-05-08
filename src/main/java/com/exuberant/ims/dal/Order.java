@@ -1,34 +1,47 @@
 package com.exuberant.ims.dal;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
 
 @Entity
+@Table(name = "ORDERS")
 public class Order {
     @Id
+    @GeneratedValue
     private Long id;
+    @ManyToOne
     private Party party;
     private OrderType orderType;
-    @OneToMany
-    private Collection<Product> products;
+    @ElementCollection
+    @Cascade(CascadeType.ALL)
+    private Collection<ProductDetail> productDetails;
     private BigDecimal adjustment;
     private BigDecimal actualCost;
     private BigDecimal totalCost;
 
+    public Order(OrderType orderType, Collection<ProductDetail> productDetails) {
+        this.orderType = orderType;
+        this.productDetails = productDetails;
+    }
+
+    public Order() {
+    }
+
     private void calculateTotalCost() {
         totalCost = new BigDecimal(0);
-        for (Product product : products) {
-            totalCost.add(product.getMrp());
+        for (ProductDetail productDetail : productDetails) {
+            totalCost.add(productDetail.getProduct().getMrp());
         }
     }
 
     private void calculateActualCost() {
         actualCost = new BigDecimal(0);
-        for (Product product : products) {
-            actualCost.add(product.getActualCost());
+        for (ProductDetail productDetail : productDetails) {
+            actualCost.add(productDetail.getProduct().getActualCost());
         }
     }
 
@@ -49,13 +62,6 @@ public class Order {
         this.party = party;
     }
 
-    public Collection<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Collection<Product> products) {
-        this.products = products;
-    }
 
     public BigDecimal getAdjustment() {
         return adjustment;
