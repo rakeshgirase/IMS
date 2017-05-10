@@ -14,4 +14,8 @@ public class ProductGateway {
     public List<Product> getAll() {
         return HibernateRepository.getRepository().getAll(Product.class);
     }
+
+    public void delete(){
+        getAll().stream().forEach(HibernateRepository.getRepository()::delete);
+    }
 }

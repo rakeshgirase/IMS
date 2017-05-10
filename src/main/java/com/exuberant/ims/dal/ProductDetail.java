@@ -8,8 +8,7 @@ public class ProductDetail {
     @Id
     @GeneratedValue
     private Long id;
-    //@OneToMany
-    @Transient
+    @ManyToOne
     private Product product;
     private BigDecimal adjustment;
     private BigDecimal sellingCost;

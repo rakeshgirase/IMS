@@ -1,8 +1,5 @@
 package com.exuberant.ims.dal;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -16,8 +13,7 @@ public class Order {
     @ManyToOne
     private Party party;
     private OrderType orderType;
-    @ElementCollection
-    @Cascade(CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<ProductDetail> productDetails;
     private BigDecimal adjustment;
     private BigDecimal actualCost;

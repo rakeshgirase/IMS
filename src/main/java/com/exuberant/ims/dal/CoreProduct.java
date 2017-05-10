@@ -4,13 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
 
 @Entity
 @Table(name = "CORE_PRODUCT")
-public class CoreProduct implements Serializable{
+public class CoreProduct {
     @Id
-    @GeneratedValue
+    @GeneratedValue()
     private Long id;
     private String description;
     private PackageType packageType;
