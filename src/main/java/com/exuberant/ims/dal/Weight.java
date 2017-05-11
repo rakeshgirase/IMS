@@ -1,15 +1,14 @@
 package com.exuberant.ims.dal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
 public class Weight {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "WEIGHT_SEQ", allocationSize = 25)
     private Long id;
     private BigDecimal weight;
     private Unit unit = Unit.GRAMS;

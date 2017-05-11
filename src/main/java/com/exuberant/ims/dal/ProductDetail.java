@@ -8,7 +8,7 @@ public class ProductDetail {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Product product;
     private BigDecimal adjustment;
     private BigDecimal sellingCost;

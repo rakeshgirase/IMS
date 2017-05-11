@@ -8,7 +8,8 @@ public class Product {
 
     private static final java.math.BigDecimal HUNDRED = new BigDecimal(100);
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "PRODUCT_SEQ", allocationSize = 25)
     private Long id;
     @ManyToOne(cascade = CascadeType.ALL)
     private CoreProduct coreProduct;
@@ -21,7 +22,7 @@ public class Product {
     private boolean calculateActualCost = true;
 
     public Product(String description, BigDecimal quantity, BigDecimal costOfSelling, BigDecimal mrp, BigDecimal discount, BigDecimal actualCost, String weight) {
-        this.coreProduct = new CoreProduct(description, PackageType.PACK, weight);
+        this.coreProduct = new CoreProduct(description, PackageType.PACK, new Weight(new BigDecimal(weight), Unit.GRAMS));
         this.quantity = quantity;
         this.costOfSelling = costOfSelling;
         this.mrp = mrp;
@@ -88,7 +89,7 @@ public class Product {
         setCalculateActualCost(false);
     }
 
-    public String getWeight() {
+    public Weight getWeight() {
         return coreProduct.getWeight();
     }
 

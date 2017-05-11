@@ -1,15 +1,13 @@
 package com.exuberant.ims.dal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "USERS")
 public class User {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "USER_SEQ", allocationSize = 25)
     private Long id;
     private String userName;
     private String fullName;

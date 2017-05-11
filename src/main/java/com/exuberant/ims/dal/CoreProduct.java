@@ -1,23 +1,21 @@
 package com.exuberant.ims.dal;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "CORE_PRODUCT")
 public class CoreProduct {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "CORE_PRODUCT_SEQ", allocationSize = 25)
     private Long id;
     private String description;
     private PackageType packageType;
 
-    //FIXME: Change this to class
-    private String weight;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Weight weight;
 
-    public CoreProduct(String description, PackageType packageType, String weight) {
+    public CoreProduct(String description, PackageType packageType, Weight weight) {
         this.description = description;
         this.packageType = packageType;
         this.weight = weight;
@@ -42,11 +40,11 @@ public class CoreProduct {
         this.packageType = packageType;
     }
 
-    public String getWeight() {
+    public Weight getWeight() {
         return weight;
     }
 
-    public void setWeight(String weight) {
+    public void setWeight(Weight weight) {
         this.weight = weight;
     }
 

@@ -8,7 +8,8 @@ import java.util.Collection;
 @Table(name = "ORDERS")
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "ORDER_SEQ", allocationSize = 25)
     private Long id;
     @ManyToOne
     private Party party;
